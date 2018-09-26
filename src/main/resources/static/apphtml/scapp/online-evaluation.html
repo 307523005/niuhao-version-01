@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>物品评估</title>
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script src="js/common.js"></script>
+</head>
+
+<body>
+<header class="header" id="header">
+<a href="javascript:history.go(-1)" target=_self class="back">返回</a>
+<h1>物品评估</h1>
+</header>
+<!--header-end-->
+
+<div class="container" id="container"> 
+  <form>
+    <div class="add-class">
+        <ul>
+          <li><label for="item-name">物品名称</label><input id="item-name" type="text" name="item-name" class="item-name" placeholder="请输入维修物品名称" value=""></li>
+          <li><label for="product-brand">产品品牌</label><input id="product-brand" type="text" name="product-brand" class="product-brand" placeholder="请输入维修物品品牌" value=""></li>
+          <li><label for="buy-time">购买时间</label><input id="buy-time" type="datetime-local" name="buy-time" class="buy-time" placeholder="请输入购买时间" value=""></li>
+          <li><label for="maintenance">维修情况</label><input id="maintenance" type="text" name="maintenance" class="maintenance" placeholder="之前是否维修过，维修次数" value=""></li>
+        </ul>
+        <div class="maintenance-reservation-textarea online-evaluation-textarea">
+           <textarea class="textarea" id="textarea" autofocus="autofocus"></textarea>
+           <div class="layer"><span>请在此输入维修情况描述</span></div>
+        </div>
+        <div class="upload-photos">
+           <span></span>
+        </div>
+        <button type="submit" class="confirm-payment">点击评估</button>
+    </div>
+  </form>  
+</div>
+<!--container-end-->
+</body>
+</html>

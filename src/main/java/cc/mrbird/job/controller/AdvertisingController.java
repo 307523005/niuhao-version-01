@@ -1,6 +1,5 @@
 package cc.mrbird.job.controller;
 
-import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -8,7 +7,6 @@ import cc.mrbird.common.shiro.RequestUtils;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.job.domain.Advertising;
 import cc.mrbird.job.service.AdvertisingService;
-import cc.mrbird.system.domain.Dict;
 import cc.mrbird.system.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
@@ -47,8 +45,6 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -68,9 +64,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("advertising")
     @RequiresPermissions("advertising:list")
     public String advertising() {
-        System.out.println(
-                "Advertising"
-        );
         return "job/advertising/advertising";
     }
 
@@ -79,6 +72,9 @@ public class AdvertisingController extends BaseController {
     @RequiresPermissions("advertising:list")
     @ResponseBody
     public Map<String, Object> advertisingList(QueryRequest request, Advertising advertising) {
+        User user = RequestUtils.currentLoginUser();
+        String merchantId = user.getMerchantId();
+        log.info("---merchantId--"+merchantId);
         PageInfo<Advertising> pageInfo = this.advertisingService.PageList(request, advertising);
         return getDataTable(pageInfo);
     }

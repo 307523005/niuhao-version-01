@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>家帮师傅</title>
+<link href="css/class.css" rel="stylesheet" type="text/css">
+<!--分类下拉列表-->
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script src="js/common.js"></script>
+</head>
+
+<body>
+<header class="header" id="header">
+<a href="javascript:history.go(-1)" target=_self class="back">返回</a>
+<h1>家帮师傅</h1>
+</header>
+<!--header-end-->
+
+<div class="container" id="container"> 
+
+<!--下拉分类--> 
+<div class="cate-nav"> 
+      <!--分类栏目开始-->
+      <div class="mall-cate-box">
+        <ul class="mall-cate">
+          <li class=""><a href="javascript:void(0);" data-type="category">全城</a></li>
+          <li class=""><a href="javascript:void(0);" data-type="district">评论</a></li>
+          <li class=""><a href="javascript:void(0);" data-type="sort">接单数</a></li>
+          <li class=""><a href="javascript:void(0);" data-type="screen">工种</a></li>
+        </ul>
+      </div>
+      <!--分类栏目结束-->
+      <!--弹出下拉列表开始-->
+      <div class="sortdrop-wrapper hide" data-type="category" style="display: none;">
+        <div class="sort-wrapper">
+          <div class="sort-view">
+            <div>
+              <section class="select"><a href="#" data-main="category_emptyMenu"><span class="all">全城</span></a></section>
+              <section><a href="#" data-main="category_emptyMenu"> <span class="news">蜀山区</span></a></section>
+              <section><a href="#" data-main="category_emptyMenu"> <span class="lottery">庐阳区</span></a></section>
+            </div>
+            <i class="m-down hide" style="display: none;"></i> 
+            </div>
+        </div>
+      </div>
+      
+      <div class="sortdrop-wrapper hide" data-type="district" style="display: none;">
+        <div class="sort-wrapper">
+          <div class="sort-view">
+            <div>
+              <section class="select"><a href="#"><span>从高到底</span></a></section>
+              <section><a href="#"><span>从低到高</span></a></section>
+            </div>
+            <i class="m-down hide" style="display: none;"></i> 
+            </div>
+        </div>
+      </div>
+      
+      <div class="sortdrop-wrapper hide" data-type="sort" style="display: none;">
+        <div class="sort-wrapper">
+          <div class="sort-view">
+            <div>
+              <section class="select"><a href="#"> <span>从高到底</span></a></section>
+              <section><a href="#"><span>从低到高</span></a></section>
+            </div>
+            <i class="m-down hide" style="display: none;"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="sortdrop-wrapper hide" data-type="screen" style="display: none;">
+        <div class="sort-wrapper" id="filterPop">
+          <div class="sort-view sort-screen">
+            <div>
+              <section class="select"><a href="#"><span>瓦工</span></a></section>
+              <section><a href="#"><span>木工</span></a></section>
+              <section><a href="#"><span>水电工</span></a></section>
+              <section><a href="#"><span>油漆工</span></a></section>
+            </div>
+            <i class="m-down hide" style="display: none;"></i>
+          </div>
+        </div>
+      </div>
+    <!--弹出下拉列表结束-->
+</div>
+<div class="pop-shade hide" style="display: none; height: 100%;"></div>
+<!--分类下拉列表js引入-->
+<script type="text/javascript" src="js/class/iscroll-5.1.2.min.js"></script> 
+<script type="text/javascript" src="js/class/slideNav.min.js"></script> 
+<!--分类下拉列表结束-->
+
+
+<!--内容列表-->
+<div class="jbsf-group">
+
+  <div class="jbsf-item top topone">
+    <a href="worker-details.html">
+      <div class="jbsf-item-img"><img src="images/worker-img.jpg"></div>
+      <div class="jbsf-item-txt">
+        <h2>李师傅</h2>
+        <div class="order-total"><span class="sa_star"><i class="sa_d" style="width:70%;"></i></span><span>已服务：<em>70</em>单</span></div>
+        <div class="jbsf-details"><span class="work-type">电工</span><span class="work-ages">5年工龄</span><span class="worker-address">安徽</span></div>
+      </div>
+    </a>  
+  </div>
+  <div class="jbsf-item top toptwo">
+    <a href="worker-details.html">
+      <div class="jbsf-item-img"><img src="images/worker-img.jpg"></div>
+      <div class="jbsf-item-txt">
+        <h2>李师傅</h2>
+        <div class="order-total"><span class="sa_star"><i class="sa_d" style="width:70%;"></i></span><span>已服务：<em>70</em>单</span></div>
+        <div class="jbsf-details"><span class="work-type">电工</span><span class="work-ages">5年工龄</span><span class="worker-address">安徽</span></div>
+      </div>
+    </a>  
+  </div>
+  <div class="jbsf-item top topthree">
+    <a href="worker-details.html">
+      <div class="jbsf-item-img"><img src="images/worker-img.jpg"></div>
+      <div class="jbsf-item-txt">
+        <h2>李师傅</h2>
+        <div class="order-total"><span class="sa_star"><i class="sa_d" style="width:70%;"></i></span><span>已服务：<em>70</em>单</span></div>
+        <div class="jbsf-details"><span class="work-type">电工</span><span class="work-ages">5年工龄</span><span class="worker-address">安徽</span></div>
+      </div>
+    </a>  
+  </div>
+  <div class="jbsf-item">
+    <a href="worker-details.html">
+      <div class="jbsf-item-img"><img src="images/worker-img.jpg"></div>
+      <div class="jbsf-item-txt">
+        <h2>李师傅</h2>
+        <div class="order-total"><span class="sa_star"><i class="sa_d" style="width:70%;"></i></span><span>已服务：<em>70</em>单</span></div>
+        <div class="jbsf-details"><span class="work-type">电工</span><span class="work-ages">5年工龄</span><span class="worker-address">安徽</span></div>
+      </div>
+    </a>  
+  </div>
+  <div class="jbsf-item">
+    <a href="worker-details.html">
+      <div class="jbsf-item-img"><img src="images/worker-img.jpg"></div>
+      <div class="jbsf-item-txt">
+        <h2>李师傅</h2>
+        <div class="order-total"><span class="sa_star"><i class="sa_d" style="width:70%;"></i></span><span>已服务：<em>70</em>单</span></div>
+        <div class="jbsf-details"><span class="work-type">电工</span><span class="work-ages">5年工龄</span><span class="worker-address">安徽</span></div>
+      </div>
+    </a>  
+  </div>
+
+</div>
+<!--内容列表-->
+
+</div>
+<!--container-end-->
+</body>
+</html>

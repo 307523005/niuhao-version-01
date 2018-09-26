@@ -27,8 +27,12 @@ function updateUser() {
             for (var i = 0; i < user.roleIds.length; i++) {
                 roleArr.push(user.roleIds[i]);
             }
+            var merchantArr = [];
+                merchantArr.push(user.merchantId);
             $form.find("select[name='rolesSelect']").multipleSelect('setSelects', roleArr);
             $form.find("input[name='roles']").val($form.find("select[name='rolesSelect']").val());
+            $form.find("select[name='merchantIdSelect']").multipleSelect('setSelects', merchantArr);
+            $form.find("input[name='merchantId']").val($form.find("select[name='merchantIdSelect']").val());
             var $status = $form.find("input[name='status']");
             if (user.status === '1') {
                 $status.prop("checked", true);

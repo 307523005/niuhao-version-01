@@ -110,10 +110,11 @@ $(function () {
 });
 
 function closeModal() {
+    KindEditor.html("#paperTitle","");//给富文本赋值
     $("#advertising-add-button").attr("name", "save");
     //$MB.closeModal("advertising-add");
     $MB.closeAndRestModal("advertising-add");
     validator.resetForm();
     $("#advertising-add-modal-title").html('新增广告');
-    KindEditor.html("#paperTitle","");//给富文本赋值
+
 }

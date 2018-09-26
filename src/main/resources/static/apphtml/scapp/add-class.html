@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>现场增项</title>
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script src="js/common.js"></script>
+</head>
+
+<body>
+<header class="header" id="header">
+<a href="javascript:history.go(-1)" target=_self class="back">返回</a>
+<h1>现场增项</h1>
+</header>
+<!--header-end-->
+
+<div class="container" id="container"> 
+
+<div class="add-class">
+  <form>
+    <ul>
+      <li><label>类型</label><input id="type" type="text" name="type" class="type" placeholder="卫浴安装" value=""></li>
+      <li><label>金额</label><input id="amount" type="number" name="amount" class="amount" placeholder="请输入所需金额" value=""></li>
+      <li><label>优惠券</label><input id="coupons" type="text" name="coupons" class="coupons" placeholder="请选择优惠券" value=""></li>
+      <li><label>备注</label><input id="remarks" type="text" name="remarks" class="remarks" placeholder="其他备注信息" value=""></li>
+    </ul>
+    <button type="submit" class="confirm-payment">确认支付</button>
+  </form>  
+</div>
+
+</div>
+<!--container-end-->
+</body>
+</html>

@@ -104,6 +104,11 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 后台注册
+     * @param user
+     * @return
+     */
     @RequestMapping("user/regist")
     @ResponseBody
     public ResponseBo regist(User user) {

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>预约回收</title>
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script src="js/common.js"></script>
+</head>
+
+<body>
+<header class="header" id="header">
+<a href="javascript:history.go(-1)" target=_self class="back">返回</a>
+<h1>预约回收</h1>
+</header>
+<!--header-end-->
+
+<div class="container" id="container"> 
+  <form>
+    <div class="add-class">
+        <ul class="clearfix">
+          <li class="clearfix"><label for="item-name">物品名称</label><input id="item-name" type="text" name="item-name" class="item-name" placeholder="请输入维修物品名称" value=""></li>
+          <li class="clearfix"><label for="product-brand">产品品牌</label><input id="product-brand" type="text" name="product-brand" class="product-brand" placeholder="请输入维修物品品牌" value=""></li>
+          <li class="clearfix"><label for="buy-time">购买时间</label><input id="buy-time" type="datetime-local" name="buy-time" class="buy-time" placeholder="请输入购买时间" value=""></li>
+          <li class="clearfix"><label for="maintenance">维修情况</label><input id="maintenance" type="text" name="maintenance" class="maintenance" placeholder="之前是否维修过，维修次数" value=""></li>
+        </ul>
+        <div class="maintenance-reservation-textarea online-evaluation-textarea">
+           <textarea class="textarea" id="textarea" autofocus="autofocus"></textarea>
+           <div class="layer"><span>请在此输入维修情况描述</span></div>
+        </div>
+        <div class="upload-photos">
+           <span id="selectedimg"></span>         
+        </div>
+        <input type="hidden" name="img">
+        <button type="submit" class="confirm-payment">点击评估</button>
+    </div>
+  </form>  
+</div>
+<!--container-end-->
+
+<script type="text/javascript" src="js/iosOverlay.js"></script>
+<script src='js/exif.js'></script>
+<script src='js/upload_img.js'></script>
+ <script>
+            $("#selectedimg").click(function(){
+                $.selectPicture(function(base64){
+                    $.ajax({
+                        url:"{:U('deal_photo')}",
+                        type:'post',
+                        dataType:'json',
+                        data:{'base64':base64},
+                        success:function(data){
+                            if(data.status == 1){
+                                $("#selectedimg").before("<img onclick='javascript:dialog(this);' src=" + data.info + " class='set_img'>");
+                                $("#loading").remove();
+                            }else{
+                                alert(data.info);
+                            }
+                        }
+                    })
+                    return false;	
+              });
+            });
+            // 点击删除图片
+            function dialog(obj){
+                if(confirm('是否确定删除该图片？')) {
+                    $(obj).remove();
+                }
+            }
+            function submit_hs(){
+                // 上传图片之前整理商品图片，将图片地址放到隐藏域中
+                var goodsPhoto = [];
+                $('.upload-photos img').each(function(){
+                    goodsPhoto.push($(this).attr('src'));
+                });
+                if(goodsPhoto.length > 0){
+                    $('input[name="img"]').val(goodsPhoto.join(','));
+                }
+                
+                $.ajax({
+                    url:"{:U('hs_submit')}",
+                    type:'post',
+                    dataType:'json',
+                    data:$("form[name='info']").serialize(),
+                    success:function(data){
+                        iosOverlay({
+                            text: data.info,
+                            duration: 2e3
+                        });
+                        if(data.status == 1){
+                            window.location.href="/";
+                        }
+                    }
+                })
+                return false;	
+            }
+        </script>
+</body>
+</html>

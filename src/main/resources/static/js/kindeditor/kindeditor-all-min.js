@@ -3131,7 +3131,7 @@
                 yesBtn: {
                     name: b.lang("yes"), click: function () {
                         var a = h.map, c = a.getCenter(), d = c.lng + "," + c.lat, g = a.getZoom(),
-                            i = [o[0].checked ? b.pluginsPath + "baidumap/advertising-add.html" : "http://api.map.baidu.com/staticimage", "?center=" + encodeURIComponent(d), "&zoom=" + encodeURIComponent(g), "&width=" + e, "&height=" + f, "&markers=" + encodeURIComponent(d), "&markerStyles=" + encodeURIComponent("l,A")].join("");
+                            i = [o[0].checked ? b.pluginsPath + "baidumap/merchantAdd.html" : "http://api.map.baidu.com/staticimage", "?center=" + encodeURIComponent(d), "&zoom=" + encodeURIComponent(g), "&width=" + e, "&height=" + f, "&markers=" + encodeURIComponent(d), "&markerStyles=" + encodeURIComponent("l,A")].join("");
                         o[0].checked ? b.insertHtml('<iframe src="' + i + '" frameborder="0" style="width:' + (e + 2) + "px;height:" + (f + 2) + 'px;"></iframe>') : b.exec("insertimage", i), b.hideDialog().focus()
                     }
                 },

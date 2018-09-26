@@ -170,7 +170,7 @@ febs:
     # rememberMe cookie有效时长，默认 86400 秒，即一天
     cookieTimeout: 8640
     # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**
+    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**,/apphtml/**,/scapp/**
     # 登录 url
     loginUrl: /login
     # 登录成功后跳转的 url

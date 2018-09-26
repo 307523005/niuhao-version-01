@@ -1,11 +1,14 @@
 var validator;
 var $userAddForm = $("#user-add-form");
 var $rolesSelect = $userAddForm.find("select[name='rolesSelect']");
+var $merchantIdSelect = $userAddForm.find("select[name='merchantIdSelect']");
 var $roles = $userAddForm.find("input[name='roles']");
+var merchant = $userAddForm.find("input[name='merchantId']");
 
 $(function () {
     validateRule();
     initRole();
+    initMerchant();//获取商户信息列表
     createDeptTree();
 
     $("input[name='status']").change(function () {
@@ -53,6 +56,9 @@ function closeModal() {
     validator.resetForm();
     $rolesSelect.multipleSelect('setSelects', []);
     $rolesSelect.multipleSelect("refresh");
+    $merchantIdSelect.multipleSelect('setSelects', []);
+    $merchantIdSelect.multipleSelect("refresh");
+
     $userAddForm.find("input[name='username']").removeAttr("readonly");
     $userAddForm.find(".user_password").show();
     $userAddForm.find("input[name='status']").prop("checked", true);
@@ -97,6 +103,10 @@ function validateRule() {
             ssex: {
                 required: true
             }
+            ,
+            merchantId: {
+                required: true
+            }
         },
         errorPlacement: function (error, element) {
             if (element.is(":checkbox") || element.is(":radio")) {
@@ -112,6 +122,7 @@ function validateRule() {
                 remote: icon + "用户名已经存在"
             },
             roles: icon + "请选择用户角色",
+            merchantId: icon + "请选择用户所属商户",
             email: icon + "邮箱格式不正确",
             ssex: icon + "请选择性别"
         }
@@ -137,6 +148,27 @@ function initRole() {
         };
 
         $rolesSelect.multipleSelect(options);
+    });
+}
+function initMerchant() {
+    $.post(ctx + "merchant/list", {}, function (r) {
+        var data = r.rows;
+        var option = "";
+        for (var i = 0; i < data.length; i++) {
+            option += "<option value='" + data[i].merchant_id + "'>" + data[i].merchant_name + "</option>"
+        }
+        $merchantIdSelect.html("").append(option);
+        var options = {
+            selectAllText: '所有角色',
+            allSelected: '所有角色',
+            width: '100%',
+            onClose: function () {
+                merchant.val($merchantIdSelect.val());
+                validator.element("input[name='merchantId']");
+            }
+        };
+
+        $merchantIdSelect.multipleSelect(options);
     });
 }
 

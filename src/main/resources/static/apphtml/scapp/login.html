@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script src="js/common.js"></script>
+</head>
+
+<body>
+<header class="header" id="header">
+<a href="javascript:history.go(-1)" target=_self class="back">返回</a>
+<h1>登录</h1>
+</header>
+<!--header-end-->
+
+<div class="container" id="container"> 
+
+<form method="post" class="login-form" action="" id="login" autocomplete="off">
+  <div class="registered">
+    <div class="field">
+      <input id="username" type="text" name="username" class="username" placeholder="请输入手机号" >
+    </div>
+    <div class="field">
+      <input type="text" name="yzm" id="yzm" class="yzm" placeholder="请输入短信验证码"  maxlength="">
+      <a href="#" class="fsyzm">发送验证码</a>
+    </div>
+  </div>
+  <div class="next-step">
+    <button type="submit" class="submit-btn">登录</button>
+  </div>
+</form>
+
+</div>
+<!--container-end-->
+</body>
+</html>

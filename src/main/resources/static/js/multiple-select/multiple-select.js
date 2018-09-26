@@ -667,7 +667,6 @@
             this.options.onFilter(text);
         }
     };
-
     $.fn.multipleSelect = function () {
         var option = arguments[0],
             args = arguments,
