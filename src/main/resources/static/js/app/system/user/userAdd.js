@@ -105,7 +105,8 @@ function validateRule() {
             }
             ,
             merchantId: {
-                required: true
+                required: true,
+                maxlength: 12
             }
         },
         errorPlacement: function (error, element) {
@@ -122,7 +123,10 @@ function validateRule() {
                 remote: icon + "用户名已经存在"
             },
             roles: icon + "请选择用户角色",
-            merchantId: icon + "请选择用户所属商户",
+            merchantId: {
+                required: icon + "请选择用户所属商户",
+                maxlength:icon+"目前支持单选商户",
+            },
             email: icon + "邮箱格式不正确",
             ssex: icon + "请选择性别"
         }
@@ -159,8 +163,8 @@ function initMerchant() {
         }
         $merchantIdSelect.html("").append(option);
         var options = {
-            selectAllText: '所有角色',
-            allSelected: '所有角色',
+            selectAllText: '所有商户1',
+            allSelected: '所有商户2',
             width: '100%',
             onClose: function () {
                 merchant.val($merchantIdSelect.val());

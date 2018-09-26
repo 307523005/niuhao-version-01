@@ -5,6 +5,7 @@ import cc.mrbird.common.service.impl.BaseService;
 import cc.mrbird.common.util.DateUtil;
 import cc.mrbird.job.domain.Advertising;
 import cc.mrbird.job.service.AdvertisingService;
+import cc.mrbird.system.domain.User;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -62,6 +63,9 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
             System.out.println(request.getSort() + "--advertising--" + objects.toString());
             Example example = new Example(Advertising.class);
             Criteria criteria = example.createCriteria();
+            //按照商户id
+            criteria.andCondition("merchant_id  = ", advertising.getMerchant_id() );
+
             if (StringUtils.isNotBlank(advertising.getAdvertising_title())) {
                 criteria.andCondition("advertising_title  like ", "%" + advertising.getAdvertising_title() + "%");
             }

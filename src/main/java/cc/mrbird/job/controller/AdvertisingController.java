@@ -75,6 +75,7 @@ public class AdvertisingController extends BaseController {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
         log.info("---merchantId--"+merchantId);
+        advertising.setMerchant_id(user.getMerchantId());
         PageInfo<Advertising> pageInfo = this.advertisingService.PageList(request, advertising);
         return getDataTable(pageInfo);
     }
@@ -146,6 +147,7 @@ public class AdvertisingController extends BaseController {
         try {
             User user = RequestUtils.currentLoginUser();
             advertising.setAdvertising_updateuser(user.getUsername());
+            advertising.setMerchant_id(user.getMerchantId());
             this.advertisingService.addAdvertising(advertising);
             System.out.println("+advertising_content++" + advertising.getAdvertising_content());
             return ResponseBo.ok("新增广告成功！");

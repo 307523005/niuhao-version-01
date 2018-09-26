@@ -128,6 +128,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         user.setModifyTime(new Date());
         this.updateNotNull(user);
         Example example = new Example(UserRole.class);
+
         example.createCriteria().andCondition("user_id=", user.getUserId());
         this.userRoleMapper.deleteByExample(example);
         setUserRoles(user, roles);
