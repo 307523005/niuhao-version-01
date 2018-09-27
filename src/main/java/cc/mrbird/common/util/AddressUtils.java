@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.net.URI;
 
 public class AddressUtils {
 
@@ -21,8 +22,14 @@ public class AddressUtils {
 
     public static String getCityInfo(String ip) {
         try {
-            Resource resource = new ClassPathResource("ip2region/ip2region.db");
-            File file = resource.getFile();
+
+           // Resource resource = new ClassPathResource("static/ip2region/ip2region.db");
+            //URI uri = resource.getURI();
+           // String path = uri.getPath();
+            //File file = resource.getFile();
+            String path="/usr/local/springboot/static/ip2region/ip2region.db";
+            //String path="C:\\Users\\Administrator\\Desktop\\ceshi\\static\\ip2region/ip2region.db";
+            File file = new File(path);
             if (!file.exists()) {
                 log.error("Error: Invalid ip2region.db file");
             }

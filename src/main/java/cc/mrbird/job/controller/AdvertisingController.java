@@ -211,10 +211,10 @@ public class AdvertisingController extends BaseController {
         String savePath = application.getRealPath("/") + "images22/";
         User user = RequestUtils.currentLoginUser();
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
-        System.out.println(savePath);
+        System.out.println("--***fileUpload***getRealPath****-" +savePath);
         // 文件保存目录URL
         String saveUrl = request.getContextPath() + "/images22/";
-        System.out.println("---" + saveUrl);
+        System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("image", "gif,jpg,jpeg,png,bmp");

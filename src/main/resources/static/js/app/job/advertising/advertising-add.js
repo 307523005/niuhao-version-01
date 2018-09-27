@@ -9,8 +9,8 @@ $(function () {
         editor1 = K.create('#paperTitle', {
             items: ["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste", "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", "multiimage", "flash", "media", "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", "|", "about"],
             cssPath: 'js/kindeditor/plugins/code/prettify.css',
-            uploadJson: '/fileUpload',
-            fileManagerJson: '/fileManager',
+            uploadJson: 'fileUpload',
+            fileManagerJson: 'fileManager',
             allowFileManager: true,
             autoHeightMode: true,
             //关键所在，当失去焦点时执行this.sync()，同步输入的值到textarea中;
@@ -75,7 +75,8 @@ $(function () {
 
         // var html = $("#paperTitle").value;
         var html = $('#paperTitle').val();
-        html = html.replace(/http:\/\/localhost:8081\/images22/g, "/images22").replace(/\/images22/g, "http://localhost:8081/images22");
+        html = html.replace(/http:\/\/www.bantucard.com:9080\/images22/g, "/images22").replace(/\/images22/g, "http://www.bantucard.com:9080/images22");
+        //html = html.replace(/http:\/\/10.20.11.78:9080\/images22/g, "/images22").replace(/\/images22/g, "http://10.20.11.78:9080/images22");
         html= html.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
         $('#advertising_content').val(html);
         var name = $(this).attr("name");
