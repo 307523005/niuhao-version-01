@@ -92,12 +92,14 @@ function validateRule() {
                 }
             },
             email: {
+                required: true,
                 email: true
             },
             roles: {
                 required: true
             },
             mobile: {
+                required: true,
                 checkPhone: true
             },
             ssex: {
@@ -125,7 +127,7 @@ function validateRule() {
             roles: icon + "请选择用户角色",
             merchantId: {
                 required: icon + "请选择用户所属商户",
-                maxlength:icon+"目前支持单选商户",
+                maxlength: icon+"目前支持单选商户"
             },
             email: icon + "邮箱格式不正确",
             ssex: icon + "请选择性别"

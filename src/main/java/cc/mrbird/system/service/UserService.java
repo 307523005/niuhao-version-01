@@ -31,7 +31,7 @@ public interface UserService extends IService<User> {
     @CacheEvict(allEntries = true)
     void addUser(User user, Long[] roles);
 
-    @CacheEvict(key = "#p0", allEntries = true)
+    @CacheEvict(allEntries = true)
     void updateUser(User user, Long[] roles);
 
     @CacheEvict(key = "#p0", allEntries = true)

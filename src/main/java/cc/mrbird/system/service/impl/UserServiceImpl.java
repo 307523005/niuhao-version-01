@@ -126,6 +126,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         user.setPassword(null);
         user.setUsername(null);
         user.setModifyTime(new Date());
+        System.out.println("--updateUser--"+user.getMerchantId());
         this.updateNotNull(user);
         Example example = new Example(UserRole.class);
 
