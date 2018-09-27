@@ -12,7 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
 
 @CacheConfig(cacheNames = "User-Dept-Role-Memnu")
 public interface MenuService extends IService<Menu> {
-    @Cacheable(key = "'MenuService-findUserPermissions'+ #p0")
+    @Cacheable(key = "'MenuService-findUserPermissions-'+ #p0")
     List<Menu> findUserPermissions(String userName);
 
     @Cacheable(key = "'MenuService-findUserMenus-'+ #p0")

@@ -15,9 +15,9 @@ import java.util.List;
 public interface UserService extends IService<User> {
     @Cacheable(key = "'UserService-PageList-'+#request.toString() + #user.toString()")
     PageInfo<User> PageList(QueryRequest request, User user);
-
+    @Cacheable(key = "'UserService-findById-'+#p0")
     UserWithRole findById(Long userId);
-
+    @Cacheable(key = "'UserService-findByName-'+#p0")
     User findByName(String userName);
 
     @Cacheable(key = "'UserService-findUserWithDept-'+#p0.toString()")
