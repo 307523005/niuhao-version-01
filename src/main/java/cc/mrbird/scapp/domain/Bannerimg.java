@@ -15,7 +15,7 @@ public class Bannerimg implements Serializable {
     @Id
     @Column(name = "bannerimg_id")
     @ExportConfig(value = "ID")
-    private Long bannerimg_id;
+    private String bannerimg_id;
     @Column(name = "bannerimg_num")
     @ExportConfig(value = "")
     private String bannerimg_num;
@@ -44,11 +44,11 @@ public class Bannerimg implements Serializable {
     @ExportConfig(value = "")
     private String bannerimg_remarks;
 
-    public Long getBannerimg_id() {
+    public String getBannerimg_id() {
         return bannerimg_id;
     }
 
-    public void setBannerimg_id(Long bannerimg_id) {
+    public void setBannerimg_id(String bannerimg_id) {
         this.bannerimg_id = bannerimg_id;
     }
 

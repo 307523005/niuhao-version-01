@@ -6,8 +6,8 @@ $(function () {
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
-                bannerimg_name: $bannerimgTableForm.find("input[name='bannerimg_name']").val().trim(),
-                bannerimg_updatetime: $bannerimgTableForm.find("input[name='bannerimg_updatetime']").val().trim(),
+                bannerimg_name: $bannerimgTableForm.find("input[name='bannerimg_name_like']").val().trim(),
+                bannerimg_updatetime: $bannerimgTableForm.find("input[name='bannerimg_updatetime_like']").val().trim(),
                 sort: params.sort,      //排序列名
                 sortOrder: params.order //排位命令（desc，asc）
             };
@@ -24,6 +24,10 @@ $(function () {
             align: 'center',
             sortable: true//列排序
         }, {
+            field: 'bannerimg_htmlurl',
+            title: '轮播图页面url',
+            align: 'center',
+        }, {
             field: 'bannerimg_addtime',
             title: '添加时间',
             align: 'center'
@@ -36,8 +40,7 @@ $(function () {
             field: 'bannerimg_updateuser',
             title: '修改用户',
             align: 'center'
-        }
-            , {
+        }, {
                 field: 'bannerimg_remarks',
                 title: '备注',
                 align: 'center'

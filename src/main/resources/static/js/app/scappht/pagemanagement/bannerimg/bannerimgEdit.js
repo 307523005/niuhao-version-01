@@ -16,7 +16,8 @@ function updatebannerimg() {
             $form.modal();
             var bannerimg = r.msg;
             $("#bannerimg-add-modal-title").html('修改轮播图');
-            $form.find("input[name='bannerimg_name']").val(bannerimg.bannerimg_name);
+            $form.find("input[name='bannerimg_name']").val(bannerimg.bannerimg_name).attr("readonly", true);
+            $form.find("input[name='oldbannerimg_name']").val(bannerimg.bannerimg_name);
             $form.find("input[name='bannerimg_id']").val(bannerimg.bannerimg_id);
             $form.find("input[name='bannerimg_num']").val(bannerimg.bannerimg_num);
             $form.find("input[name='bannerimg_htmlurl']").val(bannerimg.bannerimg_htmlurl);

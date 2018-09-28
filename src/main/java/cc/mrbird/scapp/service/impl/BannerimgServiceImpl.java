@@ -3,6 +3,7 @@ package cc.mrbird.scapp.service.impl;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.service.impl.BaseService;
 import cc.mrbird.common.util.DateUtil;
+import cc.mrbird.common.util.RoundUtil;
 import cc.mrbird.scapp.domain.Bannerimg;
 import cc.mrbird.scapp.service.BannerimgService;
 import cc.mrbird.system.domain.User;
@@ -30,7 +31,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Bannerimg findBannerimg(Long bannerimg_id) {
+    public Bannerimg findBannerimg(String bannerimg_id) {
         return this.selectByKey(bannerimg_id);
     }
 
@@ -84,7 +85,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
                 criteria.andCondition("date_format(bannerimg_updatetime,'%Y-%m-%d') <=", timeArr[1]);
             }
             if (StringUtils.isNotBlank(request.getSort())) {
-                example.setOrderByClause("bannerimg_num " + request.getSortOrder());
+                example.setOrderByClause(request.getSort()+" " + request.getSortOrder());
             } else {
                 example.setOrderByClause("bannerimg_num ASC");
             }
@@ -105,6 +106,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
         String dateFormat = DateUtil.getDateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
         bannerimg.setBannerimg_addtime(dateFormat);
         bannerimg.setBannerimg_updatetime(dateFormat);
+        bannerimg.setBannerimg_id(RoundUtil.getUUID12());
         this.save(bannerimg);
     }
 

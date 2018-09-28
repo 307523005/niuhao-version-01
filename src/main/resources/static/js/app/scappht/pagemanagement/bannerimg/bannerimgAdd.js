@@ -38,6 +38,7 @@ $(function () {
 function closeModal() {
     $("#bannerimg-add-button").attr("name", "save");
     $("#bannerimg-add-modal-title").html('新增轮播图');
+    $bannerimgAddForm.find("input[name='bannerimg_name']").removeAttr("readonly");
     validator.resetForm();
     $MB.closeAndRestModal("bannerimg-add");
 }
@@ -55,10 +56,10 @@ function validateRule() {
                     type: "get",
                     dataType: "json",
                     data: {
-                        username: function () {
+                        bannerimg_name: function () {
                             return $("input[name='bannerimg_name']").val().trim();
                         },
-                        oldusername: function () {
+                        oldbannerimg_name: function () {
                             return $("input[name='oldbannerimg_name']").val().trim();
                         }
                     }
@@ -67,10 +68,10 @@ function validateRule() {
             bannerimg_num: {
                 required: true
             },
-            bannerimg_imgurl: {
+            bannerimg_htmlurl: {
                 required: true,
             },
-            bannerimg_htmlurl: {
+            bannerimg_imgurl: {
                 required: true,
             }
         },
@@ -88,8 +89,10 @@ function validateRule() {
                 remote: icon + "轮播图名已经存在"
             },
             bannerimg_num: icon + "请输入轮播图码",
-            bannerimg_imgurl: icon + "请输入轮播图url",
             bannerimg_htmlurl: icon + "请输入轮播图页面url",
+            bannerimg_imgurl: icon + "请提交图片",
         }
     });
 }
+
+

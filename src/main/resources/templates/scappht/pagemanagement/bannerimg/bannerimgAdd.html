@@ -14,9 +14,8 @@
 					            </span>
                                 <div class="form-group">
                                     <input type="text" name="bannerimg_name" class="form-control">
-                                    <input type="text" name="bannerimg_id"  class="form-control">
-                                    <input type="text" name="bannerimg_imgurl"  class="form-control">
-                                    <input type="text" name="merchant_id"  class="form-control">
+                                    <input type="text" hidden name="oldbannerimg_name" class="form-control">
+                                    <input type="text" hidden name="bannerimg_id" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -58,6 +57,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	图片路径：
+					            </span>
+                                <div class="form-group">
+                                    <input id="bannerimg_imgurl" readonly type="text" name="bannerimg_imgurl"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <form id="form">
+                    <div class="form-group">
+                        <label>请选择文件</label>
+                        <input id="file-3" type="file" name="file-3">
+                        <!--<input id="f_upload" type="file" class="file" />-->
+                        <button type="button" class="btn btn-save" onclick="aa()">保存</button>
+                    </div>
+
 
                 </form>
             </div>
@@ -71,4 +93,71 @@
     </div>
 </div>
 <script data-th-src="@{js/app/scappht/pagemanagement/bannerimg/bannerimgAdd.js}"></script>
+<script type="text/javascript" src="http://www.jfinal.com/assets/jquery_form/jquery.form.min.js"></script>
 
+<script>
+    $("#file-3").fileinput({
+        language: 'zh', //设置语言
+        //allowedFileExtensions: ['apk'],//接收的文件后缀
+        uploadAsync: false, //默认异步上传
+        showUpload: false, //是否显示上传按钮
+        cancelLabel: "请选择图片并提交",
+        showRemove: true, //显示移除按钮
+        showPreview: true, //是否显示预览
+        showCaption: false,//是否显示标题
+        dropZoneEnabled: true,//是否显示拖拽区域
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        uploadUrl: ctx + "bannerimg/fileUpload",//上传的地址
+        browseClass: "btn btn-primary btn-lg",
+        fileType: "any",
+        previewFileIcon: "<i class=' glyphicon-king'></i>",
+        validateInitialCount: true
+    });
+    //异步上传返回结果处理
+    $("#file-3").on("fileuploaded", function (event, data, previewId, index) {
+        alert("结果处理");
+
+        var response = data.response;
+        //alert(response.filePath);
+        //$("#fileMd5").val(response.fileMd5);
+        //$("#version").val(response.newVersionName);
+        //$("#url").val(response.filePath);
+        alert(response.url);
+
+    });
+    //上传前
+
+    /* $('#file-3').on('fileuploaded', function(event, data, previewId, index) {
+         //var form = data.form, files = data.files, extra = data.extra,
+            // response = data.response, reader = data.reader;
+         alert("上传前");
+     });*/
+    function aa() {
+        var formData = new FormData(document.getElementById("form"));//表单id
+        $.ajax({
+            url: ctx + "bannerimg/fileUpload",//上传的地址
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result.error==0) {
+                    $("#bannerimg_imgurl").val(result.url);
+                    document.querySelectorAll("div.clearfix").innerHTML = "";
+                    $MB.n_success("图片提交成功");
+                    document.getElementById('form') && document.getElementById('form').reset();
+                } else {
+                    $MB.n_danger(result.message);
+                }
+
+            }, error: function () {
+                $MB.n_danger("图片提交失败");
+            }
+
+        });
+    }
+
+
+</script>

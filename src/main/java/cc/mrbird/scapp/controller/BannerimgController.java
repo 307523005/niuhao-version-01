@@ -119,7 +119,7 @@ public class BannerimgController extends BaseController {
 
     @RequestMapping("bannerimg/getbannerimg")
     @ResponseBody
-    public ResponseBo getbannerimg(Long bannerimg_id) {
+    public ResponseBo getbannerimg(String bannerimg_id) {
         try {
             Bannerimg bannerimg = this.bannerimgService.findBannerimg(bannerimg_id);
             return ResponseBo.ok(bannerimg);
@@ -134,9 +134,9 @@ public class BannerimgController extends BaseController {
     public ResponseBo bannerimgExcel(Bannerimg bannerimg) {
         try {
             List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
-            return FileUtils.createExcelByPOIKit("任务表", list, Bannerimg.class);
+            return FileUtils.createExcelByPOIKit("轮播图表", list, Bannerimg.class);
         } catch (Exception e) {
-            log.error("导出任务信息Excel失败", e);
+            log.error("导出轮播图信息Excel失败", e);
             return ResponseBo.error("导出Excel失败，请联系网站管理员！");
         }
     }
@@ -146,9 +146,9 @@ public class BannerimgController extends BaseController {
     public ResponseBo bannerimgCsv(Bannerimg bannerimg) {
         try {
             List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
-            return FileUtils.createCsv("任务表", list, Bannerimg.class);
+            return FileUtils.createCsv("轮播图表", list, Bannerimg.class);
         } catch (Exception e) {
-            log.error("导出任务信息Csv失败", e);
+            log.error("导出轮播图信息Csv失败", e);
             return ResponseBo.error("导出Csv失败，请联系网站管理员！");
         }
     }
@@ -195,7 +195,7 @@ public class BannerimgController extends BaseController {
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
 
         // 最大文件大小
-        long maxSize = 100000;
+        long maxSize = 1000;
 
         response.setContentType("text/html; charset=UTF-8");
 
