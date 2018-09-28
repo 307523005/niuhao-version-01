@@ -30,8 +30,8 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Merchant findMerchant(Long id) {
-        return this.selectByKey(id);
+    public Merchant findMerchant(String merchant_id) {
+        return this.selectByKey(merchant_id);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     @Transactional
     public void deleteMerchant(String id) {
         List<String> list = Arrays.asList(id.split(","));
-        this.batchDelete(list, "id", Merchant.class);
+        this.batchDelete(list, "merchant_id", Merchant.class);
     }
 
     @Override

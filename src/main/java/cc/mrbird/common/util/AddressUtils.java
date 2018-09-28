@@ -27,8 +27,8 @@ public class AddressUtils {
             //URI uri = resource.getURI();
            // String path = uri.getPath();
             //File file = resource.getFile();
-            String path="/usr/local/springboot/static/ip2region/ip2region.db";
-            //String path="C:\\Users\\Administrator\\Desktop\\ceshi\\static\\ip2region/ip2region.db";
+            //String path="/usr/local/springboot/static/ip2region/ip2region.db";
+            String path="C:\\Users\\Administrator\\Desktop\\ceshi\\static\\ip2region/ip2region.db";
             File file = new File(path);
             if (!file.exists()) {
                 log.error("Error: Invalid ip2region.db file");

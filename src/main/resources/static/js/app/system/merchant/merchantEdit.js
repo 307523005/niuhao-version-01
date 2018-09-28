@@ -9,14 +9,13 @@ function updatemerchant() {
         $MB.n_warning('一次只能修改一个商户！');
         return;
     }
-    var ids = selected[0].id;
-    $.post(ctx + "merchant/getmerchant", {"id": ids}, function (r) {
+    var ids = selected[0].merchant_id;
+    $.post(ctx + "merchant/getmerchant", {"merchant_id": ids}, function (r) {
         if (r.code === 0) {
             var $form = $('#merchant-add');
             $form.modal();
             var merchant = r.msg;
             $("#merchant-add-modal-title").html('修改商户');
-            $form.find("input[name='id']").val(merchant.id);
             $form.find("input[name='merchant_name']").val(merchant.merchant_name);
             $form.find("input[name='merchant_id']").val(merchant.merchant_id);
             $form.find("input[name='merchant_addtime']").val(merchant.merchant_addtime);
@@ -24,6 +23,7 @@ function updatemerchant() {
             $form.find("input[name='merchant_mail']").val(merchant.merchant_mail);
             $form.find("input[name='merchant_corp']").val(merchant.merchant_corp);
             $form.find("input[name='merchant_addr']").val(merchant.merchant_addr);
+            $form.find("input[name='merchant_region']").val(merchant.merchant_region);
             $form.find("input[name='merchant_information']").val(merchant.merchant_information);
             $("#merchant-add-button").attr("name", "update");
         } else {

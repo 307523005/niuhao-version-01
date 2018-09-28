@@ -100,9 +100,20 @@ public class MerchantController extends BaseController {
 
     @RequestMapping("merchant/getmerchant")
     @ResponseBody
-    public ResponseBo getmerchant(Long id) {
+    public ResponseBo getmerchant(String merchant_id) {
         try {
-            Merchant merchant = this.merchantService.findMerchant(id);
+            Merchant merchant = this.merchantService.findMerchant(merchant_id);
+            return ResponseBo.ok(merchant);
+        } catch (Exception e) {
+            log.error("获取商户信息失败", e);
+            return ResponseBo.error("获取商户信息失败，请联系网站管理员！");
+        }
+    }
+    @RequestMapping("scapp/getmerchant")
+    @ResponseBody
+    public ResponseBo getmerchantscapp(String merchant_id) {
+        try {
+            Merchant merchant = this.merchantService.findMerchant(merchant_id);
             return ResponseBo.ok(merchant);
         } catch (Exception e) {
             log.error("获取商户信息失败", e);

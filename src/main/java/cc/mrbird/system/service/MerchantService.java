@@ -14,7 +14,7 @@ import java.util.List;
 @CacheConfig(cacheNames = "User-Dept-Role-Memnu")
 public interface MerchantService extends IService<Merchant> {
     @Cacheable(key = "'MerchantService-findMerchant-'+#p0")
-    Merchant findMerchant(Long id);
+    Merchant findMerchant(String merchant_id);
     List<Merchant> findAllMerchant(QueryRequest request, Merchant merchant);
     @Cacheable(key = "'MerchantService-PageList-'+#request.toString() + #merchant.toString()")
     PageInfo<Merchant> PageList(QueryRequest request, Merchant merchant);

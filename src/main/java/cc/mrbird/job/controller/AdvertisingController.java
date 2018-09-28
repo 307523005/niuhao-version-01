@@ -217,7 +217,8 @@ public class AdvertisingController extends BaseController {
         System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
-        extMap.put("image", "gif,jpg,jpeg,png,bmp");
+        String dirName = user.getMerchantId();
+        extMap.put(dirName, "gif,jpg,jpeg,png,bmp");
         extMap.put("flash", "swf,flv");
         extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
@@ -241,7 +242,8 @@ public class AdvertisingController extends BaseController {
             return getError("上传目录没有写权限。");
         }
 
-        String dirName = request.getParameter("dir");
+        //String dirName = request.getParameter("dir");
+
         if (dirName == null) {
             dirName = "image";
         }

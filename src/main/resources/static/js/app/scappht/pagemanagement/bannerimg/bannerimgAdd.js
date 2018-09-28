@@ -1,0 +1,95 @@
+var validator;
+var $bannerimgAddForm = $("#bannerimg-add-form");
+$(function () {
+    validateRule();
+
+    $("#bannerimg-add .btn-save").click(function () {
+        var name = $(this).attr("name");
+        validator = $bannerimgAddForm.validate();
+        var flag = validator.form();
+        if (flag) {
+            if (name === "save") {
+                $.post(ctx + "bannerimg/add", $bannerimgAddForm.serialize(), function (r) {
+                    if (r.code === 0) {
+                        closeModal();
+                        refresh();
+                        $MB.n_success(r.msg);
+                    } else $MB.n_danger(r.msg);
+                });
+            }
+            if (name === "update") {
+                $.post(ctx + "bannerimg/update", $bannerimgAddForm.serialize(), function (r) {
+                    if (r.code === 0) {
+                        closeModal();
+                        refresh();
+                        $MB.n_success(r.msg);
+                    } else $MB.n_danger(r.msg);
+                });
+            }
+        }
+    });
+
+    $("#bannerimg-add .btn-close").click(function () {
+        closeModal();
+    });
+
+});
+
+function closeModal() {
+    $("#bannerimg-add-button").attr("name", "save");
+    $("#bannerimg-add-modal-title").html('新增轮播图');
+    validator.resetForm();
+    $MB.closeAndRestModal("bannerimg-add");
+}
+
+function validateRule() {
+    var icon = "<i class='zmdi zmdi-close-circle zmdi-hc-fw'></i> ";
+    validator = $bannerimgAddForm.validate({
+        rules: {
+            bannerimg_name: {
+                required: true,
+                minlength: 3,
+                maxlength: 25,
+                remote: {
+                    url: "bannerimg/checkbannerimg_name",
+                    type: "get",
+                    dataType: "json",
+                    data: {
+                        username: function () {
+                            return $("input[name='bannerimg_name']").val().trim();
+                        },
+                        oldusername: function () {
+                            return $("input[name='oldbannerimg_name']").val().trim();
+                        }
+                    }
+                }
+            },
+            bannerimg_num: {
+                required: true
+            },
+            bannerimg_imgurl: {
+                required: true,
+            },
+            bannerimg_htmlurl: {
+                required: true,
+            }
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":checkbox") || element.is(":radio")) {
+                error.appendTo(element.parent().parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        messages: {
+            bannerimg_name: {
+                required: icon + "请输入轮播图名",
+                minlength: icon + "轮播图名长度3到25个字符",
+                remote: icon + "轮播图名已经存在"
+            },
+            bannerimg_num: icon + "请输入轮播图码",
+            bannerimg_imgurl: icon + "请输入轮播图url",
+            bannerimg_htmlurl: icon + "请输入轮播图页面url",
+        }
+    });
+}

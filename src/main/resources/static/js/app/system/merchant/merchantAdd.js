@@ -49,7 +49,7 @@ function validateRule() {
         rules: {
             merchant_name: {
                 required: true,
-                minlength: 2,
+                minlength: 3,
                 maxlength: 50,
                 /*remote: {
                     url: "user/checkUserName",
@@ -70,18 +70,26 @@ function validateRule() {
             },
             merchant_corp: {
                 required: true,
+                minlength: 2,
                 maxlength: 15
             },
             merchant_phone: {
-                checkPhone: true
+                required: true,
+                //checkPhone: true
             },
             merchant_addr: {
                 required: true,
+                minlength: 2,
                 maxlength: 100
-            }
-            ,
+            },
+            merchant_region: {
+                required: true,
+                minlength: 2,
+                maxlength: 10
+            },
             merchant_information: {
                 required: true,
+                minlength: 2,
                 maxlength: 50
             }
         },
@@ -98,16 +106,12 @@ function validateRule() {
                 minlength: icon + "商户名长度3到50个字符",
                 //remote: icon + "商户名已经存在"
             },
-            roles: icon + "请选择商户角色",
-            merchantId: {
-                required: icon + "请选择商户所属商户",
-                maxlength:icon+"目前支持单选商户",
-            },
             merchant_mail: icon + "邮箱格式不正确",
             merchant_phone: icon + "电话格式不正确",
             merchant_corp: icon + "长度到15个字符",
-            merchant_addr: icon + "长度3到100个字符",
-            merchant_information: icon + "长度3到50个字符",
+            merchant_addr: icon + "长度2到100个字符",
+            merchant_region: icon + "长度2到10个字符",
+            merchant_information: icon + "长度2到50个字符",
         }
     });
 }

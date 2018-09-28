@@ -1,0 +1,68 @@
+<div data-th-include="scappht/pagemanagement/bannerimg/bannerimgAdd"></div>
+<div class="card">
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_buttons hidden-sm-down actions"style="position:relative;z-index:1;">
+                    <span class="actions__item zmdi zmdi-search" onclick="search()" title="搜索" />
+                    <span class="actions__item zmdi zmdi-refresh-alt" onclick="refresh()" title="刷新" />
+                    <div class="dropdown actions__item">
+                        <i data-toggle="dropdown" class="zmdi zmdi-download">
+                        </i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="excel" onclick="exportbannerimgExcel()">
+                                Excel (.xlsx)
+                            </a>
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="csv" onclick="exportbannerimgCsv()">
+                                CSV (.csv)
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="dropdown actions__item" shiro:hasAnyPermissions="bannerimg:add,bannerimg:update,bannerimg:delete">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#bannerimg-add" shiro:hasPermission="bannerimg:add">新增</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="updatebannerimg()" shiro:hasPermission="bannerimg:update">修改</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="deletebannerimg()" shiro:hasPermission="bannerimg:delete">删除</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="data-table_filter" class="dataTables_filter"style="position:relative;z-index:0;">
+                    <form class="bannerimg-table-form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	轮播图名称：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="bannerimg_name" class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	修改时间：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="bannerimg_updateuser" class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table id="bannerimgTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{js/app/scappht/pagemanagement/bannerimg/bannerimg.js}"></script>
+<script data-th-src="@{js/app/scappht/pagemanagement/bannerimg/bannerimgEdit.js}"></script>

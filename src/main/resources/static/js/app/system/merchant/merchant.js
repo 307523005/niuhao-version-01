@@ -14,50 +14,51 @@ $(function () {
         },
         columns: [{
             checkbox: true
-        },
-            {
-                field: 'id',
-                title: 'ID',
-                width: 20,
-                align: 'center'
-            }, {
-                field: 'merchant_name',
-                title: '商户名称',
-                align: 'center'
-            }, {
-                field: 'merchant_id',
-                title: '商户码',
-                align: 'center'
-            },  {
-                field: 'merchant_phone',
-                title: '电话',
-                align: 'center'
-            }/*,{
+        }, {
+            field: 'merchant_name',
+            title: '商户名称',
+            align: 'center'
+        }, {
+            field: 'merchant_id',
+            title: '商户码',
+            align: 'center'
+        }, {
+            field: 'merchant_phone',
+            title: '电话',
+            align: 'center'
+        }/*,{
                 field: 'merchant_content',
                 title: '内容',
                 align: 'center'
-            }*/,{
-                field: 'merchant_mail',
-                title: '邮箱',
-                align: 'center'
-            },{
-                field: 'merchant_corp',
-                title: '法人',
-                align: 'center'
-            },{
-                field: 'merchant_addr',
-                title: '地址',
-                align: 'center'
-            },{
-                field: 'merchant_information',
-                title: '工商信息',
-                align: 'center'
-            }, {
-                field: 'merchant_addtime',
-                title: '添加时间',
-                align: 'center',
-                sortable: true//列排序
-            }
+            }*/, {
+            field: 'merchant_mail',
+            title: '邮箱',
+            align: 'center'
+        }, {
+            field: 'merchant_corp',
+            title: '法人',
+            align: 'center'
+        }
+        , {
+            field: 'merchant_addr',
+            title: '地址',
+            align: 'center'
+        }
+        , {
+            field: 'merchant_region',
+            title: '地区（简写）',
+            align: 'center'
+        }
+        , {
+            field: 'merchant_information',
+            title: '工商信息',
+            align: 'center'
+        }, {
+            field: 'merchant_addtime',
+            title: '添加时间',
+            align: 'center',
+            sortable: true//列排序
+        }
         ]
     };
 
@@ -83,7 +84,7 @@ function deletemerchant() {
     }
     var ids = "";
     for (var i = 0; i < selected_length; i++) {
-        ids += selected[i].id;
+        ids += selected[i].merchant_id;
         if (i !== (selected_length - 1)) ids += ",";
     }
     $MB.confirm({
