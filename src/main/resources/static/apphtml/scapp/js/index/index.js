@@ -3,7 +3,7 @@
  * @type {主页}
  */
 /**/
-
+var httpurl="http://www.bantucard.com:9080/";
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
@@ -21,7 +21,7 @@ window.onload = function () {
         async: false,//同步
         dataType: "json",
         cache: false,//不缓存此页面
-        url: "http://www.bantucard.com:9080/" + "scapp/getmerchant",
+        url: httpurl + "scapp/getmerchant",
         data: {
             merchant_id: merchant_id,
         },
@@ -54,7 +54,7 @@ $.ajax({
     dataType: "json",
     cache: false,//不缓存此页面
     //url: "http://localhost:9080/" + "scapp/getBannerimgTop3",
-    url: "http://www.bantucard.com:9080/" + "scapp/getBannerimgTop3",
+    url: httpurl + "scapp/getBannerimgTop3",
     data: {
         merchant_id: merchant_id,
     },
@@ -62,7 +62,7 @@ $.ajax({
         if (r.code === 0) {
             var merchant = r.msg;
             for (var i = 0; i < merchant.length; i++) {
-                sc_List += "<li><a href=\"#\"><img src=\"http:\/\/www.bantucard.com:9080" + merchant[i].bannerimg_imgurl + "\" alt=\"\"/><\/a><\/li>";
+                sc_List += "<li><a href=\"#\"><img src=\"" +httpurl+ merchant[i].bannerimg_imgurl + "\" alt=\"\"/><\/a><\/li>";
                 $("#sc_List").html(sc_List);
             }
         }
