@@ -129,6 +129,17 @@ public class BannerimgController extends BaseController {
         }
     }
 
+    @RequestMapping("scapp/getBannerimgTop3")
+    @ResponseBody
+    public ResponseBo getBannerimgTop3(String merchant_id) {
+        try {
+            List<Bannerimg> list = this.bannerimgService.getBannerimgTop3(merchant_id);
+            return ResponseBo.ok(list);
+        } catch (Exception e) {
+            log.error("导出轮播图信息Excel失败", e);
+            return ResponseBo.error("导出Excel失败，请联系网站管理员！");
+        }
+    }
     @RequestMapping("bannerimg/excel")
     @ResponseBody
     public ResponseBo bannerimgExcel(Bannerimg bannerimg) {
@@ -189,13 +200,13 @@ public class BannerimgController extends BaseController {
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         String dirName = user.getMerchantId();
-        extMap.put(dirName, "gif,jpg,jpeg,png,bmp");
+        extMap.put(dirName, "gif,jpg,jpeg,png,bmp,.jpg");
         /*extMap.put("flash", "swf,flv");
         extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
 
         // 最大文件大小
-        long maxSize = 1000;
+        long maxSize = 100000;
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -264,7 +275,7 @@ public class BannerimgController extends BaseController {
             // 检查扩展名
 
             String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
-
+            System.out.println(fileExt+"---fileExt-----");
             if (!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)) {
                 return getError("上传文件扩展名是不允许的扩展名。\n只允许"
                         + extMap.get(dirName) + "格式。");

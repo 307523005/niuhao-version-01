@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 
@@ -20,6 +21,7 @@ public interface BannerimgService extends IService<Bannerimg> {
     Bannerimg findByName(String bannerimg_name, String merchant_id);
 
     List<Bannerimg> findAllBannerimg(QueryRequest request, Bannerimg bannerimg);
+    List<Bannerimg> getBannerimgTop3(String merchant_id);
 
     // @Cacheable(key = "'PageList-'+#request.toString() + #bannerimg.toString()")
     PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg);

@@ -21,7 +21,7 @@ window.onload = function () {
         async: false,//同步
         dataType: "json",
         cache: false,//不缓存此页面
-        url: "http://localhost:8081/" + "scapp/getmerchant",
+        url: "http://www.bantucard.com:9080/" + "scapp/getmerchant",
         data: {
             merchant_id: merchant_id,
         },
@@ -41,11 +41,38 @@ window.onload = function () {
 }
 
 /*轮播图*/
-var sc_List = "<li><a href=\"#\"><img src=\"images/ind-banner.jpg\" alt=\"\"/><\/a><\/li>";
+/*
+sc_List = "<li><a href=\"#\"><img src=\"images/ind-banner.jpg\" alt=\"\"/><\/a><\/li>";
 sc_List += "<li><a href=\"#\"><img src=\"images/ind-banner2.jpg\" alt=\"\"/><\/a><\/li>";
 sc_List += "<li><a href=\"#\"><img src=\"images/ind-banner4.jpg\" alt=\"\"/><\/a><\/li>";
 sc_List += "<li><a href=\"#\"><img src=\"images/ind-banner4.jpg\" alt=\"\"/><\/a><\/li>";
-$("#sc_List").html(sc_List);
+*/
+var sc_List = "";
+$.ajax({
+    type: "POST",
+    async: false,//同步
+    dataType: "json",
+    cache: false,//不缓存此页面
+    //url: "http://localhost:9080/" + "scapp/getBannerimgTop3",
+    url: "http://www.bantucard.com:9080/" + "scapp/getBannerimgTop3",
+    data: {
+        merchant_id: merchant_id,
+    },
+    success: function (r) {
+        if (r.code === 0) {
+            var merchant = r.msg;
+            for (var i = 0; i < merchant.length; i++) {
+                sc_List += "<li><a href=\"#\"><img src=\"http:\/\/www.bantucard.com:9080" + merchant[i].bannerimg_imgurl + "\" alt=\"\"/><\/a><\/li>";
+                $("#sc_List").html(sc_List);
+            }
+        }
+
+    },
+    error: function () {
+
+    }
+});
+
 //"<li class=\"newLi\"><span>" + _userName + "<\/span><span>" + userEamil + "<\/span><span>" + userPhone + "<\/span><span><input type=\"button\" value=\"删除\" onclick=\"this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)\" \/><\/span><\/li>";
 TouchSlide({
     slideCell: "#index-banner",

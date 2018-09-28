@@ -67,6 +67,15 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
     }
 
     @Override
+    public List<Bannerimg> getBannerimgTop3(String merchant_id) {
+        Example example = new Example(User.class);
+        example.createCriteria().andCondition("merchant_id=", merchant_id);
+        example.setOrderByClause("bannerimg_num ASC");
+        List<Bannerimg> list = this.selectByExample(example);
+        return list;
+    }
+
+    @Override
     public PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());

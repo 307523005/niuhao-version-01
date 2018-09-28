@@ -76,8 +76,7 @@
                     <div class="form-group">
                         <label>请选择文件</label>
                         <input id="file-3" type="file" name="file-3">
-                        <!--<input id="f_upload" type="file" class="file" />-->
-                        <button type="button" class="btn btn-save" onclick="aa()">保存</button>
+                        <button type="button" class="btn btn-save" onclick="aa()">提交图片</button>
                     </div>
 
 
@@ -143,7 +142,7 @@
             contentType: false,
             processData: false,
             success: function (result) {
-                if (result.error==0) {
+                if (result.error == 0) {
                     $("#bannerimg_imgurl").val(result.url);
                     document.querySelectorAll("div.clearfix").innerHTML = "";
                     $MB.n_success("图片提交成功");
@@ -153,7 +152,7 @@
                 }
 
             }, error: function () {
-                $MB.n_danger("图片提交失败");
+                $MB.n_danger("图片提交失败，请联系管理员");
             }
 
         });
