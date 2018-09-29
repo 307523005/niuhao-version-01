@@ -71,6 +71,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
         Example example = new Example(User.class);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         example.setOrderByClause("bannerimg_num ASC");
+        example.setOrderByClause("bannerimg_updatetime DESC");
         List<Bannerimg> list = this.selectByExample(example);
         return list;
     }

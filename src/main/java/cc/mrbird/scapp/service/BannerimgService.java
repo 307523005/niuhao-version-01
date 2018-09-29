@@ -30,7 +30,7 @@ public interface BannerimgService extends IService<Bannerimg> {
     void addBannerimg(Bannerimg bannerimg);
 
     // @CacheEvict(allEntries = true)
-    void deleteBannerimg(String bannerimgid);
+    void deleteBannerimg(String bannerimg_id);
 
     // @CacheEvict(allEntries = true)
     void updateBannerimg(Bannerimg bannerimg);

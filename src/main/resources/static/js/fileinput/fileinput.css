@@ -21,7 +21,7 @@
     font-size: 999px;
     text-align: right;
     color: #fff;
-    background: transparent url('../img/loading.gif') top left no-repeat;
+    background: transparent url('img/5-121204193R0-50.gif') top left no-repeat;
     border: none;
 }
 
@@ -165,7 +165,7 @@
 }
 
 .loading {
-    background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
+    background: transparent url('img/5-121204193R0-50.gif') no-repeat scroll center center content-box !important;
 }
 
 .wrap-indicator {

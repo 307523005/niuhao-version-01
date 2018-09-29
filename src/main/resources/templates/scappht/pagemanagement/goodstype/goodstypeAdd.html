@@ -1,21 +1,21 @@
-<div class="modal fade" id="bannerimg-add" data-keyboard="false" data-backdrop="static" tabindex="-1">
+<div class="modal fade" id="goodstype-add" data-keyboard="false" data-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title pull-left" id="bannerimg-add-modal-title">添加轮播图</h3>
+                <h3 class="modal-title pull-left" id="goodstype-add-modal-title">添加商品类型</h3>
             </div>
             <div class="modal-body">
-                <form id="bannerimg-add-form">
+                <form id="goodstype-add-form">
                     <div class="row">
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               轮播图名称：
+					               商品类型名称：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="bannerimg_name" class="form-control">
-                                    <input type="text" hidden name="oldbannerimg_name" class="form-control">
-                                    <input type="text" hidden name="bannerimg_id" class="form-control">
+                                    <input type="text" name="goodstype_name" class="form-control">
+                                    <input type="text" hidden name="oldgoodstype_name" class="form-control">
+                                    <input type="text" hidden name="goodstype_id" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -25,10 +25,10 @@
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               	轮播图序号：
+					               	商品类型优先级：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="bannerimg_num" class="form-control">
+                                    <input type="text" name="goodstype_num" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -37,10 +37,10 @@
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               	轮播图指定rul：
+					               	商品类型指定url：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="bannerimg_htmlurl" class="form-control">
+                                    <input type="text" name="goodstype_htmlurl" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
 					               	备注：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="bannerimg_remarks" class="form-control">
+                                    <input type="text" name="goodstype_remarks" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
 					               	图片路径：
 					            </span>
                                 <div class="form-group">
-                                    <input id="bannerimg_imgurl" readonly type="text" name="bannerimg_imgurl"
+                                    <input id="goodstype_imgurl" readonly type="text" name="goodstype_imgurl"
                                            class="form-control">
                                 </div>
                             </div>
@@ -72,10 +72,10 @@
                     </div>
 
                 </form>
-                <form id="bannerimg_form">
+                <form id="goodstype_form">
                     <div class="form-group">
                         <label>请选择文件</label>
-                        <input id="bannerimg_file" type="file" name="bannerimg_file">
+                        <input id="goodstype_file" type="file" name="goodstype_file">
                         <button type="button" class="btn btn-save" onclick="aa()">提交图片</button>
                     </div>
 
@@ -84,17 +84,17 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-save" id="bannerimg-add-button" name="save">保存</button>
+                <button type="button" class="btn btn-save" id="goodstype-add-button" name="save">保存</button>
                 <button type="button" class="btn btn-secondary btn-close">关闭</button>
                 <button class="btn-hide"></button>
             </div>
         </div>
     </div>
 </div>
-<script data-th-src="@{js/app/scappht/pagemanagement/bannerimg/bannerimgAdd.js}"></script>
+<script data-th-src="@{js/app/scappht/pagemanagement/goodstype/goodstypeAdd.js}"></script>
 
 <script>
-    $("#bannerimg_file").fileinput({
+    $("#goodstype_file").fileinput({
         language: 'zh', //设置语言
         //allowedFileExtensions: ['apk'],//接收的文件后缀
         uploadAsync: false, //默认异步上传
@@ -105,16 +105,14 @@
         showCaption: false,//是否显示标题
         dropZoneEnabled: true,//是否显示拖拽区域
         maxFileCount: 1, //表示允许同时上传的最大文件个数
-        uploadUrl: ctx + "bannerimg/fileUpload",//上传的地址
+        uploadUrl: ctx + "goodstype/fileUpload",//上传的地址
         browseClass: "btn btn-primary btn-lg",
         fileType: "any",
         previewFileIcon: "<i class=' glyphicon-king'></i>",
         validateInitialCount: true
     });
     //异步上传返回结果处理
-    $("#bannerimg_file").on("fileuploaded", function (event, data, previewId, index) {
-        alert("结果处理");
-
+    $("#goodstype_file").on("fileuploaded", function (event, data, previewId, index) {
         var response = data.response;
         //alert(response.filePath);
         //$("#fileMd5").val(response.fileMd5);
@@ -125,15 +123,15 @@
     });
     //上传前
 
-    /* $('#bannerimg_file').on('fileuploaded', function(event, data, previewId, index) {
+    /* $('#goodstype_file').on('fileuploaded', function(event, data, previewId, index) {
          //var form = data.form, files = data.files, extra = data.extra,
             // response = data.response, reader = data.reader;
          alert("上传前");
      });*/
     function aa() {
-        var formData = new FormData(document.getElementById("bannerimg_form"));//表单id
+        var formData = new FormData(document.getElementById("goodstype_form"));//表单id
         $.ajax({
-            url: ctx + "bannerimg/fileUpload",//上传的地址
+            url: ctx + "goodstype/fileUpload",//上传的地址
             type: 'POST',
             data: formData,
             async: false,
@@ -142,10 +140,10 @@
             processData: false,
             success: function (result) {
                 if (result.error == 0) {
-                    $("#bannerimg_imgurl").val(result.url);
+                    $("#goodstype_imgurl").val(result.url);
                     document.querySelectorAll("div.clearfix").innerHTML = "";
                     $MB.n_success("图片提交成功");
-                    document.getElementById('bannerimg_form') && document.getElementById('bannerimg_form').reset();
+                    document.getElementById('goodstype_form') && document.getElementById('goodstype_form').reset();
                 } else {
                     $MB.n_danger(result.message);
                 }
