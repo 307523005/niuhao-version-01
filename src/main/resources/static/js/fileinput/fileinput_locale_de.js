@@ -33,8 +33,8 @@
         msgLoading: 'Wird Geladen Datei {index} von {files} &hellip;',
         msgProgress: 'Wird Geladen Datei {index} von {files} - {name} - {percent}% fertiggestellt.',
         msgSelected: '{n} Dateien ausgewählt',
-        msgFoldersNotAllowed: 'Drag & Drop Dateien nur! Sprungen {n} gesunken Ordner.',
-        dropZoneTitle: 'Drag & Drop Dateien hier &hellip;'
+        msgFoldersNotAllowed: '请选择图片',
+        dropZoneTitle: '请选择图片'//Drag & Drop Dateien hier &hellip;
     };
 
     $.extend($.fn.fileinput.defaults, $.fn.fileinput.locales.de);

@@ -21,7 +21,7 @@ import java.time.LocalTime;
 @EnableConfigurationProperties({FebsProperies.class})
 @EnableCaching
 @EnableAsync
-public class Application /*extends SpringBootServletInitializer*/ {
+public class Application extends SpringBootServletInitializer{
 
     private static Logger log = LoggerFactory.getLogger(Application.class);
 

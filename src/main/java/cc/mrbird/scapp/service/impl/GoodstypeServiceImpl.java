@@ -67,11 +67,10 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
     }
 
     @Override
-    public List<Goodstype> getGoodstypeTop3(String merchant_id) {
+    public List<Goodstype> getGoodstype(String merchant_id) {
         Example example = new Example(User.class);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         example.setOrderByClause("goodstype_num ASC");
-        example.setOrderByClause("goodstype_updatetime DESC");
         List<Goodstype> list = this.selectByExample(example);
         return list;
     }

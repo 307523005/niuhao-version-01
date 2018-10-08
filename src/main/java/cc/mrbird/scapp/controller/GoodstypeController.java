@@ -4,6 +4,7 @@ import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
+import cc.mrbird.common.util.FileUploadUtil;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.scapp.domain.Goodstype;
 import cc.mrbird.scapp.service.GoodstypeService;
@@ -128,11 +129,11 @@ public class GoodstypeController extends BaseController {
         }
     }
 
-    @RequestMapping("scapp/getGoodstypeTop3")
+    @RequestMapping("scapp/scappGetGoodstype")
     @ResponseBody
-    public ResponseBo getGoodstypeTop3(String merchant_id) {
+    public ResponseBo scappGetGoodstype(String merchant_id) {
         try {
-            List<Goodstype> list = this.goodstypeService.getGoodstypeTop3(merchant_id);
+            List<Goodstype> list = this.goodstypeService.getGoodstype(merchant_id);
             return ResponseBo.ok(list);
         } catch (Exception e) {
             log.error("导出商品类型信息Excel失败", e);
@@ -188,120 +189,8 @@ public class GoodstypeController extends BaseController {
     @ResponseBody
     public Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
             FileUploadException {
-        ServletContext application = request.getSession().getServletContext();
-        String savePath = application.getRealPath("/") + "scimages/";
         User user = RequestUtils.currentLoginUser();
-        //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
-        System.out.println("--***fileUpload***getRealPath****-" + savePath);
-        // 文件保存目录URL
-        String saveUrl = request.getContextPath() + "/scimages/";
-        System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
-        // 定义允许上传的文件扩展名
-        HashMap<String, String> extMap = new HashMap<String, String>();
-        String dirName = user.getMerchantId();
-        extMap.put(dirName, "gif,jpg,jpeg,png,bmp,.jpg");
-        /*extMap.put("flash", "swf,flv");
-        extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
-
-        // 最大文件大小
-        long maxSize = 100000;
-
-        response.setContentType("text/html; charset=UTF-8");
-
-        if (!ServletFileUpload.isMultipartContent(request)) {
-            return getError("请选择文件。");
-        }
-        // 检查目录
-        File uploadDir = new File(savePath);
-        if (!uploadDir.isDirectory()) {
-            uploadDir.mkdirs();
-            // return getError("上传目录不存在。");
-        }
-        // 检查目录写权限
-        if (!uploadDir.canWrite()) {
-            return getError("上传目录没有写权限。");
-        }
-
-        //String dirName = request.getParameter("dir");
-
-        if (dirName == null) {
-            dirName = "image";
-        }
-        /*if (!extMap.containsKey(dirName)) {
-            return getError("目录名不正确。");
-        }*/
-        // 创建文件夹
-        savePath += dirName + "/";
-        saveUrl += dirName + "/";
-        File saveDirFile = new File(savePath);
-        if (!saveDirFile.exists()) {
-            saveDirFile.mkdirs();
-        }
-       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String ymd = sdf.format(new Date());*/
-        String ymd = "goodstype";
-        savePath += ymd + "/";
-        saveUrl += ymd + "/";
-        File dirFile = new File(savePath);
-        if (!dirFile.exists()) {
-            dirFile.mkdirs();
-        }
-
-        FileItemFactory factory = new DiskFileItemFactory();
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setHeaderEncoding("UTF-8");
-
-
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-
-        Iterator item = multipartRequest.getFileNames();
-        while (item.hasNext()) {
-
-            String fileName = (String) item.next();
-
-            MultipartFile file = multipartRequest.getFile(fileName);
-
-
-            // 检查文件大小
-
-            if (file.getSize() > maxSize) {
-
-                return getError("上传文件大小超过限制。");
-
-            }
-
-            // 检查扩展名
-
-            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
-            System.out.println(fileExt+"---fileExt-----");
-            if (!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)) {
-                return getError("上传文件扩展名是不允许的扩展名。\n只允许"
-                        + extMap.get(dirName) + "格式。");
-
-            }
-            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-
-            String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-
-            try {
-
-                File uploadedFile = new File(savePath, newFileName);
-
-                ByteStreams.copy(file.getInputStream(), new FileOutputStream(uploadedFile));
-
-            } catch (Exception e) {
-
-                return getError("上传文件失败。");
-
-            }
-            Map<String, Object> msg = new HashMap<String, Object>();
-            msg.put("error", 0);
-            System.out.println("saveUrl--" + saveUrl);
-            msg.put("url", saveUrl + newFileName);
-            return msg;
-        }
-        return null;
+        return FileUploadUtil.fileUploadImages(request, response, "scimages",  "goodstype", user,60,60);
     }
 
     private Map<String, Object> getError(String message) {

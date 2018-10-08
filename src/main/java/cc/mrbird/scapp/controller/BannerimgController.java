@@ -4,6 +4,7 @@ import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
+import cc.mrbird.common.util.FileUploadUtil;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.scapp.domain.Bannerimg;
 import cc.mrbird.scapp.service.BannerimgService;
@@ -25,11 +26,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -119,6 +123,7 @@ public class BannerimgController extends BaseController {
 
     @RequestMapping("bannerimg/getbannerimg")
     @ResponseBody
+    @RequiresPermissions("bannerimg:list")
     public ResponseBo getbannerimg(String bannerimg_id) {
         try {
             Bannerimg bannerimg = this.bannerimgService.findBannerimg(bannerimg_id);
@@ -142,6 +147,7 @@ public class BannerimgController extends BaseController {
     }
     @RequestMapping("bannerimg/excel")
     @ResponseBody
+    @RequiresPermissions("bannerimg:list")
     public ResponseBo bannerimgExcel(Bannerimg bannerimg) {
         try {
             List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
@@ -154,6 +160,7 @@ public class BannerimgController extends BaseController {
 
     @RequestMapping("bannerimg/csv")
     @ResponseBody
+    @RequiresPermissions("bannerimg:list")
     public ResponseBo bannerimgCsv(Bannerimg bannerimg) {
         try {
             List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
@@ -187,9 +194,11 @@ public class BannerimgController extends BaseController {
      */
     @RequestMapping(value = "bannerimg/fileUpload"/*, method = RequestMethod.POST*/)
     @ResponseBody
+    @RequiresPermissions("bannerimg:add")
     public Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
             FileUploadException {
-        ServletContext application = request.getSession().getServletContext();
+        User user = RequestUtils.currentLoginUser();
+        /*ServletContext application = request.getSession().getServletContext();
         String savePath = application.getRealPath("/") + "scimages/";
         User user = RequestUtils.currentLoginUser();
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
@@ -201,9 +210,9 @@ public class BannerimgController extends BaseController {
         HashMap<String, String> extMap = new HashMap<String, String>();
         String dirName = user.getMerchantId();
         extMap.put(dirName, "gif,jpg,jpeg,png,bmp,.jpg");
-        /*extMap.put("flash", "swf,flv");
+        *//*extMap.put("flash", "swf,flv");
         extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
+        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*//*
 
         // 最大文件大小
         long maxSize = 100000;
@@ -229,9 +238,9 @@ public class BannerimgController extends BaseController {
         if (dirName == null) {
             dirName = "image";
         }
-        /*if (!extMap.containsKey(dirName)) {
+        *//*if (!extMap.containsKey(dirName)) {
             return getError("目录名不正确。");
-        }*/
+        }*//*
         // 创建文件夹
         savePath += dirName + "/";
         saveUrl += dirName + "/";
@@ -239,8 +248,8 @@ public class BannerimgController extends BaseController {
         if (!saveDirFile.exists()) {
             saveDirFile.mkdirs();
         }
-       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String ymd = sdf.format(new Date());*/
+       *//* SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String ymd = sdf.format(new Date());*//*
         String ymd = "bannerimg";
         savePath += ymd + "/";
         saveUrl += ymd + "/";
@@ -281,6 +290,26 @@ public class BannerimgController extends BaseController {
                         + extMap.get(dirName) + "格式。");
 
             }
+            //检查宽高
+
+            try {
+                BufferedImage image = ImageIO.read(file.getInputStream());
+
+                if (image != null) {//如果image=null 表示上传的不是图片格式
+                    System.out.println("获取图片宽度，单位px"+image.getWidth());//获取图片宽度，单位px
+                    System.out.println("获取图片高度，单位px"+image.getHeight());//获取图片高度，单位px
+                    if (image.getHeight() > maxSize) {
+
+                        return getError("上传文件大小超过限制。");
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 
             String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
@@ -302,15 +331,16 @@ public class BannerimgController extends BaseController {
             msg.put("url", saveUrl + newFileName);
             return msg;
         }
-        return null;
+        return null;*/
+        return FileUploadUtil.fileUploadImages(request, response,  "scimages", "bannerimg", user,640,326);
     }
 
-    private Map<String, Object> getError(String message) {
+   /* private Map<String, Object> getError(String message) {
         Map<String, Object> msg = new HashMap<String, Object>();
         msg.put("error", 1);
         msg.put("message", message);
         return msg;
-    }
+    }*/
 
 
 }

@@ -17,7 +17,7 @@ public interface GoodstypeService extends IService<Goodstype> {
     Goodstype findByName(String goodstype_name, String merchant_id);
 
     List<Goodstype> findAllGoodstype(QueryRequest request, Goodstype goodstype);
-    List<Goodstype> getGoodstypeTop3(String merchant_id);
+    List<Goodstype> getGoodstype(String merchant_id);
 
     // @Cacheable(key = "'PageList-'+#request.toString() + #goodstype.toString()")
     PageInfo<Goodstype> PageList(QueryRequest request, Goodstype goodstype);
