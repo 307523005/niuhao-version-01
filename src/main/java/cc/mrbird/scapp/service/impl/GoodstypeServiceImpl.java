@@ -103,7 +103,7 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
             PageInfo<Goodstype> pageInfo = new PageInfo<>(goodstypes);
             return pageInfo;
         } catch (Exception e) {
-            log.error("获取轮播图信息失败", e);
+            log.error("获取商品类型失败", e);
             return new PageInfo<>(null);
         }
     }

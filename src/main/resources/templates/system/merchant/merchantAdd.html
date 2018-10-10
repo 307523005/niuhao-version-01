@@ -94,6 +94,27 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	二维码图片路径：
+					            </span>
+                                <div class="form-group">
+                                    <input id="merchant_wximge" readonly type="text" name="merchant_wximge"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form id="merchant_wximge_form">
+                    <div class="form-group">
+                        <label>请选择文件</label>
+                        <input id="merchant_wximge_file" type="file" name="merchant_wximge_file">
+                        <button type="button" class="btn btn-save" onclick="aa()">提交图片</button>
+                    </div>
+
 
                 </form>
             </div>
@@ -108,3 +129,68 @@
 </div>
 <script data-th-src="@{js/app/system/merchant/merchantAdd.js}"></script>
 
+
+<script>
+    $("#merchant_wximge_file").fileinput({
+        language: 'zh', //设置语言
+        //allowedFileExtensions: ['apk'],//接收的文件后缀
+        uploadAsync: false, //默认异步上传
+        showUpload: false, //是否显示上传按钮
+        cancelLabel: "请选择图片并提交",
+        showRemove: true, //显示移除按钮
+        showPreview: true, //是否显示预览
+        showCaption: false,//是否显示标题
+        dropZoneEnabled: true,//是否显示拖拽区域
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        uploadUrl: ctx + "merchant_wximge/fileUpload",//上传的地址
+        browseClass: "btn btn-primary btn-lg",
+        fileType: "any",
+        previewFileIcon: "<i class=' glyphicon-king'></i>",
+        validateInitialCount: true
+    });
+    //异步上传返回结果处理
+    $("#merchant_wximge_file").on("fileuploaded", function (event, data, previewId, index) {
+        var response = data.response;
+        //alert(response.filePath);
+        //$("#fileMd5").val(response.fileMd5);
+        //$("#version").val(response.newVersionName);
+        //$("#url").val(response.filePath);
+        alert(response.url);
+
+    });
+    //上传前
+
+    /* $('#merchant_wximge_file').on('fileuploaded', function(event, data, previewId, index) {
+         //var form = data.form, files = data.files, extra = data.extra,
+            // response = data.response, reader = data.reader;
+         alert("上传前");
+     });*/
+    function aa() {
+        var formData = new FormData(document.getElementById("merchant_wximge_form"));//表单id
+        $.ajax({
+            url: ctx + "merchant/fileUpload",//上传的地址
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result.error == 0) {
+                    $("#merchant_wximge").val(result.url);
+                    document.querySelectorAll("div.clearfix").innerHTML = "";
+                    $MB.n_success("图片提交成功");
+                    document.getElementById('merchant_wximge_form') && document.getElementById('merchant_wximge_form').reset();
+                } else {
+                    $MB.n_danger(result.message);
+                }
+
+            }, error: function () {
+                $MB.n_danger("图片提交失败，请联系管理员");
+            }
+
+        });
+    }
+
+
+</script>

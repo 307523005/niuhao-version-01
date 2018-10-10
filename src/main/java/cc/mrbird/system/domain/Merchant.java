@@ -40,7 +40,17 @@ public class Merchant implements Serializable {
 	@Column(name = "merchant_region")
 	@ExportConfig(value = "地区")
 	private String merchant_region;
+	@Column(name = "merchant_wximge")
+	@ExportConfig(value = "微信二维码")
+	private String merchant_wximge;
 
+	public String getMerchant_wximge() {
+		return merchant_wximge;
+	}
+
+	public void setMerchant_wximge(String merchant_wximge) {
+		this.merchant_wximge = merchant_wximge;
+	}
 
 	public String getMerchant_id() {
 		return merchant_id;
@@ -126,6 +136,7 @@ public class Merchant implements Serializable {
 				.add("merchant_information", merchant_information)
 				.add("merchant_addtime", merchant_addtime)
 				.add("merchant_region", merchant_region)
+				.add("merchant_wximge", merchant_wximge)
 				.toString();
 	}
 

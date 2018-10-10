@@ -127,7 +127,7 @@ function validateRule() {
             roles: icon + "请选择用户角色",
             merchantId: {
                 required: icon + "请选择用户所属商户",
-                maxlength: icon+"目前支持单选商户"
+                maxlength: icon + "目前支持单选商户"
             },
             email: icon + "邮箱格式不正确",
             ssex: icon + "请选择性别"
@@ -147,6 +147,7 @@ function initRole() {
             selectAllText: '所有角色',
             allSelected: '所有角色',
             width: '100%',
+            filter: true,//搜索
             onClose: function () {
                 $roles.val($rolesSelect.val());
                 validator.element("input[name='roles']");
@@ -156,6 +157,7 @@ function initRole() {
         $rolesSelect.multipleSelect(options);
     });
 }
+
 function initMerchant() {
     $.post(ctx + "merchant/list", {}, function (r) {
         var data = r.rows;
@@ -165,13 +167,17 @@ function initMerchant() {
         }
         $merchantIdSelect.html("").append(option);
         var options = {
-            selectAllText: '所有商户1',
-            allSelected: '所有商户2',
+            selectAllText: '所有商户',
+            allSelected: '所有商户',
             width: '100%',
+            single: true,//是否单选
+            filter: true,//搜索
             onClose: function () {
                 merchant.val($merchantIdSelect.val());
                 validator.element("input[name='merchantId']");
-            }
+            },onOpen: function () {//打开当下拉列表被打开时触发。
+                $merchantIdSelect.multipleSelect('uncheckAll');
+            },
         };
 
         $merchantIdSelect.multipleSelect(options);

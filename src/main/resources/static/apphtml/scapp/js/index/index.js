@@ -159,9 +159,9 @@ function advertisinglist() {
 /*footer_ul*/
 function footer_ul() {
     var footer_ul = "";
-    footer_ul += "      <li class=\"on\"><a href=\"index.html?merchant_id="+merchant_id+"\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li><a href=\"worker-join.html\" class=\"foot-worker\"><i></i><span class=\"full-block\">加盟</span></a></li>\n" +
-        "        <li><a href=\"my-order.html\" class=\"foot-order\"><i></i><span class=\"full-block\">订单</span></a></li>\n" +
+    footer_ul += "      <li class=\"on\"><a href=\"index.html?merchant_id="+merchant_id+"\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>" +
+        "        <li><a href=\"worker-join.html\" class=\"foot-worker\"><i></i><span class=\"full-block\">加盟</span></a></li>" +
+        "        <li><a href=\"my-order.html\" class=\"foot-order\"><i></i><span class=\"full-block\">订单</span></a></li>" +
         "        <li><a href=\"my.html\" class=\"my\"><i></i><span class=\"full-block\">我的</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }

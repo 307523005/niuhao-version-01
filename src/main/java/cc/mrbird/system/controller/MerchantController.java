@@ -4,12 +4,14 @@ import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
+import cc.mrbird.common.util.FileUploadUtil;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.common.util.JsonUtils;
 import cc.mrbird.system.domain.Merchant;
 import cc.mrbird.system.domain.User;
 import cc.mrbird.system.service.MerchantService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -143,5 +150,11 @@ public class MerchantController extends BaseController {
             return ResponseBo.error("导出Csv失败，请联系网站管理员！");
         }
     }
-
+    @RequestMapping(value = "merchant/fileUpload"/*, method = RequestMethod.POST*/)
+    @ResponseBody
+    public Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+            FileUploadException {
+        User user = RequestUtils.currentLoginUser();
+        return FileUploadUtil.fileUploadImages(request, response, "merchant_wximge",  "merchant_wximge", user,500,500);
+    }
 }

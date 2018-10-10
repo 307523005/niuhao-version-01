@@ -25,6 +25,7 @@ function updatemerchant() {
             $form.find("input[name='merchant_addr']").val(merchant.merchant_addr);
             $form.find("input[name='merchant_region']").val(merchant.merchant_region);
             $form.find("input[name='merchant_information']").val(merchant.merchant_information);
+            $form.find("input[name='merchant_wximge']").val(merchant.merchant_wximge);
             $("#merchant-add-button").attr("name", "update");
         } else {
             $MB.n_danger(r.msg);

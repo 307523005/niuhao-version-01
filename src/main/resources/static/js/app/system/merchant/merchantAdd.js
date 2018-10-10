@@ -91,6 +91,9 @@ function validateRule() {
                 required: true,
                 minlength: 2,
                 maxlength: 50
+            },
+            merchant_wximge: {
+                required: true,
             }
         },
         errorPlacement: function (error, element) {
@@ -112,6 +115,7 @@ function validateRule() {
             merchant_addr: icon + "长度2到100个字符",
             merchant_region: icon + "长度2到10个字符",
             merchant_information: icon + "长度2到50个字符",
+            merchant_wximge: icon + "请选择二维码",
         }
     });
 }

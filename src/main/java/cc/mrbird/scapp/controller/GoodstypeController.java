@@ -193,12 +193,6 @@ public class GoodstypeController extends BaseController {
         return FileUploadUtil.fileUploadImages(request, response, "scimages",  "goodstype", user,60,60);
     }
 
-    private Map<String, Object> getError(String message) {
-        Map<String, Object> msg = new HashMap<String, Object>();
-        msg.put("error", 1);
-        msg.put("message", message);
-        return msg;
-    }
 
 
 }

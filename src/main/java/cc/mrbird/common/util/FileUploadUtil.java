@@ -21,7 +21,6 @@ import java.util.*;
 
 public class FileUploadUtil {
     /**
-     *
      * @param request
      * @param response
      * @param savePatha
@@ -31,21 +30,21 @@ public class FileUploadUtil {
      * @param heightSize
      * @return
      */
-    public static Map<String, Object> fileUploadImages(HttpServletRequest request, HttpServletResponse response, String savePatha,  String savePathc, User user,int widthSize,int heightSize) {
+    public static Map<String, Object> fileUploadImages(HttpServletRequest request, HttpServletResponse response, String savePatha, String savePathc, User user, int widthSize, int heightSize) {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyyMMdd");
         String newFileName2 = df2.format(new Date());
         ServletContext application = request.getSession().getServletContext();
-        String savePath = application.getRealPath("/") + savePatha + "/"+newFileName2+ "/";
+        String savePath = application.getRealPath("/") + savePatha + "/" + newFileName2 + "/";
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
         System.out.println("--***fileUpload***getRealPath****-" + savePath);
         // 文件保存目录URL
-        String saveUrl = request.getContextPath() + "/" + savePatha + "/";
+        String saveUrl = request.getContextPath() + "/" + savePatha + "/" + newFileName2 + "/";
         System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("extension", "gif,jpg,jpeg,png,bmp");//扩展名
         // 最大文件大小
-        long maxSize = 100000;
+        long maxSize = 1000000;
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -117,7 +116,7 @@ public class FileUploadUtil {
                     if (image != null) {//如果image=null 表示上传的不是图片格式
                         System.out.println("获取图片宽度，单位px" + image.getWidth());//获取图片宽度，单位px
                         System.out.println("获取图片高度，单位px" + image.getHeight());//获取图片高度，单位px
-                        if (image.getWidth() > widthSize || image.getHeight()>heightSize) {
+                        if (image.getWidth() > widthSize || image.getHeight() > heightSize) {
                             return getError("上传图片宽高超过限制。");
                         }
                     }
@@ -161,14 +160,24 @@ public class FileUploadUtil {
         return msg;
     }
 
-    public static Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response, String savePatha, String savePathb, String savePathc, User user) {
-
+    /**
+     * 备用
+     * @param request
+     * @param response
+     * @param savePatha
+     * @param savePathc
+     * @param user
+     * @return
+     */
+    public static Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response, String savePatha,  String savePathc, User user) {
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyyMMdd");
+        String newFileName2 = df2.format(new Date());
         ServletContext application = request.getSession().getServletContext();
-        String savePath = application.getRealPath("/") + savePatha + "/";
+        String savePath = application.getRealPath("/") + savePatha + "/" + newFileName2 + "/";
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
         System.out.println("--***fileUpload***getRealPath****-" + savePath);
         // 文件保存目录URL
-        String saveUrl = request.getContextPath() + "/" + savePathb + "/";
+        String saveUrl = request.getContextPath() + "/" + savePatha + "/" + newFileName2 + "/";
         System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();

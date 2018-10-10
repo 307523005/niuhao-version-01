@@ -75,7 +75,8 @@
                 <form id="bannerimg_form">
                     <div class="form-group">
                         <label>请选择文件</label>
-                        <input id="bannerimg_file" type="file" name="bannerimg_file">
+                        <input id ="bannerimg_file" name="bannerimg_file" type="file" multiple class="file-loading">
+                        <!--<input id="bannerimg_file" type="file" name="bannerimg_file">-->
                         <button type="button" class="btn btn-save" onclick="aa()">提交图片</button>
                     </div>
 
@@ -96,7 +97,7 @@
 <script>
     $("#bannerimg_file").fileinput({
         language: 'zh', //设置语言
-        //allowedFileExtensions: ['apk'],//接收的文件后缀
+        allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
         uploadAsync: false, //默认异步上传
         showUpload: false, //是否显示上传按钮
         cancelLabel: "请选择图片并提交",
@@ -106,8 +107,8 @@
         dropZoneEnabled: true,//是否显示拖拽区域
         maxFileCount: 1, //表示允许同时上传的最大文件个数
         uploadUrl: ctx + "bannerimg/fileUpload",//上传的地址
-        browseClass: "btn btn-primary btn-lg",
-        fileType: "any",
+        browseClass: "btn btn-primary", //按钮样式
+       // fileType: "any",
         previewFileIcon: "<i class=' glyphicon-king'></i>",
         validateInitialCount: true
     });
