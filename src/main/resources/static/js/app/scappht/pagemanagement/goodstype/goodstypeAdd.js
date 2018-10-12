@@ -68,10 +68,7 @@ function validateRule() {
             goodstype_num: {
                 required: true
             },
-            goodstype_htmlurl: {
-                required: true,
-            },
-            goodstype_imgurl: {
+            goodstype_imageurl: {
                 required: true,
             }
         },
@@ -89,8 +86,7 @@ function validateRule() {
                 remote: icon + "商品类型名已经存在"
             },
             goodstype_num: icon + "请输入商品类型优先级码",
-            goodstype_htmlurl: icon + "请输入商品类型页面url",
-            goodstype_imgurl: icon + "请提交图片",
+            goodstype_imageurl: icon + "请提交图片",
         }
     });
 }

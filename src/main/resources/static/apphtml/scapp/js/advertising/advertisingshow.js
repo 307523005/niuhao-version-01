@@ -17,6 +17,7 @@ var httpurl = "http://10.20.11.78:8081/";
 var merchant_id = $.getUrlParam('merchant_id');
 window.onload = function () {
     merchant();
+
 }
 
 /*验证商户*/
@@ -31,18 +32,9 @@ function merchant() {
             merchant_id: merchant_id,
         },
         success: function (r) {
-            footer_ul();
-            var merchant = r.msg;
             if (r.code === 0) {
-                var contactmerchant = "";
-                contactmerchant += " <div class=\"order-details-tit\"><h2>长按识别二维码联系商家</h2></div>\n" +
-                    "                    <li><i><img src=\"" + httpurl + merchant.merchant_wximge + "\"></i></li>\n" +
-                    "                    <li><span>&nbsp;</span></li>\n" +
-                    "                    <li><span></span></li>\n" +
-                    "                    <li><span></span></li>";
-                $("#contactmerchant").html(contactmerchant);
-
-
+                footer_ul();
+                advertisinglist();
             } else {
                 $("#container").html("您访问的链接有问题!!!");
             }
@@ -50,6 +42,44 @@ function merchant() {
         },
         error: function () {
             $("#container").html("您访问的链接有问题!!!");
+        }
+    });
+}
+
+/*广告列表*/
+function advertisinglist() {
+    var advertisinglist = "";
+    $.ajax({
+        type: "POST",
+        async: true,//同步
+        dataType: "json",
+        cache: false,//不缓存此页面
+        url: httpurl + "scapp/scappGetAdvertisingByMerchant_id",
+        data: {
+            merchant_id: merchant_id,
+        },
+        success: function (r) {
+            if (r.code === 0) {
+                var advertising = r.msg;
+                for (var i = 0; i < advertising.length; i++) {
+                    advertisinglist += " <li>\n" +
+                        "                <a href=\"advertising.html?merchant_id="+merchant_id+"&advertising_id="+advertising[i].advertising_id+"\">\n" +
+                        "                    <div class=\"goods-allocation-txt\">\n" +
+                        "                        <h2><span style=\"float:left;width:260px;overflow: hidden;\n" +
+                        "            text-overflow: ellipsis;\n" +
+                        "            -o-text-overflow: ellipsis;\n" +
+                        "            white-space:nowrap;\"></span>"+advertising[i].advertising_title+"</h2>\n" +
+                        "                        <p>"+advertising[i].advertising_updatetime+"</p>\n" +
+                        "                    </div>\n" +
+                        "                </a>\n" +
+                        "            </li>";
+                }
+                $("#advertisinglist").html(advertisinglist);
+            }
+
+        },
+        error: function () {
+
         }
     });
 }
@@ -62,3 +92,5 @@ function footer_ul() {
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">我的</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }
+
+

@@ -37,7 +37,7 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
 
     @Override
     public Goodstype findByName(String goodstype_name,String merchant_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Goodstype.class);
         example.createCriteria().andCondition("goodstype_name=", goodstype_name);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         List<Goodstype> list = this.selectByExample(example);
@@ -68,7 +68,7 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
 
     @Override
     public List<Goodstype> getGoodstype(String merchant_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Goodstype.class);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         example.setOrderByClause("goodstype_num ASC");
         List<Goodstype> list = this.selectByExample(example);

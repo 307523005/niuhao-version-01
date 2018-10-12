@@ -168,6 +168,41 @@ public class AdvertisingController extends BaseController {
             return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
         }
     }
+
+    /**
+     * 商城根据id获取广告
+     * @param advertising_id
+     * @return
+     */
+    @RequestMapping("scapp/scappgetadvertising")
+    @ResponseBody
+    public ResponseBo scappgetadvertising(Long advertising_id) {
+        try {
+            Advertising advertising = this.advertisingService.findAdvertising(advertising_id);
+            return ResponseBo.ok(advertising);
+        } catch (Exception e) {
+            log.error("获取广告信息失败", e);
+            return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
+        }
+    }
+
+    /**
+     * 商城根据商户id获取广告列表
+     * @param merchant_id
+     * @return
+     */
+    @RequestMapping("scapp/scappGetAdvertisingByMerchant_id")
+    @ResponseBody
+    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id) {
+        System.out.println(merchant_id+"merchant_idmerchant_id");
+        try {
+            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id);
+            return ResponseBo.ok(list);
+        } catch (Exception e) {
+            log.error("获取广告信息失败", e);
+            return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
+        }
+    }
     @RequestMapping("advertising/excel")
     @ResponseBody
     public ResponseBo advertisingExcel(Advertising advertising) {

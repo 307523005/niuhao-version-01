@@ -57,8 +57,8 @@ $(function () {
                 field: 'advertising_content',
                 title: '查看',
                 formatter: function (value, row, index) {
-                    return ' <button type="button" onclick="chakan(value)" class="btn">查看</button>';
-
+                    return ' <a target="_blank" href="http://www.bantucard.com:9080/apphtml/scapp/advertising.html?merchant_id='+row.merchant_id+'&advertising_id='+row.advertising_id+'" class="btn">查看</a>';
+/*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
                 }
             }
         ]

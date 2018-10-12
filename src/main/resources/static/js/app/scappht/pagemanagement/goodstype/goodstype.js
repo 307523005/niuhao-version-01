@@ -20,7 +20,7 @@ $(function () {
             align: 'center'
         }, {
             field: 'goodstype_num',
-            title: '商品类型码',
+            title: '商品类型优先级',
             align: 'center',
             sortable: true//列排序
         }, {

@@ -23,7 +23,7 @@ public interface BannerimgService extends IService<Bannerimg> {
     List<Bannerimg> findAllBannerimg(QueryRequest request, Bannerimg bannerimg);
     List<Bannerimg> getBannerimgTop3(String merchant_id);
 
-    // @Cacheable(key = "'PageList-'+#request.toString() + #bannerimg.toString()")
+    // @Cacheable(key = "'PageList-'+#request.toString() + #advertising.toString()")
     PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg);
 
     // @CacheEvict(allEntries = true)

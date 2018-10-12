@@ -37,7 +37,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
 
     @Override
     public Bannerimg findByName(String bannerimg_name,String merchant_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Bannerimg.class);
         example.createCriteria().andCondition("bannerimg_name=", bannerimg_name);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         List<Bannerimg> list = this.selectByExample(example);
@@ -68,7 +68,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
 
     @Override
     public List<Bannerimg> getBannerimgTop3(String merchant_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Bannerimg.class);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         example.setOrderByClause("bannerimg_num ASC");
        // example.setOrderByClause("bannerimg_updatetime DESC");
@@ -80,7 +80,7 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
     public PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--bannerimg--" + objects.toString());
+            System.out.println(request.getSort() + "--advertising--" + objects.toString());
             Example example = new Example(Bannerimg.class);
             Criteria criteria = example.createCriteria();
             //按照商户id

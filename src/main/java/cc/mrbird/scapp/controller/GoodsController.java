@@ -138,8 +138,8 @@ public class GoodsController extends BaseController {
             List<Goods> list = this.goodsService.getGoods(merchant_id,goodstype_id);
             return ResponseBo.ok(list);
         } catch (Exception e) {
-            log.error("导出商品信息Excel失败", e);
-            return ResponseBo.error("导出Excel失败，请联系网站管理员！");
+            log.error("获取商品信息失败", e);
+            return ResponseBo.error("获取商品信息失败，请联系网站管理员！");
         }
     }
 
@@ -188,12 +188,19 @@ public class GoodsController extends BaseController {
      * @throws IOException
      * @throws FileUploadException
      */
-    @RequestMapping(value = "goods/fileUpload"/*, method = RequestMethod.POST*/)
+    @RequestMapping(value = "goods/bigfileUpload"/*, method = RequestMethod.POST*/)
     @ResponseBody
-    public Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+    public Map<String, Object> bigfileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
             FileUploadException {
         User user = RequestUtils.currentLoginUser();
         return FileUploadUtil.fileUploadImages(request, response, "scimages",  "goods", user,640,356);//260.220
+    }
+    @RequestMapping(value = "goods/littlfileUpload"/*, method = RequestMethod.POST*/)
+    @ResponseBody
+    public Map<String, Object> littlfileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+            FileUploadException {
+        User user = RequestUtils.currentLoginUser();
+        return FileUploadUtil.fileUploadImages(request, response, "scimages",  "goods", user,260,220);//260.220
     }
 
     private Map<String, Object> getError(String message) {

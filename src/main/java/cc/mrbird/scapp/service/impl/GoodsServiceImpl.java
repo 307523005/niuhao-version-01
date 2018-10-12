@@ -37,7 +37,7 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
 
     @Override
     public Goods findByName(String goods_name,String merchant_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Goods.class);
         example.createCriteria().andCondition("goods_name=", goods_name);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         List<Goods> list = this.selectByExample(example);
@@ -68,7 +68,7 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
 
     @Override
     public List<Goods> getGoods(String merchant_id,String goodstype_id) {
-        Example example = new Example(User.class);
+        Example example = new Example(Goods.class);
         example.createCriteria().andCondition("merchant_id=", merchant_id);
         example.createCriteria().andCondition("goodstype_id=", goodstype_id);
         example.setOrderByClause("goods_num ASC");

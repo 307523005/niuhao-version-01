@@ -114,5 +114,14 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
         this.updateNotNull(advertising);
     }
 
+    @Override
+    public List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id) {
+        Example example = new Example(Advertising.class);
+        example.createCriteria().andCondition("merchant_id=", merchant_id);
+        example.setOrderByClause("advertising_updatetime desc");
+        List<Advertising> list = this.selectByExample(example);
+        return list;
+    }
+
 
 }

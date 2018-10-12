@@ -15,7 +15,35 @@
     <script src="js/common.js"></script>
     <!--banner 脚本-->
     <script src="js/TouchSlide.1.1.js"></script>
+  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
     <!--banner 脚本-->
+    <style type="text/css">
+        /* css 重置 */
+        *{margin:0; padding:0; list-style:none; }
+        body{ background:#fff; font:normal 12px/22px 宋体;  }
+        img{ border:0;  }
+        a{ text-decoration:none; color:#333;  }
+        a:hover{ color:#1974A1;  }
+        /* 广告滚轮css */
+        .txtMarquee-top{ width:100%;  overflow:hidden; position:relative;  border:1px solid #ccc;   }
+        .txtMarquee-top .hd{ overflow:hidden;width: 100%;  height:30px; background:#f4f4f4; padding:0 10px;  }
+        .txtMarquee-top .hd .prev,.txtMarquee-top .hd .next{ display:block;  width:9px; height:5px; float:right; margin-right:5px; margin-top:10px;  overflow:hidden;
+            cursor:pointer; background:url("images/arrow.png") 0 -100px no-repeat;}
+        .txtMarquee-top .hd .gengduo{ display:block;  float:left; margin-left:5px; margin-top:5px;  overflow:hidden;color: red;
+            font-size: 0.6rem;
+            }
+        .txtMarquee-top .hd .next{ background-position:0 -140px;  }
+        .txtMarquee-top .hd .prevStop{ background-position:-60px -100px;  }
+        .txtMarquee-top .hd .nextStop{ background-position:-60px -140px;  }
+        .txtMarquee-top .bd{ padding:15px;  }
+        .txtMarquee-top .infoList li{ height:24px; line-height:24px; font-size: 0.6rem ;  }
+        .txtMarquee-top .infoList li .date{ float:right; color:#999;  }
+        .txtMarquee-top .infoList li .date2{ float:left; color:black; width:160px;overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            white-space:nowrap; }
+
+    </style>
 </head>
 
 <body>
@@ -77,62 +105,45 @@
     <!--广告业务开始-->
     <div class="ind-nav ind-nav2">
         <div class="ind-tit">
-            <h2>广告业务</h2>
+            <h2>广告资讯</h2>
         </div>
-        <ul class="clearfix" id="goodstypeul">
-            <li>
-                <div><a href="repair-details.html"><i><img src="images/jjwx.png"></i><em>家具维修</em></a></div>
-            </li>
-            <li>
-                <div><a href="repair-details.html"><i><img src="images/wywx.png"></i><em>卫浴维修</em></a></div>
-            </li>
-            <li>
-                <div><a href="repair-details.html"><i><img src="images/mbxf.png"></i><em>木板修复</em></a></div>
-            </li>
-            <li>
-                <div><a href="repair-details.html"><i><img src="images/djwx.png"></i><em>灯具维修</em></a></div>
-            </li>
-            <li>
-                <div><a href="repair-details.html"><i><img src="images/xsgdst.png"></i><em>下水管道疏通</em></a></div>
-            </li>
-            <li>
-                <div><a href="add-class.html"><i><img src="images/xczx.png"></i><em>现场增项1</em></a></div>
-            </li>
-            <li>
-                <div><a href="add-class.html"><i><img src="images/xczx.png"></i><em>现场增项2</em></a></div>
-            </li>
-            <li>
-                <div><a href="add-class.html"><i><img src="images/xczx.png"></i><em>现场增项3</em></a></div>
-            </li>
-            <li>
-                <div><a href="add-class.html"><i><img src="images/xczx.png"></i><em>现场增项4</em></a></div>
-            </li>
-            <li>
-                <div><a href="add-class.html"><i><img src="images/xczx.png"></i><em>现场增项5</em></a></div>
-            </li>
-            <li>
-                <div><a href="javascript:void(0)" class="more"><i><img src="images/more.png"></i><em>更多</em></a></div>
-            </li>
-        </ul>
     </div>
+    <div class="txtMarquee-top" id="advertisinglist">
+        <!--<div class="hd">
+
+            <a class="next"></a>
+            <a class="prev"></a>
+            <a href="advertisingshow.html"><span class="gengduo" >查看更多...</span></a>
+        </div>
+        <div class="bd">
+            <ul class="infoList" >-->
+          <!--      <li><span class="date">2011-11-11</span><a href="advertising.html?merchant_id=39b39045d292&advertising_id=13" target="_blank">中国打破了世界软件巨头规则</a></li>
+                <li><span class="date">2011-11-11</span><a href="advertising.html?merchant_id=39b39045d292&advertising_id=13" target="_blank">口语：会说中文就能说英语！</a></li>
+                <li><span class="date">2011-11-11</span><a href="advertising.html?merchant_id=39b39045d292&advertising_id=13" target="_blank">学英语送ipad2,45天突破听说</a></li>
+                <li><span class="date">2011-11-11</span><a href="advertising.html?merchant_id=39b39045d292&advertising_id=13" target="_blank">学英语送ipad2,45天突破听说</a></li>
+                <li><span class="date">2011-11-11</span><a href="advertising.html?merchant_id=39b39045d292&advertising_id=13" target="_blank">那些无法理解的荒唐事</a></li>
+            --><!--</ul>
+        </div>-->
+    </div>
+
     <!--广告业务结束-->
 
     <!--二手置换 货运配送开始-->
     <div class="ind-item">
-        <a href="book-recovery.html">
+        <a href=""><!--book-recovery.html-->
             <div class="ind-item-img"><img src="images/eszh.png"></div>
             <div class="ind-item-txt">
-                <h3 class="red">二手置换</h3>
-                <p>二手物品在线评估、预约上门回收</p>
+                <h3 class="red">广告价格咨询</h3>
+                <p>多种广告类型供您选择</p>
             </div>
         </a>
     </div>
     <div class="ind-item">
-        <a href="goods-allocation.html">
+        <a href=""><!--goods-allocation.html-->
             <div class="ind-item-img"><img src="images/hyps.png"></div>
             <div class="ind-item-txt">
-                <h3 class="green">货运配送</h3>
-                <p>少量搬运及拆装搬家，大件物品同城配送</p>
+                <h3 class="green">加盟商城</h3>
+                <p>简单实用，加盟即用</p>
             </div>
         </a>
     </div>
@@ -169,5 +180,14 @@
 </script>
 <!--栏目更多-->
 <script src="js/index/index.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
+<!--
+<script type="text/javascript">
+    //百度统计代码
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa630f96b6a9dd549675d26373853f7f1' type='text/javascript'%3E%3C/script%3E"));
+</script>-->

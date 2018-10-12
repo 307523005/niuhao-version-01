@@ -138,14 +138,14 @@
                 </form>
                 <form id="goods_littleimge_form">
                     <div class="form-group">
-                        <label>请选择文件</label>
+                        <label>请选择小图（宽：260，高：220）</label>
                         <input id="goods_littleimge_file" type="file" name="goods_littleimge_file">
                         <button type="button" class="btn btn-save" onclick="goods_littleimge_aa()">提交商品小图</button>
                     </div>
                 </form>
                 <form id="goods_bigimge_form">
                     <div class="form-group">
-                        <label>请选择文件</label>
+                        <label>请选择大图（宽：640，高：356）</label>
                         <input id="goods_bigimge_file" type="file" name="goods_bigimge_file">
                         <button type="button" class="btn btn-save" onclick="goods_bigimge_aa()">提交商品大图</button>
                     </div>
@@ -184,7 +184,7 @@
     function goods_littleimge_aa() {
         var formData = new FormData(document.getElementById("goods_littleimge_form"));//表单id
         $.ajax({
-            url: ctx + "goods/fileUpload",//上传的地址
+            url: ctx + "goods/littlfileUpload",//上传的地址
             type: 'POST',
             data: formData,
             async: false,
@@ -229,7 +229,7 @@
     function goods_bigimge_aa() {
         var formData = new FormData(document.getElementById("goods_bigimge_form"));//表单id
         $.ajax({
-            url: ctx + "goods/fileUpload",//上传的地址
+            url: ctx + "goods/bigfileUpload",//上传的地址
             type: 'POST',
             data: formData,
             async: false,

@@ -20,7 +20,7 @@ $(function () {
             align: 'center'
         }, {
             field: 'bannerimg_num',
-            title: '轮播图码',
+            title: '图片优先级',
             align: 'center',
             sortable: true//列排序
         }, {

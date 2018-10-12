@@ -64,7 +64,7 @@
 					               	图片路径：
 					            </span>
                                 <div class="form-group">
-                                    <input id="goodstype_imgurl" readonly type="text" name="goodstype_imgurl"
+                                    <input id="goodstype_imageurl" readonly type="text" name="goodstype_imageurl"
                                            class="form-control">
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                 </form>
                 <form id="goodstype_form">
                     <div class="form-group">
-                        <label>请选择文件</label>
+                        <label>请选择文件（宽：60，高：60）</label>
                         <input id="goodstype_file" type="file" name="goodstype_file">
                         <button type="button" class="btn btn-save" onclick="aa()">提交图片</button>
                     </div>
@@ -140,7 +140,7 @@
             processData: false,
             success: function (result) {
                 if (result.error == 0) {
-                    $("#goodstype_imgurl").val(result.url);
+                    $("#goodstype_imageurl").val(result.url);
                     document.querySelectorAll("div.clearfix").innerHTML = "";
                     $MB.n_success("图片提交成功");
                     document.getElementById('goodstype_form') && document.getElementById('goodstype_form').reset();

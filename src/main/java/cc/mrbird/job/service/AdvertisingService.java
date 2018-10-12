@@ -26,4 +26,6 @@ public interface AdvertisingService extends IService<Advertising> {
 
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
+
+    List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id);
 }

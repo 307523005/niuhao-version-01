@@ -22,7 +22,7 @@ function updategoodstype() {
             $form.find("input[name='goodstype_num']").val(goodstype.goodstype_num);
             $form.find("input[name='goodstype_htmlurl']").val(goodstype.goodstype_htmlurl);
             $form.find("input[name='goodstype_remarks']").val(goodstype.goodstype_remarks);
-            $form.find("input[name='goodstype_imgurl']").val(goodstype.goodstype_imgurl);
+            $form.find("input[name='goodstype_imageurl']").val(goodstype.goodstype_imageurl);
             $("#goodstype-add-button").attr("name", "update");
         } else {
             $MB.n_danger(r.msg);
