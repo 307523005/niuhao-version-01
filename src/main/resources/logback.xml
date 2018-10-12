@@ -36,6 +36,7 @@
     <!--additivity="false"表示只在logDirfile输出，不在其他输出台输出，如果设置为true，表示要在其他地方也输出-->
     <logger name="cc.mrbird.system.dao" level="DEBUG" additivity="true"/>
     <logger name="cc.mrbird.job.dao" level="DEBUG" additivity="true"/>
+    <logger name="cc.mrbird.scapp.dao" level="DEBUG" additivity="true"/>
     <!--优先级-->
     <root level="INFO">
         <appender-ref ref="FILE"/>

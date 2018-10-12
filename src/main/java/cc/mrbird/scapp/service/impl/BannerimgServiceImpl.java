@@ -38,8 +38,9 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
     @Override
     public Bannerimg findByName(String bannerimg_name,String merchant_id) {
         Example example = new Example(Bannerimg.class);
-        example.createCriteria().andCondition("bannerimg_name=", bannerimg_name);
-        example.createCriteria().andCondition("merchant_id=", merchant_id);
+        Criteria criteria = example.createCriteria();
+        criteria.andCondition("bannerimg_name =", bannerimg_name);
+        criteria.andCondition("merchant_id =", merchant_id);
         List<Bannerimg> list = this.selectByExample(example);
         return list.isEmpty() ? null : list.get(0);
     }

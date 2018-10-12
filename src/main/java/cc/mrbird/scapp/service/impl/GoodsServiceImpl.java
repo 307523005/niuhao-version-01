@@ -38,8 +38,9 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
     @Override
     public Goods findByName(String goods_name,String merchant_id) {
         Example example = new Example(Goods.class);
-        example.createCriteria().andCondition("goods_name=", goods_name);
-        example.createCriteria().andCondition("merchant_id=", merchant_id);
+        Criteria criteria = example.createCriteria();
+        criteria.andCondition("goods_name =", goods_name);
+        criteria.andCondition("merchant_id =", merchant_id);
         List<Goods> list = this.selectByExample(example);
         return list.isEmpty() ? null : list.get(0);
     }
@@ -68,9 +69,11 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
 
     @Override
     public List<Goods> getGoods(String merchant_id,String goodstype_id) {
+        System.out.println("-----"+goodstype_id);
         Example example = new Example(Goods.class);
-        example.createCriteria().andCondition("merchant_id=", merchant_id);
-        example.createCriteria().andCondition("goodstype_id=", goodstype_id);
+        Criteria criteria = example.createCriteria();
+        criteria.andCondition("merchant_id =", merchant_id);
+        criteria.andCondition("goodstype_id =", goodstype_id);
         example.setOrderByClause("goods_num ASC");
         List<Goods> list = this.selectByExample(example);
         return list;
