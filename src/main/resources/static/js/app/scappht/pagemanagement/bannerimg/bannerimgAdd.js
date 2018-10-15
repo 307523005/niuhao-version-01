@@ -49,7 +49,7 @@ function validateRule() {
         rules: {
             bannerimg_name: {
                 required: true,
-                minlength: 3,
+                minlength: 2,
                 maxlength: 25,
                 remote: {
                     url: "bannerimg/checkbannerimg_name",
@@ -85,7 +85,7 @@ function validateRule() {
         messages: {
             bannerimg_name: {
                 required: icon + "请输入轮播图名",
-                minlength: icon + "轮播图名长度3到25个字符",
+                minlength: icon + "轮播图名长度2到25个字符",
                 remote: icon + "轮播图名已经存在"
             },
             bannerimg_num: icon + "请输入轮播图码",
