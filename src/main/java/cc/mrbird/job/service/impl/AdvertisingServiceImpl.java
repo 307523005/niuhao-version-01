@@ -60,7 +60,6 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
     public PageInfo<Advertising> PageList(QueryRequest request, Advertising advertising) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--advertising--" + objects.toString());
             Example example = new Example(Advertising.class);
             Criteria criteria = example.createCriteria();
             //按照商户id
@@ -75,12 +74,11 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
                 criteria.andCondition("date_format(advertising_updatetime,'%Y-%m-%d') <=", timeArr[1]);
             }
             if (StringUtils.isNotBlank(request.getSort())) {
-                example.setOrderByClause("advertising_id " + request.getSortOrder());
+                example.setOrderByClause(request.getSort()+" " + request.getSortOrder());
             } else {
-                example.setOrderByClause("advertising_id ASC");
+                example.setOrderByClause("advertising_updatetime desc");
             }
             List<Advertising> advertisings = this.selectByExample(example);
-            System.out.println("advertisings---**" + advertisings);
             PageInfo<Advertising> pageInfo = new PageInfo<>(advertisings);
             return pageInfo;
         } catch (Exception e) {

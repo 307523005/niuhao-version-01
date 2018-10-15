@@ -80,7 +80,6 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
     public PageInfo<Goodstype> PageList(QueryRequest request, Goodstype goodstype) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--goodstype--" + objects.toString());
             Example example = new Example(Goodstype.class);
             Criteria criteria = example.createCriteria();
             //按照商户id
@@ -100,7 +99,6 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
                 example.setOrderByClause("goodstype_num ASC");
             }
             List<Goodstype> goodstypes = this.selectByExample(example);
-            System.out.println("goodstypes---**" + goodstypes);
             PageInfo<Goodstype> pageInfo = new PageInfo<>(goodstypes);
             return pageInfo;
         } catch (Exception e) {

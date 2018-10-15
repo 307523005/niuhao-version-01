@@ -47,6 +47,7 @@ $(function () {
                 align: 'center'
             },{
                 field: 'advertising_updatetime',
+                sortable: true,//列排序
                 title: '修改时间',
                 align: 'center'
             },{
@@ -57,7 +58,7 @@ $(function () {
                 field: 'advertising_content',
                 title: '查看',
                 formatter: function (value, row, index) {
-                    return ' <a target="_blank" href="http://www.bantucard.com:9080/apphtml/scapp/advertising.html?merchant_id='+row.merchant_id+'&advertising_id='+row.advertising_id+'" class="btn">查看</a>';
+                    return ' <a target="_blank" href="http://www.niuxinghao.top:9080/apphtml/scapp/advertising.html?merchant_id='+row.merchant_id+'&advertising_id='+row.advertising_id+'" class="btn">查看</a>';
 /*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
                 }
             }

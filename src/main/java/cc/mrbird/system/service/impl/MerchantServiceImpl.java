@@ -60,7 +60,6 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     public PageInfo<Merchant> PageList(QueryRequest request, Merchant merchant) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--merchant--" + objects.toString());
             Example example = new Example(Merchant.class);
             Criteria criteria = example.createCriteria();
             if (StringUtils.isNotBlank(merchant.getMerchant_name())) {
@@ -72,7 +71,7 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
                 criteria.andCondition("date_format(merchant_addtime,'%Y-%m-%d') <=", timeArr[1]);
             }
             if (StringUtils.isNotBlank(request.getSort())) {
-                example.setOrderByClause("merchant_addtime " + request.getSortOrder());
+                example.setOrderByClause(request.getSort()+" " + request.getSortOrder());
             } else {
                 example.setOrderByClause("merchant_addtime desc");
             }

@@ -12,26 +12,29 @@ import javax.print.DocFlavor;
 import java.util.List;
 
 
-//@CacheConfig(cacheNames = "BannerimgService")
+@CacheConfig(cacheNames = "BannerimgService-")
 public interface BannerimgService extends IService<Bannerimg> {
-    //  @Cacheable(key = "'findBannerimg-'+#p0")
+    @Cacheable(key = "'findBannerimg-'+#p0")
     Bannerimg findBannerimg(String bannerimg_id);
 
-    // @Cacheable(key = "'findByName-'+#bannerimg_name+#merchant_id")
+    @Cacheable(key = "'findByName-'+#bannerimg_name+#merchant_id")
     Bannerimg findByName(String bannerimg_name, String merchant_id);
 
+    @Cacheable(key = "'findAllBannerimg-'+#request.toString()+#bannerimg.toString()")
     List<Bannerimg> findAllBannerimg(QueryRequest request, Bannerimg bannerimg);
+
+    @Cacheable(key = "'getBannerimgTop3-'+#merchant_id")
     List<Bannerimg> getBannerimgTop3(String merchant_id);
 
-    // @Cacheable(key = "'PageList-'+#request.toString() + #advertising.toString()")
+    @Cacheable(key = "'PageList-'+#request.toString() + #bannerimg.toString()")
     PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg);
 
-    // @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)
     void addBannerimg(Bannerimg bannerimg);
 
-    // @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)
     void deleteBannerimg(String bannerimg_id);
 
-    // @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)
     void updateBannerimg(Bannerimg bannerimg);
 }

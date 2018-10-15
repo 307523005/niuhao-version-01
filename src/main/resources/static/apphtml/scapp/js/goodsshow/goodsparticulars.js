@@ -3,7 +3,7 @@
  * @type {主页}
  */
 /**/
-var httpurl="http://www.bantucard.com:9080/";
+var httpurl="http://www.niuxinghao.top:9080/";
 //var httpurl = "http://10.20.11.78:8081/";
 /*获取到Url里面的参数*/
 (function ($) {
@@ -81,6 +81,7 @@ function goodsparticulars() {
                     "    </div><div style=\"display: none;\" id=\"copyMy\">"+goods.goods_name+"<br>"+goods.goods_price+goods.goods_units+"<br>"+goods.goods_activity+"</div>";
 
                 $("#container").html(goodshtml);
+                $("#title").html(goods.goods_name);
 
             } else {
                 $("#container").html("您访问的链接有问题!!!");

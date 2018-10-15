@@ -202,10 +202,8 @@ public class BannerimgController extends BaseController {
         String savePath = application.getRealPath("/") + "scimages/";
         User user = RequestUtils.currentLoginUser();
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
-        System.out.println("--***fileUpload***getRealPath****-" + savePath);
         // 文件保存目录URL
         String saveUrl = request.getContextPath() + "/scimages/";
-        System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         String dirName = user.getMerchantId();
@@ -284,7 +282,6 @@ public class BannerimgController extends BaseController {
             // 检查扩展名
 
             String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
-            System.out.println(fileExt+"---fileExt-----");
             if (!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)) {
                 return getError("上传文件扩展名是不允许的扩展名。\n只允许"
                         + extMap.get(dirName) + "格式。");

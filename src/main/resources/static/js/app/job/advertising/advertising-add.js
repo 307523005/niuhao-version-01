@@ -75,7 +75,7 @@ $(function () {
 
         // var html = $("#paperTitle").value;
         var html = $('#paperTitle').val();
-        html = html.replace(/http:\/\/www.bantucard.com:9080\/images22/g, "/images22").replace(/\/images22/g, "http://www.bantucard.com:9080/images22");
+        html = html.replace(/http:\/\/www.niuxinghao.top:9080\/images22/g, "/images22").replace(/\/images22/g, "http://www.niuxinghao.top:9080/images22");
        // html = html.replace(/http:\/\/10.20.11.78:9080\/images22/g, "/images22").replace(/\/images22/g, "http://10.20.11.78:9080/images22");
         html= html.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
         $('#advertising_content').val(html);

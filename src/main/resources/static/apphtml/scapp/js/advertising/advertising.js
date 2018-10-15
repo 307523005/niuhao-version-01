@@ -2,8 +2,8 @@
  * niuhao-2018-09-28
  * @type {主页}
  */
-var httpurl="http://www.bantucard.com:9080/";
-//var httpurl="http://10.20.11.78:8081/";
+var httpurl="http://www.niuxinghao.top:9080/";
+//var httpurl="http://10.20.11.78:9080/";
 //
 /*获取到Url里面的参数*/
 (function ($) {
@@ -67,6 +67,7 @@ function showadvertising(merchant_name) {
                 var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
                 var advertising_content=advertising.advertising_content.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
                 $("#advertisingshow").html(advertising_content);
+                $("#title").html(advertising.advertising_title);
             } else {
                 $("#container").html("您访问的链接有问题!!!");
             }

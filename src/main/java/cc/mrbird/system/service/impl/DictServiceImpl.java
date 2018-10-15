@@ -31,7 +31,6 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 	public PageInfo<Dict> PageList(QueryRequest request, Dict dict) {
 		try {
 			Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-			System.out.println(request.getSort()+"--111--"+objects.toString());
 			Example example = new Example(Dict.class);
 			Criteria criteria = example.createCriteria();
 			if (StringUtils.isNotBlank(dict.getKeyy())) {
@@ -54,7 +53,6 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 				example.setOrderByClause("DICT_ID ASC");
 			}
 			List<Dict> dicts = this.selectByExample(example);
-			System.out.println("dicts---**"+dicts);
 			PageInfo<Dict> pageInfo = new PageInfo<>(dicts);
 			return pageInfo;
 		} catch (Exception e) {
@@ -81,7 +79,6 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 			}
 			example.setOrderByClause("dict_id");
 			List<Dict> dicts = this.selectByExample(example);
-			System.out.println("dicts---**"+dicts);
 			return dicts;
 		} catch (Exception e) {
 			log.error("获取字典信息失败", e);

@@ -115,7 +115,6 @@ public class LoginController extends BaseController {
         //User user =(User) SecurityUtils.getSubject().getPrincipal();
         User user = RequestUtils.currentLoginUser();
         model.addAttribute("user", user);
-        System.out.println("+-+-+getCurrentUser-+-"+user.getUsername());
         return "index";
     }
 }

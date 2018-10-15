@@ -130,7 +130,6 @@ public class AdvertisingController extends BaseController {
        @RequiresPermissions("advertising:list")
        @ResponseBody
        public void advertisings(@RequestParam("paperTitle") String paperTitle) throws Exception {
-           System.out.println("+paperTitle++"+paperTitle);
        }*/
 
     /**
@@ -149,7 +148,6 @@ public class AdvertisingController extends BaseController {
             advertising.setAdvertising_updateuser(user.getUsername());
             advertising.setMerchant_id(user.getMerchantId());
             this.advertisingService.addAdvertising(advertising);
-            System.out.println("+advertising_content++" + advertising.getAdvertising_content());
             return ResponseBo.ok("新增广告成功！");
         } catch (Exception e) {
             log.error("新增广告失败", e);
@@ -194,7 +192,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("scapp/scappGetAdvertisingByMerchant_id")
     @ResponseBody
     public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id) {
-        System.out.println(merchant_id+"merchant_idmerchant_id");
         try {
             List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id);
             return ResponseBo.ok(list);
@@ -246,10 +243,8 @@ public class AdvertisingController extends BaseController {
         String savePath = application.getRealPath("/") + "images22/";
         User user = RequestUtils.currentLoginUser();
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
-        System.out.println("--***fileUpload***getRealPath****-" +savePath);
         // 文件保存目录URL
         String saveUrl = request.getContextPath() + "/images22/";
-        System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         String dirName = user.getMerchantId();
@@ -350,7 +345,6 @@ public class AdvertisingController extends BaseController {
             }
             Map<String, Object> msg = new HashMap<String, Object>();
             msg.put("error", 0);
-            System.out.println("saveUrl--" + saveUrl);
             msg.put("url", saveUrl + newFileName);
             return msg;
         }
@@ -369,7 +363,6 @@ public class AdvertisingController extends BaseController {
     public void fileManager(HttpServletRequest request,
                             HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("----fileManager---");
         ServletContext application = request.getSession().getServletContext();
         ServletOutputStream out = response.getOutputStream();
         // 根目录路径，可以指定绝对路径，比如 /var/www/attached/

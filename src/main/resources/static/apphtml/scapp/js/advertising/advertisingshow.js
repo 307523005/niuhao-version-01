@@ -3,8 +3,8 @@
  * @type {主页}
  */
 /**/
-var httpurl="http://www.bantucard.com:9080/";
-//var httpurl = "http://10.20.11.78:8081/";
+var httpurl="http://www.niuxinghao.top:9080/";
+//var httpurl="http://10.20.11.78:9080/";
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {

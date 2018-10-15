@@ -3674,13 +3674,16 @@ output {
     font-size: 0.8rem;
     line-height: 1.15;
     font-weight: 400;
-    margin-left: 7px;
-    margin-right: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .am-article-hd {
-    margin-left: 7px;
-    margin-right: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.am-article-hd2 {
+    margin-right: 5px;
 }
 
 .am-article-title a {
@@ -3688,11 +3691,11 @@ output {
     text-decoration: none
 }
 
-.am-article-meta {
-    font-size: 0.5rem;
+.am-article-meta2 {
+    font-size: 0.3rem;
     line-height: 0.0;
     color: #999;
-    margin-top: -20px;
+    margin-bottom: 30px;
 }
 
 

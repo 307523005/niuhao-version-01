@@ -3,8 +3,8 @@
  * @type {主页}
  */
 /**/
-var httpurl="http://www.bantucard.com:9080/";
-//var httpurl = "http://10.20.11.78:8081/";
+var httpurl="http://www.niuxinghao.top:9080/";
+//var httpurl="http://10.20.11.78:9080/";
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
@@ -36,6 +36,7 @@ function merchant() {
                 var merchanthtml = "<em>" + merchant.merchant_region + "</em>\n" +
                     "<h2>" + merchant.merchant_name + "</h2>\n<a href=\"tel:" + merchant.merchant_phone + "\"><span class=\"tel\"></span></a>"
                 $("#merchant").html(merchanthtml);
+                $("#title").html(merchant.merchant_name);
                 bannerimglist();
                 goodstypelist();
                 advertisinglist();
@@ -159,7 +160,7 @@ function advertisinglist() {
             if (r.code === 0) {
                 var advertising = r.msg;
                 for (var i = 0; i < advertising.length; i++) {
-                    advertisinglist += "<li><span class=\"date\">" + advertising[i].advertising_updatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertising_id + "\" target=\"_blank\"><span class=\"date2\">" + advertising[i].advertising_title + "</span></a></li>";
+                    advertisinglist += "<li><span class=\"date\">" + advertising[i].advertising_updatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertising_id + "\" ><span class=\"date2\">" + advertising[i].advertising_title + "</span></a></li>";
                 }
                 advertisinglist+="</ul>\n" +
                     "        </div>";

@@ -57,7 +57,6 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     public List<User> findUserWithDept(User user) {
         try {
             List<User> userWithDept = userMapper.findUserWithDept(user);
-            System.out.println("*-*findUserWithDept-*-"+userWithDept);
             return userWithDept;
         } catch (Exception e) {
             log.error("error", e);
@@ -67,11 +66,8 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     @Override
     public PageInfo<User> PageList(QueryRequest request, User user) {
         Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        System.out.println("****"+objects.toString());
         List<User> userWithDept = userMapper.findUserWithDept(user);
-        System.out.println("/findUserWithDept--"+userWithDept.toString());
         PageInfo<User> pageInfo = new PageInfo<>(userWithDept);
-        System.out.println("user/list--"+pageInfo.toString());
         return pageInfo;
     }
 

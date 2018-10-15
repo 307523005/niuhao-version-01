@@ -69,7 +69,6 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
 
     @Override
     public List<Goods> getGoods(String merchant_id,String goodstype_id) {
-        System.out.println("-----"+goodstype_id);
         Example example = new Example(Goods.class);
         Criteria criteria = example.createCriteria();
         criteria.andCondition("merchant_id =", merchant_id);
@@ -83,7 +82,6 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
     public PageInfo<Goods> PageList(QueryRequest request, Goods goods) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--goods--" + objects.toString());
             Example example = new Example(Goods.class);
             Criteria criteria = example.createCriteria();
             //按照商户id
@@ -103,7 +101,6 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
                 example.setOrderByClause("goods_num ASC");
             }
             List<Goods> goodss = this.selectByExample(example);
-            System.out.println("goodss---**" + goodss);
             PageInfo<Goods> pageInfo = new PageInfo<>(goodss);
             return pageInfo;
         } catch (Exception e) {

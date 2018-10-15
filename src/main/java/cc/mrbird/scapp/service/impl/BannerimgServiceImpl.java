@@ -81,7 +81,6 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
     public PageInfo<Bannerimg> PageList(QueryRequest request, Bannerimg bannerimg) {
         try {
             Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
-            System.out.println(request.getSort() + "--advertising--" + objects.toString());
             Example example = new Example(Bannerimg.class);
             Criteria criteria = example.createCriteria();
             //按照商户id
@@ -101,7 +100,6 @@ public class BannerimgServiceImpl extends BaseService<Bannerimg> implements Bann
                 example.setOrderByClause("bannerimg_num ASC");
             }
             List<Bannerimg> bannerimgs = this.selectByExample(example);
-            System.out.println("bannerimgs---**" + bannerimgs);
             PageInfo<Bannerimg> pageInfo = new PageInfo<>(bannerimgs);
             return pageInfo;
         } catch (Exception e) {

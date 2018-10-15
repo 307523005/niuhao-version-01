@@ -18,9 +18,9 @@ spring:
       # 数据库访问配置, 使用druid数据源 
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://122.114.251.98:3306/init?useUnicode=true&characterEncoding=utf8
-      username: root
-      password: bantu
+      url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      username: niuhao
+      password: niuhao
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -75,12 +75,12 @@ spring:
   redis:
     # Redis数据库索引（默认为0）
     database: 1
-    # Redis服务器地址
-    host: 122.114.251.98
+    # Redis服务器地址 59.110.241.188
+    host: localhost
     # Redis服务器连接端口
     port: 6479
     # Redis 密码
-    password: 123456
+    password: niuhao
     jedis:
       pool:
         # 连接池中的最小空闲连接

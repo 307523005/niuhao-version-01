@@ -44,7 +44,6 @@ public class RoleController extends BaseController {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
         List<Role> list = this.roleService.findAllRole(role);
         PageInfo<Role> pageInfo = new PageInfo<>(list);
-        System.out.println("role/list"+pageInfo.toString());
         return getDataTable(pageInfo);
     }
 

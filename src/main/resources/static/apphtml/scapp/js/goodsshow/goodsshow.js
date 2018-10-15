@@ -2,8 +2,8 @@
  * niuhao-2018-09-28
  * @type {主页}
  */
-/**/
-var httpurl="http://www.bantucard.com:9080/";
+/*www.niuxinghao.top 59.110.241.188*/
+var httpurl="http://www.niuxinghao.top:9080/";
 //var httpurl = "http://10.20.11.78:8081/";
 /*获取到Url里面的参数*/
 (function ($) {
@@ -66,7 +66,7 @@ function goodsshow() {
                 for (var i = 0; i < goods.length; i++) {
                     goodshtml += " <li><a href=\"goodsparticulars.html?merchant_id="+merchant_id+"&goods_id=" + goods[i].goods_id + "\"><img src=\"" +httpurl+ goods[i].goods_littleimge + "\"><span>"+goods[i].goods_name+"</span></a></li>";
                 }
-
+                //$("#title").html(goodstype_id);
                 $("#goodsshow").html(goodshtml);
 
             } else {

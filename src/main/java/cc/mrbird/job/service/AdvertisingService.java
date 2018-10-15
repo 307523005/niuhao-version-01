@@ -11,13 +11,16 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.List;
 
 
-@CacheConfig(cacheNames = "AdvertisingService")
+@CacheConfig(cacheNames = "AdvertisingService-")
 public interface AdvertisingService extends IService<Advertising> {
-    @Cacheable(key = "'findAdvertising'+#p0")
+    @Cacheable(key = "'findAdvertising-'+#p0")
     Advertising findAdvertising(Long advertising_id);
+    @Cacheable(key = "'findAllAdvertising-'+#request.toString() + #advertising.toString()")
     List<Advertising> findAllAdvertising(QueryRequest request, Advertising advertising);
-    @Cacheable(key = "'PageList'+#request.toString() + #advertising.toString()")
+
+    @Cacheable(key = "'PageList-'+#request.toString() + #advertising.toString()")
     PageInfo<Advertising> PageList(QueryRequest request, Advertising advertising);
+
     @CacheEvict(allEntries = true)
     void addAdvertising(Advertising advertising);
 
@@ -27,5 +30,6 @@ public interface AdvertisingService extends IService<Advertising> {
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
 
+    @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0")
     List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id);
 }
