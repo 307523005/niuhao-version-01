@@ -12,13 +12,36 @@ spring:
       #name: dubbo
       #port: 20881
     #scan: cc.mrbird.job.service.impl  #服务暴露与发现消费所在的package
+  mail:
+    host: smtp.qq.com
+    username: 1353710858@qq.com #307523005@qq.com
+    password: epckclfjogcwgfah #dzagtxicxzurbgia # 要通过申请开通（进入qq邮箱-》设置-》账户-》POP3服务：开启POP3/SMTP服务）
+    protocol: smtp
+    default-encoding: utf-8
+  freemarker:
+      allowRequestOverride: false
+      allowSessionOverride: false
+      cache: true
+      checkTemplateLocation: true
+      contentType: text/html
+      exposeRequestAttributes: false
+      exposeSessionAttributes: false
+      exposeSpringMacroHelpers: false
+      suffix: .ftl
+      templateEncoding: UTF-8
+      templateLoaderPath: classpath:/templates/  #表示所有的模板文件都放在该目录下
+      spring.freemarker.settings:
+        locale: zh_CN
+        date_format: yyyy-MM-dd
+        time_format: HH:mm:ss
+        datetime_format: yyyy-MM-dd HH:mm:ss
 
   datasource:
     druid:
       # 数据库访问配置, 使用druid数据源 
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       username: niuhao
       password: niuhao
       # 连接池配置
@@ -76,7 +99,7 @@ spring:
     # Redis数据库索引（默认为0）
     database: 1
     # Redis服务器地址 59.110.241.188
-    host: localhost
+    host: 59.110.241.188
     # Redis服务器连接端口
     port: 6479
     # Redis 密码
@@ -116,7 +139,7 @@ spring:
 info:
   app:
     name: "febs"
-    description: "spring boot&shiro 权限管理系统"
+    description: "spring boot&shiro NIUHAO广商管理系统"
     version: "2.0"
     spring-boot-version: "2.0.4.RELEASE"
 

@@ -3664,8 +3664,8 @@ output {
 }
 
 .am-article-title {
-    font-size: 1.2rem;
-    line-height: 1.20;
+    font-size: 1.0rem;
+    line-height: 1.10;
     font-weight: 100%;
     margin-top: 10px;
 }
@@ -3696,6 +3696,12 @@ output {
     line-height: 0.0;
     color: #999;
     margin-bottom: 30px;
+}
+.am-article-meta {
+    font-size: 0.5rem;
+    line-height: 0.0;
+    color: #999;
+    margin-top: -20px;
 }
 
 

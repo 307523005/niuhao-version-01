@@ -17,13 +17,13 @@ public interface UserService extends IService<User> {
     PageInfo<User> PageList(QueryRequest request, User user);
     @Cacheable(key = "'UserService-findById-'+#p0")
     UserWithRole findById(Long userId);
-    @Cacheable(key = "'UserService-findByName-'+#p0")
+    @Cacheable(key = "'UserService-findByName-'+#p0",unless="#result == null")/*空值不被缓存*/
     User findByName(String userName);
 
-    @Cacheable(key = "'UserService-findUserWithDept-'+#p0.toString()")
+    @Cacheable(key = "'UserService-findUserWithDept-'+#p0.toString()" ,unless="#result == null")
     List<User> findUserWithDept(User user);
 
-    @CacheEvict(key = "'UserService-registUser-'+#p0.toString()", allEntries = true)
+    @CacheEvict(/*key = "'UserService-registUser-'+#p0.toString()",*/ allEntries = true)
     void registUser(User user);
     @CacheEvict(allEntries = true)
     void updateTheme(String theme, String userName);
