@@ -148,9 +148,9 @@ public class BannerimgController extends BaseController {
     @RequestMapping("bannerimg/excel")
     @ResponseBody
     @RequiresPermissions("bannerimg:list")
-    public ResponseBo bannerimgExcel(Bannerimg bannerimg) {
+    public ResponseBo bannerimgExcel(Bannerimg bannerimg,QueryRequest request) {
         try {
-            List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
+            List<Bannerimg> list = this.bannerimgService.findAllBannerimg(request, bannerimg);
             return FileUtils.createExcelByPOIKit("轮播图表", list, Bannerimg.class);
         } catch (Exception e) {
             log.error("导出轮播图信息Excel失败", e);
@@ -161,9 +161,9 @@ public class BannerimgController extends BaseController {
     @RequestMapping("bannerimg/csv")
     @ResponseBody
     @RequiresPermissions("bannerimg:list")
-    public ResponseBo bannerimgCsv(Bannerimg bannerimg) {
+    public ResponseBo bannerimgCsv(Bannerimg bannerimg,QueryRequest request) {
         try {
-            List<Bannerimg> list = this.bannerimgService.findAllBannerimg(null, bannerimg);
+            List<Bannerimg> list = this.bannerimgService.findAllBannerimg(request, bannerimg);
             return FileUtils.createCsv("轮播图表", list, Bannerimg.class);
         } catch (Exception e) {
             log.error("导出轮播图信息Csv失败", e);

@@ -35,7 +35,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
     }
 
     @Override
-    public List<Advertising> findAllAdvertising(QueryRequest request, Advertising advertising) {
+    public List<Advertising> findAllAdvertising(Advertising advertising) {
         try {
             Example example = new Example(Advertising.class);
             Criteria criteria = example.createCriteria();

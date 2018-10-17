@@ -15,33 +15,44 @@ public class Goods implements Serializable {
     @Column(name = "goods_id")
     @ExportConfig(value = "ID")
     private String goods_id;
+    @ExportConfig(value = "商品名称")
     @Column(name = "goods_name")
     private String goods_name;
+    @ExportConfig(value = "优先级")
     @Column(name = "goods_num")
     private String goods_num;
+    @ExportConfig(value = "添加时间")
     @Column(name = "goods_addtime")
     private String goods_addtime;
+    @ExportConfig(value = "修改时间")
     @Column(name = "goods_updatetime")
     private String goods_updatetime;
     @Column(name = "merchant_id")
     @ExportConfig(value = "商户")
     private String merchant_id;
     @Column(name = "goods_remarks")
+    @ExportConfig(value = "备注")
     private String goods_remarks;
+    @ExportConfig(value = "修改用户")
     @Column(name = "goods_updateuser")
     private String goods_updateuser;
+    @ExportConfig(value = "活动")
     @Column(name = "goods_activity")
     private String goods_activity;
     @Column(name = "goods_bigimge")
     private String goods_bigimge;
     @Column(name = "goods_littleimge")
     private String goods_littleimge;
+    @ExportConfig(value = "内容")
     @Column(name = "goods_intro")
     private String goods_intro;
+    @ExportConfig(value = "单位")
     @Column(name = "goods_units")
     private String goods_units;
     @Column(name = "goods_price")
+    @ExportConfig(value = "价格")
     private String goods_price;
+    @ExportConfig(value = "商品类型ID")
     @Column(name = "goodstype_id")
     private String goodstype_id;
 

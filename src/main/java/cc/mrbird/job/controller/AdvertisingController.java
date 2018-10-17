@@ -204,7 +204,7 @@ public class AdvertisingController extends BaseController {
     @ResponseBody
     public ResponseBo advertisingExcel(Advertising advertising) {
         try {
-            List<Advertising> list = this.advertisingService.findAllAdvertising(null,advertising);
+            List<Advertising> list = this.advertisingService.findAllAdvertising(advertising);
             return FileUtils.createExcelByPOIKit("任务表", list, Advertising.class);
         } catch (Exception e) {
             log.error("导出任务信息Excel失败", e);
@@ -214,9 +214,9 @@ public class AdvertisingController extends BaseController {
 
     @RequestMapping("advertising/csv")
     @ResponseBody
-    public ResponseBo advertisingCsv(Advertising advertising) {
+    public ResponseBo advertisingCsv(Advertising advertising,QueryRequest request) {
         try {
-            List<Advertising> list = this.advertisingService.findAllAdvertising(null,advertising);
+            List<Advertising> list = this.advertisingService.findAllAdvertising(advertising);
             return FileUtils.createCsv("任务表", list, Advertising.class);
         } catch (Exception e) {
             log.error("导出任务信息Csv失败", e);

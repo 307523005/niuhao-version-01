@@ -13,34 +13,32 @@ public class Goodstype implements Serializable {
     private static final long serialVersionUID = 400066840871805703L;
     @Id
     @Column(name = "goodstype_id")
-    @ExportConfig(value = "ID")
+    @ExportConfig(value = "商品类型ID")
     private String goodstype_id;
     @Column(name = "goodstype_name")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "商品类型名称")
     private String goodstype_name;
     @Column(name = "goodstype_num")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "优先级")
     private String goodstype_num;
     @Column(name = "goodstype_addtime")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "添加时间")
     private String goodstype_addtime;
     @Column(name = "goodstype_updatetime")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "修改时间")
     private String goodstype_updatetime;
     @Column(name = "merchant_id")
-    @ExportConfig(value = "商户")
+    @ExportConfig(value = "商户ID")
     private String merchant_id;
     @Column(name = "goodstype_remarks")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "备注")
     private String goodstype_remarks;
     @Column(name = "goodstype_imageurl")
-    @ExportConfig(value = "")
     private String goodstype_imageurl;
     @Column(name = "goodstype_htmlurl")
-    @ExportConfig(value = "")
     private String goodstype_htmlurl;
     @Column(name = "goodstype_updateuser")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "修改用户")
     private String goodstype_updateuser;
 
     public String getGoodstype_id() {

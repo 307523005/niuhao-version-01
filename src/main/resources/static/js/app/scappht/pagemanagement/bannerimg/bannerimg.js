@@ -6,8 +6,8 @@ $(function () {
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
-                bannerimg_name: $bannerimgTableForm.find("input[name='bannerimg_name_like']").val().trim(),
-                bannerimg_updatetime: $bannerimgTableForm.find("input[name='bannerimg_updatetime_like']").val().trim(),
+                bannerimg_name: $bannerimgTableForm.find("input[name='bannerimg_name']").val().trim(),
+                bannerimg_updatetime: $bannerimgTableForm.find("input[name='bannerimg_updatetime']").val().trim(),
                 sort: params.sort,      //排序列名
                 sortOrder: params.order //排位命令（desc，asc）
             };

@@ -14,34 +14,32 @@ public class Bannerimg implements Serializable {
     private static final long serialVersionUID = 400066840871805703L;
     @Id
     @Column(name = "bannerimg_id")
-    @ExportConfig(value = "ID")
+    @ExportConfig(value = "轮播图ID")
     private String bannerimg_id;
     @Column(name = "bannerimg_num")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "优先级")
     private String bannerimg_num;
     @Column(name = "bannerimg_name")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "轮播图名称")
     private String bannerimg_name;
     @Column(name = "bannerimg_imgurl")
-    @ExportConfig(value = "")
     private String bannerimg_imgurl;
     @Column(name = "bannerimg_htmlurl")
-    @ExportConfig(value = "")
     private String bannerimg_htmlurl;
     @Column(name = "merchant_id")
-    @ExportConfig(value = "商户")
+    @ExportConfig(value = "商户ID")
     private String merchant_id;
     @Column(name = "bannerimg_addtime")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "添加时间")
     private String bannerimg_addtime;
     @Column(name = "bannerimg_updatetime")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "修改时间")
     private String bannerimg_updatetime;
     @Column(name = "bannerimg_updateuser")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "修改用户")
     private String bannerimg_updateuser;
     @Column(name = "bannerimg_remarks")
-    @ExportConfig(value = "")
+    @ExportConfig(value = "备注")
     private String bannerimg_remarks;
 
     public String getBannerimg_id() {

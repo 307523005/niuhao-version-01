@@ -145,9 +145,9 @@ public class GoodsController extends BaseController {
 
     @RequestMapping("goods/excel")
     @ResponseBody
-    public ResponseBo goodsExcel(Goods goods) {
+    public ResponseBo goodsExcel(Goods goods,QueryRequest request) {
         try {
-            List<Goods> list = this.goodsService.findAllGoods(null, goods);
+            List<Goods> list = this.goodsService.findAllGoods(request, goods);
             return FileUtils.createExcelByPOIKit("商品表", list, Goods.class);
         } catch (Exception e) {
             log.error("导出商品信息Excel失败", e);
@@ -157,9 +157,9 @@ public class GoodsController extends BaseController {
 
     @RequestMapping("goods/csv")
     @ResponseBody
-    public ResponseBo goodsCsv(Goods goods) {
+    public ResponseBo goodsCsv(Goods goods,QueryRequest request) {
         try {
-            List<Goods> list = this.goodsService.findAllGoods(null, goods);
+            List<Goods> list = this.goodsService.findAllGoods(request, goods);
             return FileUtils.createCsv("商品表", list, Goods.class);
         } catch (Exception e) {
             log.error("导出商品信息Csv失败", e);

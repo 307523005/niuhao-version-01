@@ -15,8 +15,8 @@ import java.util.List;
 public interface AdvertisingService extends IService<Advertising> {
     @Cacheable(key = "'findAdvertising-'+#p0")
     Advertising findAdvertising(Long advertising_id);
-    @Cacheable(key = "'findAllAdvertising-'+#request.toString() + #advertising.toString()")
-    List<Advertising> findAllAdvertising(QueryRequest request, Advertising advertising);
+    @Cacheable(key = "'findAllAdvertising-'+ #advertising.toString()")
+    List<Advertising> findAllAdvertising(Advertising advertising);
 
     @Cacheable(key = "'PageList-'+#request.toString() + #advertising.toString()")
     PageInfo<Advertising> PageList(QueryRequest request, Advertising advertising);

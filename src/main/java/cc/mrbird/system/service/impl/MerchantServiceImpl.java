@@ -47,7 +47,7 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
                 criteria.andCondition("date_format(merchant_addtime,'%Y-%m-%d') >=", timeArr[0]);
                 criteria.andCondition("date_format(merchant_addtime,'%Y-%m-%d') <=", timeArr[1]);
             }
-                example.setOrderByClause("merchant_updatetime desc");
+                example.setOrderByClause("merchant_addtime desc");
             List<Merchant> merchants = this.selectByExample(example);
             return merchants;
         } catch (Exception e) {

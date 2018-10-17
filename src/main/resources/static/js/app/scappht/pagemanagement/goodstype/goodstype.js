@@ -6,8 +6,8 @@ $(function () {
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
-                goodstype_name: $goodstypeTableForm.find("input[name='goodstype_name_like']").val().trim(),
-                goodstype_updatetime: $goodstypeTableForm.find("input[name='goodstype_updatetime_like']").val().trim(),
+                goodstype_name: $goodstypeTableForm.find("input[name='goodstype_name']").val().trim(),
+                goodstype_updatetime: $goodstypeTableForm.find("input[name='goodstype_updatetime']").val().trim(),
                 sort: params.sort,      //排序列名
                 sortOrder: params.order //排位命令（desc，asc）
             };

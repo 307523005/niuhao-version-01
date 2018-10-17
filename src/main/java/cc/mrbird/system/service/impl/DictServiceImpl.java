@@ -33,6 +33,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 			Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
 			Example example = new Example(Dict.class);
 			Criteria criteria = example.createCriteria();
+
 			if (StringUtils.isNotBlank(dict.getKeyy())) {
 				criteria.andCondition("keyy=", Long.valueOf(dict.getKeyy()));
 			}
@@ -61,10 +62,11 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 		}
 	}
 	@Override
-	public List<Dict> findAllDicts(Dict dict, QueryRequest request) {
+	public List<Dict> findAllDicts(Dict dict ) {
 		try {
 			Example example = new Example(Dict.class);
 			Criteria criteria = example.createCriteria();
+			System.out.println("--keyy--"+dict.getKeyy());
 			if (StringUtils.isNotBlank(dict.getKeyy())) {
 				criteria.andCondition("keyy=", Long.valueOf(dict.getKeyy()));
 			}

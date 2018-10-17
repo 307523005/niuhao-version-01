@@ -50,7 +50,7 @@ public class DictController extends BaseController {
 	@ResponseBody
 	public ResponseBo dictExcel(Dict dict) {
 		try {
-			List<Dict> list = this.dictService.findAllDicts(dict,null);
+			List<Dict> list = this.dictService.findAllDicts(dict);
 			return FileUtils.createExcelByPOIKit("字典表", list, Dict.class);
 		} catch (Exception e) {
 			log.error("导出字典信息Excel失败", e);
@@ -62,7 +62,7 @@ public class DictController extends BaseController {
 	@ResponseBody
 	public ResponseBo dictCsv(Dict dict){
 		try {
-			List<Dict> list = this.dictService.findAllDicts(dict,null);
+			List<Dict> list = this.dictService.findAllDicts(dict);
 			return FileUtils.createCsv("字典表", list, Dict.class);
 		} catch (Exception e) {
 			log.error("导出字典信息Csv失败", e);

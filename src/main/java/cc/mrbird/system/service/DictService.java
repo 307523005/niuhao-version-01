@@ -15,8 +15,8 @@ public interface DictService extends IService<Dict> {
     @Cacheable(key = "'PageList'+#request.toString() + #dict.toString()")
     PageInfo<Dict> PageList(QueryRequest request, Dict dict);
 
-    @Cacheable(key = "'findAllDicts'+#p0.toString()+ #p1.toString()")
-    List<Dict> findAllDicts(Dict dict, QueryRequest request);
+    @Cacheable(key = "'findAllDicts'+#p0.toString()")
+    List<Dict> findAllDicts(Dict dict);
 
     @Cacheable(key = "'findById'+#p0")
     Dict findById(Long dictId);

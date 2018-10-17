@@ -6,10 +6,10 @@ $(function () {
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
-                keyy: $dictTableForm.find("input[name='key']").val().trim(),
-                valuee: $dictTableForm.find("input[name='value']").val().trim(),
-                tableName: $dictTableForm.find("input[name='tableName']").val().trim(),
-                fieldName: $dictTableForm.find("input[name='fieldName']").val().trim(),
+                keyy: $dictTableForm.find("input[name='keyy']").val().trim(),
+                valuee: $dictTableForm.find("input[name='valuee']").val(),
+                tableName: $dictTableForm.find("input[name='tableName']").val(),
+                fieldName: $dictTableForm.find("input[name='fieldName']").val(),
                 sort: params.sort,      //排序列名
                 sortOrder: params.order //排位命令（desc，asc）
             };

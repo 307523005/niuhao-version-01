@@ -142,9 +142,9 @@ public class GoodstypeController extends BaseController {
     }
     @RequestMapping("goodstype/excel")
     @ResponseBody
-    public ResponseBo goodstypeExcel(Goodstype goodstype) {
+    public ResponseBo goodstypeExcel(Goodstype goodstype,QueryRequest request) {
         try {
-            List<Goodstype> list = this.goodstypeService.findAllGoodstype(null, goodstype);
+            List<Goodstype> list = this.goodstypeService.findAllGoodstype(request, goodstype);
             return FileUtils.createExcelByPOIKit("商品类型表", list, Goodstype.class);
         } catch (Exception e) {
             log.error("导出商品类型信息Excel失败", e);
@@ -154,9 +154,9 @@ public class GoodstypeController extends BaseController {
 
     @RequestMapping("goodstype/csv")
     @ResponseBody
-    public ResponseBo goodstypeCsv(Goodstype goodstype) {
+    public ResponseBo goodstypeCsv(Goodstype goodstype,QueryRequest request) {
         try {
-            List<Goodstype> list = this.goodstypeService.findAllGoodstype(null, goodstype);
+            List<Goodstype> list = this.goodstypeService.findAllGoodstype(request, goodstype);
             return FileUtils.createCsv("商品类型表", list, Goodstype.class);
         } catch (Exception e) {
             log.error("导出商品类型信息Csv失败", e);
