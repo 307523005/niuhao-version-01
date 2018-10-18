@@ -29,7 +29,6 @@ public class Advertising implements Serializable {
     @Column(name = "advertising_updatetime")
     @ExportConfig(value = "修改时间")
     private String advertising_updatetime;
-
     @Column(name = "advertising_updateuser")
     @ExportConfig(value = "操作用户")
     private String advertising_updateuser;
@@ -114,6 +113,7 @@ public class Advertising implements Serializable {
     public void setAdvertising_title(String advertising_title) {
         this.advertising_title = advertising_title;
     }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)

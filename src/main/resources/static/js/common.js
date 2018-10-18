@@ -21,6 +21,8 @@ var $MB = (function () {
         //detailView: true,//是否显示父子表
         smartDisplay: false,//设置为 true 是程序自动判断显示分页信息和 card 视图。
         //height : 480, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        showFullscreen:true,//是否显示全屏按钮。
+        trimOnSearch:true,//自动去掉搜索字符的前后空格。
         queryParams: function (params) {
             return {
                 pageSize: params.limit,

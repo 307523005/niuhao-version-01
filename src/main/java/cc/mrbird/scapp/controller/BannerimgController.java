@@ -1,5 +1,6 @@
 package cc.mrbird.scapp.controller;
 
+import cc.mrbird.common.config.RedisUtils;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -47,6 +48,30 @@ public class BannerimgController extends BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private BannerimgService bannerimgService;
+    /*@Autowired
+    private RedisUtils redisUtils;
+
+    @RequestMapping("scapp/redisTestSet")
+    @ResponseBody
+    public ResponseBo redisTestSet(String a,String b,String c ) {
+        redisUtils.hSet(a, b, c);
+        redisUtils.expire(a,20);
+       *//* for (int i=0;i<20000;i++){
+            String value= "test-3-"+String.valueOf(i);
+            String key= "test-3-"+String.valueOf(i);
+            redisUtils.set(key,value);
+        }*//*
+
+        return ResponseBo.ok("redisTest");
+    }
+    @RequestMapping("scapp/redisTestGet")
+    @ResponseBody
+    public ResponseBo redisTestGet(String a,String b ) {
+        String o = redisUtils.hGet(a, b);
+        return ResponseBo.ok(o);
+    }*/
+
+
     // @Log("查看轮播图")
     @RequestMapping("bannerimg")
     @RequiresPermissions("bannerimg:list")
