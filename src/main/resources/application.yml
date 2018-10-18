@@ -16,8 +16,14 @@ spring:
     host: smtp.qq.com
     username: 1353710858@qq.com #307523005@qq.com
     password: epckclfjogcwgfah #dzagtxicxzurbgia # 要通过申请开通（进入qq邮箱-》设置-》账户-》POP3服务：开启POP3/SMTP服务）
+    port: 465
     protocol: smtp
     default-encoding: utf-8
+    properties:
+          mail:
+            smtp:
+              ssl:
+                enable: true
   freemarker:
       allowRequestOverride: false
       allowSessionOverride: false
