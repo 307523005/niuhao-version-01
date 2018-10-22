@@ -59,7 +59,7 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     @Override
     public PageInfo<Merchant> PageList(QueryRequest request, Merchant merchant) {
         try {
-            Page<Object> objects = PageHelper.startPage(request.getPageNum(), request.getPageSize());
+            PageHelper.startPage(request.getPageNum(), request.getPageSize());
             Example example = new Example(Merchant.class);
             Criteria criteria = example.createCriteria();
             if (StringUtils.isNotBlank(merchant.getMerchant_name())) {

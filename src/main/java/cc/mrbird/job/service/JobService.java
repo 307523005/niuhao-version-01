@@ -8,27 +8,28 @@ import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
-@CacheConfig(cacheNames = "JobService")
+@CacheConfig(cacheNames = "JobService-")
 public interface JobService extends IService<Job> {
 
     Job findJob(Long jobId);
-
+    Job findJobByParams(String params);
+   // @Cacheable(key = "'findAllJobs-'+#p0.toString()")
     List<Job> findAllJobs(Job job);
-    @CacheEvict(allEntries = true)
+   // @CacheEvict(allEntries = true)
     void addJob(Job job);
-    @CacheEvict(allEntries = true)
+   // @CacheEvict(allEntries = true)
     void updateJob(Job job);
-    @CacheEvict(allEntries = true)
+   // @CacheEvict(allEntries = true)
     void deleteBatch(String jobIds);
-    @CacheEvict(allEntries = true)
+   // @CacheEvict(allEntries = true)
     int updateBatch(String jobIds, String status);
 
     void run(String jobIds);
-
+   // @CacheEvict(allEntries = true)
     void pause(String jobIds);
-
+    //@CacheEvict(allEntries = true)
     void resume(String jobIds);
 
-     @Cacheable(key = "'getSysCronClazz-'+#p0.toString()")
+  //  @Cacheable(key = "'getSysCronClazz-'+#p0.toString()")
     List<Job> getSysCronClazz(Job job);
 }

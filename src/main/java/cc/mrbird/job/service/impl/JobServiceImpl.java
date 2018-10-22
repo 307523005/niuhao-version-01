@@ -2,10 +2,12 @@ package cc.mrbird.job.service.impl;
 
 import cc.mrbird.common.annotation.CronTag;
 import cc.mrbird.common.service.impl.BaseService;
+import cc.mrbird.common.util.RoundUtil;
 import cc.mrbird.job.dao.JobMapper;
 import cc.mrbird.job.domain.Job;
 import cc.mrbird.job.service.JobService;
 import cc.mrbird.job.util.ScheduleUtils;
+import cc.mrbird.scapp.domain.Bannerimg;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -60,10 +62,22 @@ public class JobServiceImpl extends BaseService<Job> implements JobService {
     }
 
     @Override
+    public Job findJobByParams(String params) {
+        Example example = new Example(Bannerimg.class);
+        Criteria criteria = example.createCriteria();
+        criteria.andCondition("params =", params);
+        List<Job> list = this.selectByExample(example);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
     public List<Job> findAllJobs(Job job) {
         try {
             Example example = new Example(Job.class);
             Criteria criteria = example.createCriteria();
+            if (StringUtils.isNotBlank(job.getMerchant_id())) {
+                criteria.andCondition("merchant_id=", job.getMerchant_id());
+            }
             if (StringUtils.isNotBlank(job.getBeanName())) {
                 criteria.andCondition("bean_name=", job.getBeanName());
             }
@@ -73,7 +87,7 @@ public class JobServiceImpl extends BaseService<Job> implements JobService {
             if (StringUtils.isNotBlank(job.getStatus())) {
                 criteria.andCondition("status=", Long.valueOf(job.getStatus()));
             }
-            example.setOrderByClause("job_id");
+            example.setOrderByClause("CREATE_TIME desc");
             return this.selectByExample(example);
         } catch (Exception e) {
             log.error("获取任务失败", e);
@@ -86,6 +100,8 @@ public class JobServiceImpl extends BaseService<Job> implements JobService {
     public void addJob(Job job) {
         job.setCreateTime(new Date());
         job.setStatus(Job.ScheduleStatus.PAUSE.getValue());
+        job.setParams(job.getMerchant_id()+ RoundUtil.getTimeNum16());//12+12=28
+        job.setBeanName("testTask");
         this.save(job);
         ScheduleUtils.createScheduleJob(scheduler, job);
     }
@@ -93,6 +109,7 @@ public class JobServiceImpl extends BaseService<Job> implements JobService {
     @Override
     @Transactional
     public void updateJob(Job job) {
+        job.setCreateTime(new Date());
         ScheduleUtils.updateScheduleJob(scheduler, job);
         this.updateNotNull(job);
     }

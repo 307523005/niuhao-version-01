@@ -18,11 +18,16 @@ function updateJob() {
             $("#job-add-modal-title").html('修改任务');
             $form.find("input[name='jobId']").val(job.jobId);
             $form.find("input[name='status']").val(job.status);
-            $form.find("input[name='beanName']").val(job.beanName);
-            $form.find("input[name='methodName']").val(job.methodName);
-            $form.find("input[name='params']").val(job.params);
-            $form.find("input[name='cronExpression']").val(job.cronExpression);
+            $form.find("input[name='job_name']").val(job.job_name);
             $form.find("input[name='remark']").val(job.remark);
+            var cronExpressionArr = [];
+            cronExpressionArr.push(job.cronExpression);
+            $form.find("select[name='cronExpressionSelect']").multipleSelect('setSelects', cronExpressionArr);
+            $form.find("input[name='cronExpression']").val(job.cronExpression);
+            var methodNameArr = [];
+            methodNameArr.push(job.methodName);
+            $form.find("select[name='methodNameSelect']").multipleSelect('setSelects', methodNameArr);
+            $form.find("input[name='methodName']").val(job.methodName);
             $("#job-add-button").attr("name", "update");
         } else {
             $MB.n_danger(r.msg);

@@ -3,7 +3,7 @@
  * @type {主页}
  */
 /**/
-var httpurl="http://www.niuxinghao.top:9080/";
+var httpurl = "http://www.niuxinghao.top:9080/";
 //var httpurl="http://10.20.11.78:9080/";
 /*获取到Url里面的参数*/
 (function ($) {
@@ -143,7 +143,7 @@ function advertisinglist() {
         "\n" +
         "            <a class=\"next\"></a>\n" +
         "            <a class=\"prev\"></a>\n" +
-        "            <a href=\"advertisingshow.html?merchant_id="+merchant_id+"\"><span class=\"gengduo\" >点击查看更多...</span></a>\n" +
+        "            <a href=\"advertisingshow.html?merchant_id=" + merchant_id + "\"><span class=\"gengduo\" >点击查看更多...</span></a>\n" +
         "        </div>\n" +
         "        <div class=\"bd\">\n" +
         "            <ul class=\"infoList\" >";
@@ -162,7 +162,7 @@ function advertisinglist() {
                 for (var i = 0; i < advertising.length; i++) {
                     advertisinglist += "<li><span class=\"date\">" + advertising[i].advertising_updatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertising_id + "\" ><span class=\"date2\">" + advertising[i].advertising_title + "</span></a></li>";
                 }
-                advertisinglist+="</ul>\n" +
+                advertisinglist += "</ul>\n" +
                     "        </div>";
                 $("#advertisinglist").html(advertisinglist);
             }
@@ -172,7 +172,7 @@ function advertisinglist() {
 
         }
     });
-    setTimeout('bb()',2000);
+    setTimeout('bb()', 2000);
 }
 
 /*栏目更多*/

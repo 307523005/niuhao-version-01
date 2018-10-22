@@ -19,20 +19,20 @@ $(function () {
                 field: 'jobId',
                 title: '任务ID'
             }, {
-                field: 'beanName',
-                title: 'Bean名称'
+                field: 'job_name',
+                title: '任务名称'
             }, {
                 field: 'methodName',
                 title: '方法名称'
-            }, {
-                field: 'params',
-                title: '参数'
             }, {
                 field: 'cronExpression',
                 title: 'cron表达式'
             }, {
                 field: 'remark',
                 title: '备注'
+            }, {
+                field: 'createTime',
+                title: '修改时间'
             }, {
                 field: 'status',
                 title: '状态',

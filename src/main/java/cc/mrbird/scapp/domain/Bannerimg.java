@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Table(name = "sc_bannerimg")
 public class Bannerimg implements Serializable {
-    private static final long serialVersionUID = 400066840871805703L;
+    private static final long serialVersionUID = 400066840871805706L;
     @Id
     @Column(name = "bannerimg_id")
     @ExportConfig(value = "轮播图ID")

@@ -3,6 +3,8 @@ package cc.mrbird.job.controller;
 import java.util.List;
 import java.util.Map;
 
+import cc.mrbird.common.shiro.RequestUtils;
+import cc.mrbird.system.domain.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.quartz.CronExpression;
 import org.slf4j.Logger;
@@ -42,6 +44,8 @@ public class JobController extends BaseController {
     @ResponseBody
     public Map<String, Object> jobList(QueryRequest request, Job job) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
+        User user = RequestUtils.currentLoginUser();
+        job.setMerchant_id(user.getMerchantId());
         List<Job> list = this.jobService.findAllJobs(job);
         PageInfo<Job> pageInfo = new PageInfo<>(list);
         return getDataTable(pageInfo);
@@ -63,6 +67,8 @@ public class JobController extends BaseController {
     @ResponseBody
     public ResponseBo addJob(Job job) {
         try {
+            User user = RequestUtils.currentLoginUser();
+            job.setMerchant_id(user.getMerchantId());
             this.jobService.addJob(job);
             return ResponseBo.ok("新增任务成功！");
         } catch (Exception e) {

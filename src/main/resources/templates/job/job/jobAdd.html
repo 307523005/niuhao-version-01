@@ -10,10 +10,10 @@
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               Bean名称：
+					               任务名称：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="beanName" class="form-control">
+                                    <input type="text" name="job_name" class="form-control">
                                     <input type="text" name="jobId" hidden class="form-control">
                                     <input type="text" name="status" hidden class="form-control">
                                 </div>
@@ -24,10 +24,12 @@
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               	方法名称：
-					            </span>
+					               	 方法名称：
+					             </span>
                                 <div class="form-group">
-                                    <input type="text" name="methodName" class="form-control">
+                                    <select name="methodNameSelect" multiple="multiple"></select>
+                                    <!--multiple="multiple" 多选-->
+                                    <input name="methodName" hidden/>
                                 </div>
                             </div>
                         </div>
@@ -36,22 +38,12 @@
                         <div class="col-sm-11">
                             <div class="input-group">
                                 <span class="input-group-addon">
-					               	方法参数：
-					            </span>
+					               	 cron表达式：
+					             </span>
                                 <div class="form-group">
-                                    <input type="text" name="params" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	cron表达式：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="cronExpression" class="form-control">
+                                    <select name="cronExpressionSelect" multiple="multiple"></select>
+                                    <!--multiple="multiple" 多选-->
+                                    <input name="cronExpression" hidden/>
                                 </div>
                             </div>
                         </div>

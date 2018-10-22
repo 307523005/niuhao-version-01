@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Table(name = "sc_goods")
 public class Goods implements Serializable {
-    private static final long serialVersionUID = 400066840871805703L;
+    private static final long serialVersionUID = 400066840871805705L;
     @Id
     @Column(name = "goods_id")
     @ExportConfig(value = "ID")

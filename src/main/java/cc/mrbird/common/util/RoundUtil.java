@@ -96,8 +96,7 @@ public static String getRandomNum(int length) {
      */
     public static String getTimeNum16() {
     //    String  time= new SimpleDateFormat("yyMMddHHmmssSSSS").format(new Date());
-        String  time= String.valueOf(System.currentTimeMillis());
-        return time;
+        return String.valueOf(System.currentTimeMillis());
     }
 
 }

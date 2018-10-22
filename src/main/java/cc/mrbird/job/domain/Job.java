@@ -69,8 +69,22 @@ public class Job implements Serializable {
     private String remark;
 
     @Column(name = "CREATE_TIME")
-    @ExportConfig(value = "创建时间", convert = "c:cc.mrbird.common.util.poi.convert.TimeConvert")
+    @ExportConfig(value = "修改时间", convert = "c:cc.mrbird.common.util.poi.convert.TimeConvert")
     private Date createTime;
+    @Column(name = "merchant_id")
+    @ExportConfig(value = "商户ID")
+    private String merchant_id;
+    @Column(name = "job_name")
+    @ExportConfig(value = "任务名")
+    private String job_name;
+
+    public String getMerchant_id() {
+        return merchant_id;
+    }
+
+    public void setMerchant_id(String merchant_id) {
+        this.merchant_id = merchant_id;
+    }
 
     /**
      * @return JOB_ID
@@ -184,6 +198,14 @@ public class Job implements Serializable {
         this.createTime = createTime;
     }
 
+    public String getJob_name() {
+        return job_name;
+    }
+
+    public void setJob_name(String job_name) {
+        this.job_name = job_name;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -195,6 +217,8 @@ public class Job implements Serializable {
                 .add("status", status)
                 .add("remark", remark)
                 .add("createTime", createTime)
+                .add("merchant_id", merchant_id)
+                .add("job_name", job_name)
                 .toString();
     }
 }
