@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.List;
 
 
-@CacheConfig(cacheNames = "AdvertisingService-")
+@CacheConfig(cacheNames = "AdvertisingService")
 public interface AdvertisingService extends IService<Advertising> {
     @Cacheable(key = "'findAdvertising-'+#p0")
     Advertising findAdvertising(Long advertising_id);

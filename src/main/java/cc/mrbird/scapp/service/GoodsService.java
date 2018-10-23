@@ -10,7 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
-@CacheConfig(cacheNames = "GoodsService-")
+@CacheConfig(cacheNames = "GoodsService")
 public interface GoodsService extends IService<Goods> {
     @Cacheable(key = "'findGoods-'+#p0")
     Goods findGoods(String goods_id);

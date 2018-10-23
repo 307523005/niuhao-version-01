@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
-@CacheConfig(cacheNames = "JobLogService-")
+@CacheConfig(cacheNames = "JobLogService")
 public interface JobLogService extends IService<JobLog>{
 	@Cacheable(key = "'findAllJobLogs-'+#p0.toString()")
 	List<JobLog> findAllJobLogs(JobLog jobLog);

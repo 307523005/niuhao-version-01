@@ -20,6 +20,8 @@ function updateJob() {
             $form.find("input[name='status']").val(job.status);
             $form.find("input[name='job_name']").val(job.job_name);
             $form.find("input[name='remark']").val(job.remark);
+            $form.find("input[name='beanName']").val(job.beanName);
+            $form.find("input[name='params']").val(job.params);
             var cronExpressionArr = [];
             cronExpressionArr.push(job.cronExpression);
             $form.find("select[name='cronExpressionSelect']").multipleSelect('setSelects', cronExpressionArr);

@@ -53,7 +53,7 @@ public class Job implements Serializable {
     private String methodName;
 
     @Column(name = "PARAMS")
-    @ExportConfig(value = "参数")
+    @ExportConfig(value = "唯一标识")
     private String params;
 
     @Column(name = "CRON_EXPRESSION")

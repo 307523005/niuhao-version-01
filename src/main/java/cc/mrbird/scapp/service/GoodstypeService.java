@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.List;
 
 
-@CacheConfig(cacheNames = "GoodstypeService-")
+@CacheConfig(cacheNames = "GoodstypeService")
 public interface GoodstypeService extends IService<Goodstype> {
     @Cacheable(key = "'findGoodstype-'+#p0")
     Goodstype findGoodstype(String goodstype_id);

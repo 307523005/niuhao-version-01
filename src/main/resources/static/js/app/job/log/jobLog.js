@@ -26,7 +26,7 @@ $(function () {
                 title: '方法名称'
             }, {
                 field: 'params',
-                title: '参数'
+                title: '任务标识'
             }, {
                 field: 'status',
                 title: '状态',
@@ -42,7 +42,7 @@ $(function () {
                 title: '耗时'
             }, {
                 field: 'createTime',
-                title: '创建时间'
+                title: '执行时间'
             }
         ]
     };

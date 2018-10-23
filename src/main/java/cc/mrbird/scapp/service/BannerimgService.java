@@ -12,7 +12,7 @@ import javax.print.DocFlavor;
 import java.util.List;
 
 
-@CacheConfig(cacheNames = "BannerimgService-")
+@CacheConfig(cacheNames = "BannerimgService")
 public interface BannerimgService extends IService<Bannerimg> {
     @Cacheable(key = "'findBannerimg-'+#p0")
     Bannerimg findBannerimg(String bannerimg_id);
