@@ -1,5 +1,6 @@
 package cc.mrbird.web.controller;
 
+import cc.mrbird.common.util.NniuhaoConstant;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,6 @@ import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.util.HttpUtils;
-import cc.mrbird.common.util.FebsConstant;
 
 @Controller
 public class WeatherController extends BaseController {
@@ -29,7 +29,7 @@ public class WeatherController extends BaseController {
     @ResponseBody
     public ResponseBo queryWeather(String areaId) {
         try {
-            String data = HttpUtils.sendPost(FebsConstant.MEIZU_WEATHER_URL, "cityIds=" + areaId);
+            String data = HttpUtils.sendPost(NniuhaoConstant.MEIZU_WEATHER_URL, "cityIds=" + areaId);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             log.error("查询天气失败", e);

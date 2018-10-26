@@ -1,7 +1,7 @@
 package cc.mrbird.system.controller;
 
 import cc.mrbird.common.annotation.Log;
-import cc.mrbird.common.config.FebsProperies;
+import cc.mrbird.common.config.NniuhaoProperies;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
@@ -11,7 +11,6 @@ import cc.mrbird.common.util.vcode.GifCaptcha;
 import cc.mrbird.system.domain.User;
 import cc.mrbird.system.service.UserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -37,7 +36,7 @@ public class LoginController extends BaseController {
     private static final String CODE_KEY = "_code";
 
     @Autowired
-    private FebsProperies febsProperies;
+    private NniuhaoProperies nniuhaoProperies;
 
     @Autowired
     private UserService userService;
@@ -85,9 +84,9 @@ public class LoginController extends BaseController {
             response.setContentType("image/gif");
 
             Captcha captcha = new GifCaptcha(
-                    febsProperies.getValidateCode().getWidth(),
-                    febsProperies.getValidateCode().getHeight(),
-                    febsProperies.getValidateCode().getLength());
+                    nniuhaoProperies.getValidateCode().getWidth(),
+                    nniuhaoProperies.getValidateCode().getHeight(),
+                    nniuhaoProperies.getValidateCode().getLength());
             captcha.out(response.getOutputStream());
             HttpSession session = request.getSession(true);
             session.removeAttribute(CODE_KEY);

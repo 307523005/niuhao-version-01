@@ -11,7 +11,7 @@ var $MB_Redis_Bash = function () {
         title.text(userName + "@" + osName + ": ~ (redis-cli)");
         var date = new Date().toString();
         date = date.substr(0, date.indexOf("GMT") - 1);
-        printf("Last login: " + date + " on febs, type `help` for help\n");
+        printf("Last login: " + date + " on niuhao, type `help` for help\n");
         displayPrompt();
 
         var commands = [{

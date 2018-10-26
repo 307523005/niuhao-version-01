@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
-import cc.mrbird.common.util.HttpUtils;
-import cc.mrbird.common.util.FebsConstant;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -57,7 +55,7 @@ public class BaidudituController extends BaseController {
     @ResponseBody
     public ResponseBo queryWeather(String areaId) {
         try {
-            String data = HttpUtils.sendPost(FebsConstant.MEIZU_WEATHER_URL, "cityIds=" + areaId);
+            String data = HttpUtils.sendPost(NniuhaoConstant.MEIZU_WEATHER_URL, "cityIds=" + areaId);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             log.error("获取地图失败", e);

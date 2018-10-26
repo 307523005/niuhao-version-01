@@ -1,5 +1,6 @@
 package cc.mrbird.web.controller;
 
+import cc.mrbird.common.util.NniuhaoConstant;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,6 @@ import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.util.HttpUtils;
-import cc.mrbird.common.util.FebsConstant;
 
 @Controller
 public class MovieController extends BaseController {
@@ -36,7 +36,7 @@ public class MovieController extends BaseController {
     @ResponseBody
     public ResponseBo getMoiveHot() {
         try {
-            String data = HttpUtils.sendSSLPost(FebsConstant.TIME_MOVIE_HOT_URL, "locationId=328");
+            String data = HttpUtils.sendSSLPost(NniuhaoConstant.TIME_MOVIE_HOT_URL, "locationId=328");
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取热映影片信息失败", e);
@@ -48,7 +48,7 @@ public class MovieController extends BaseController {
     @ResponseBody
     public ResponseBo getMovieComing() {
         try {
-            String data = HttpUtils.sendSSLPost(FebsConstant.TIME_MOVIE_COMING_URL, "locationId=328");
+            String data = HttpUtils.sendSSLPost(NniuhaoConstant.TIME_MOVIE_COMING_URL, "locationId=328");
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取即将上映影片信息失败", e);
@@ -60,7 +60,7 @@ public class MovieController extends BaseController {
     @ResponseBody
     public ResponseBo getDetail(String id) {
         try {
-            String data = HttpUtils.sendSSLPost(FebsConstant.TIME_MOVIE_DETAIL_URL, "locationId=328&movieId=" + id);
+            String data = HttpUtils.sendSSLPost(NniuhaoConstant.TIME_MOVIE_DETAIL_URL, "locationId=328&movieId=" + id);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取影片详情失败", e);
@@ -72,7 +72,7 @@ public class MovieController extends BaseController {
     @ResponseBody
     public ResponseBo getComments(String id) {
         try {
-            String data = HttpUtils.sendSSLPost(FebsConstant.TIME_MOVIE_COMMENTS_URL, "movieId=" + id);
+            String data = HttpUtils.sendSSLPost(NniuhaoConstant.TIME_MOVIE_COMMENTS_URL, "movieId=" + id);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取影片评论失败", e);

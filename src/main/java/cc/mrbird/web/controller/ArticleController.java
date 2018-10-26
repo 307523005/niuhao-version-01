@@ -2,7 +2,7 @@ package cc.mrbird.web.controller;
 
 import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.domain.ResponseBo;
-import cc.mrbird.common.util.FebsConstant;
+import cc.mrbird.common.util.NniuhaoConstant;
 import cc.mrbird.common.util.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -32,10 +32,10 @@ public class ArticleController {
         try {
             if (StringUtils.isNotBlank(date)) {
                 param = "dev=1&date=" + date;
-                data = HttpUtils.sendSSLPost(FebsConstant.MRYW_DAY_URL, param);
+                data = HttpUtils.sendSSLPost(NniuhaoConstant.MRYW_DAY_URL, param);
             } else {
                 param = "dev=1";
-                data = HttpUtils.sendSSLPost(FebsConstant.MRYW_TODAY_URL, param);
+                data = HttpUtils.sendSSLPost(NniuhaoConstant.MRYW_TODAY_URL, param);
             }
             return ResponseBo.ok(data);
         } catch (Exception e) {

@@ -13,7 +13,7 @@ import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.util.HttpUtils;
-import cc.mrbird.common.util.FebsConstant;
+import cc.mrbird.common.util.NniuhaoConstant;
 import cc.mrbird.web.domain.IdList;
 
 import java.util.Objects;
@@ -51,7 +51,7 @@ public class OneIsAllController extends BaseController {
     public ResponseBo getOneList() {
         try {
             Long id = Objects.requireNonNull(getIdList()).getData()[0];
-            String data = HttpUtils.sendGet(FebsConstant.ONE_LIST_URL + id + "/0", STATIC_URL);
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_LIST_URL + id + "/0", STATIC_URL);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取oneList失败", e);
@@ -64,7 +64,7 @@ public class OneIsAllController extends BaseController {
     public ResponseBo getReadingList() {
         try {
             Long id = Objects.requireNonNull(getIdList()).getData()[0];
-            String data = HttpUtils.sendGet(FebsConstant.ONE_LIST_URL + id + "/0", STATIC_URL);
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_LIST_URL + id + "/0", STATIC_URL);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取readingList失败", e);
@@ -76,7 +76,7 @@ public class OneIsAllController extends BaseController {
     @ResponseBody
     public ResponseBo getYuwenDetail(String itemId, String id) {
         try {
-            String data = HttpUtils.sendGet(FebsConstant.ONE_ESSAY_URL + itemId, "channel=wdj&source=summary&source_id="
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_ESSAY_URL + itemId, "channel=wdj&source=summary&source_id="
                     + id + "&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android");
             return ResponseBo.ok(data);
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class OneIsAllController extends BaseController {
     @ResponseBody
     public ResponseBo getYuwenComments(String itemId) {
         try {
-            String data = HttpUtils.sendGet(FebsConstant.ONE_ESSAY_COMMENT_URL + itemId + "/0", STATIC_URL);
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_ESSAY_COMMENT_URL + itemId + "/0", STATIC_URL);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取语文评论失败", e);
@@ -101,7 +101,7 @@ public class OneIsAllController extends BaseController {
     @ResponseBody
     public ResponseBo getEssayDetail(String itemId, String id) {
         try {
-            String data = HttpUtils.sendGet(FebsConstant.ONE_ESSAY_URL + itemId,
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_ESSAY_URL + itemId,
                     "channel=wdj&source=summary&source_id=" + id
                             + "&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android");
             return ResponseBo.ok(data);
@@ -115,7 +115,7 @@ public class OneIsAllController extends BaseController {
     @ResponseBody
     public ResponseBo getEssayComments(String itemId) {
         try {
-            String data = HttpUtils.sendGet(FebsConstant.ONE_ESSAY_COMMENT_URL + itemId + "/0", STATIC_URL);
+            String data = HttpUtils.sendGet(NniuhaoConstant.ONE_ESSAY_COMMENT_URL + itemId + "/0", STATIC_URL);
             return ResponseBo.ok(data);
         } catch (Exception e) {
             logger.error("获取散文评论失败", e);
@@ -126,7 +126,7 @@ public class OneIsAllController extends BaseController {
     private static IdList getIdList() {
         IdList il = new IdList();
         try {
-            String idList = HttpUtils.sendGet(FebsConstant.ONE_ID_LIST_URL, STATIC_URL);
+            String idList = HttpUtils.sendGet(NniuhaoConstant.ONE_ID_LIST_URL, STATIC_URL);
             il = JSON.parseObject(idList, IdList.class);
             return il;
         } catch (Exception e) {

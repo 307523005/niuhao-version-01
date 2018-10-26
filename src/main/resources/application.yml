@@ -12,35 +12,6 @@ spring:
       #name: dubbo
       #port: 20881
     #scan: cc.mrbird.job.service.impl  #服务暴露与发现消费所在的package
-  mail:
-    host: smtp.qq.com
-    username: 1353710858@qq.com #307523005@qq.com
-    password: epckclfjogcwgfah #dzagtxicxzurbgia # 要通过申请开通（进入qq邮箱-》设置-》账户-》POP3服务：开启POP3/SMTP服务）
-    port: 465
-    protocol: smtp
-    default-encoding: utf-8
-    properties:
-          mail:
-            smtp:
-              ssl:
-                enable: true
-  freemarker:
-      allowRequestOverride: false
-      allowSessionOverride: false
-      cache: true
-      checkTemplateLocation: true
-      contentType: text/html
-      exposeRequestAttributes: false
-      exposeSessionAttributes: false
-      exposeSpringMacroHelpers: false
-      suffix: .ftl
-      templateEncoding: UTF-8
-      templateLoaderPath: classpath:/templates/  #表示所有的模板文件都放在该目录下
-      spring.freemarker.settings:
-        locale: zh_CN
-        date_format: yyyy-MM-dd
-        time_format: HH:mm:ss
-        datetime_format: yyyy-MM-dd HH:mm:ss
 
   datasource:
     druid:
@@ -67,18 +38,24 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      # 打开PSCache，并且指定每个连接上PSCache的大小
-      pool-prepared-statements: true
+      # 打开PSCache，并且指定每个连接上PSCache的大小, MySQL下建议关闭
+      pool-prepared-statements: false
       max-open-prepared-statements: 20
       max-pool-prepared-statement-per-connection-size: 20
       # 配置监控统计拦截的filters, 去掉后监控界面sql无法统计, 'wall'用于防火墙
       filters: stat
       # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
-      aop-patterns: cc.mrbird.servie.*
+      aop-patterns: cc.mrbird.scapp.service.*,cc.mrbird.job.service.*,cc.mrbird.system.service.*
 
       # WebStatFilter配置
       web-stat-filter:
         enabled: true
+        #配置profileEnable能够监控单个url调用的sql列表
+        profile-enable: truw
+        #session统计功能
+        session-stat-enable: false
+        #最大session数
+        session-stat-max-count: 100000
         # 添加过滤规则
         url-pattern: /*
         # 忽略过滤的格式
@@ -92,17 +69,21 @@ spring:
         # 是否能够重置数据
         reset-enable: false
         # 需要账号密码才能访问控制台
-        login-username: admin
-        login-password: admin
+        login-username: niuhao
+        login-password: niuhao
         # IP白名单
         # allow: 127.0.0.1
         # IP黑名单（共同存在时，deny优先于allow）
         # deny: 192.168.1.218
 
-      # 配置StatFilter
+      # 配置StatFilter,是否启用StatFilter默认值true
       filter:
         stat:
           log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+          db-type: mysql
+          enabled: true
 
   redis:
     # Redis数据库索引（默认为0）
@@ -146,9 +127,42 @@ spring:
   #application:
   #  name: febs
 
+ #发送邮件配置
+  mail:
+    host: smtp.qq.com
+    username: 1353710858@qq.com #307523005@qq.com
+    password: epckclfjogcwgfah #dzagtxicxzurbgia # 要通过申请开通（进入qq邮箱-》设置-》账户-》POP3服务：开启POP3/SMTP服务）
+    port: 465
+    protocol: smtp
+    default-encoding: utf-8
+    properties:
+          mail:
+            smtp:
+              ssl:
+                enable: true
+  #邮件所需freemarker
+  freemarker:
+      allowRequestOverride: false
+      allowSessionOverride: false
+      cache: true
+      checkTemplateLocation: true
+      contentType: text/html
+      exposeRequestAttributes: false
+      exposeSessionAttributes: false
+      exposeSpringMacroHelpers: false
+      suffix: .ftl
+      templateEncoding: UTF-8
+      templateLoaderPath: classpath:/templates/  #表示所有的模板文件都放在该目录下
+      spring.freemarker.settings:
+        locale: zh_CN
+        date_format: yyyy-MM-dd
+        time_format: HH:mm:ss
+        datetime_format: yyyy-MM-dd HH:mm:ss
+
+#其他配置
 info:
   app:
-    name: "febs"
+    name: "niuhao"
     description: "spring boot&shiro NIUHAO广商管理系统"
     version: "2.0"
     spring-boot-version: "2.0.4.RELEASE"
@@ -193,8 +207,8 @@ pagehelper:
       #    dao: debug
 
 
-# febs 配置
-febs:
+# niuhaoone 配置
+niuhaoone:
   shiro:
     # shiro redis缓存时长，默认 1800 秒
     expireIn: 1800

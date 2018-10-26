@@ -5,9 +5,12 @@ import cc.mrbird.common.shiro.ShiroProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * application.yml中配置参数
+ */
 @Configuration
-@ConfigurationProperties(prefix = "febs")
-public class FebsProperies {
+@ConfigurationProperties(prefix = "niuhaoone")
+public class NniuhaoProperies {
 
     private ShiroProperties shiro = new ShiroProperties();
 

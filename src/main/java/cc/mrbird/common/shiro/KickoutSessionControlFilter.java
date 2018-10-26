@@ -51,7 +51,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     public void setCacheManager(CacheManager cacheManager)
     {
             System.out.println("------获取sesion---------------------");
-        this.cache = cacheManager.getCache("febs-cache:");
+        this.cache = cacheManager.getCache("niuhaoone-cache:");
     }
 
     @Override

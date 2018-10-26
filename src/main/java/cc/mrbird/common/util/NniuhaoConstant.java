@@ -1,8 +1,8 @@
 package cc.mrbird.common.util;
 
-public class FebsConstant {
+public class NniuhaoConstant {
 
-    private FebsConstant() {
+    private NniuhaoConstant() {
 
     }
 

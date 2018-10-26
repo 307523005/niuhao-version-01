@@ -69,9 +69,9 @@ public class POIUtils {
             ZipSecureFile.setMinInflateRatio(0L);
             if (response != null) {
                 // response对象不为空,响应到浏览器下载
-                response.setContentType(FebsConstant.XLSX_CONTENT_TYPE);
+                response.setContentType(NniuhaoConstant.XLSX_CONTENT_TYPE);
                 response.setHeader("Content-disposition", "attachment; filename="
-                        + URLEncoder.encode(String.format("%s%s", fileName, FebsConstant.XLSX_SUFFIX), "UTF-8"));
+                        + URLEncoder.encode(String.format("%s%s", fileName, NniuhaoConstant.XLSX_SUFFIX), "UTF-8"));
                 if (out == null) {
                     out = response.getOutputStream();
                 }
@@ -94,7 +94,7 @@ public class POIUtils {
     }
 
     private static void checkExcelFile(String file) {
-        if (!file.endsWith(FebsConstant.XLSX_SUFFIX)) {
+        if (!file.endsWith(NniuhaoConstant.XLSX_SUFFIX)) {
             throw new IllegalArgumentException("抱歉,目前ExcelKit仅支持.xlsx格式的文件.");
         }
     }
