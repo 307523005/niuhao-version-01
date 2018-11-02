@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cc.mrbird.scapp.dao.AccessTokenDao">
+   <!-- 询 -->
+     <select id="getList" resultType="cc.mrbird.scapp.domain.AccessToken" >
+       select  GZHaccess_token, XCXaccess_token  from tb_accesstoken 
+     </select>
+   
+
+     <!-- 更新 -->
+     <update id="update" parameterType="cc.mrbird.scapp.domain.AccessToken">
+         update tb_accesstoken  
+           <set>
+              <if test="GZHaccess_token!=null">
+                  GZHaccess_token=#{GZHaccess_token},
+              </if>
+               <if test="XCXaccess_token!=null">
+                   XCXaccess_token=#{XCXaccess_token},
+              </if>
+            
+           </set>
+          where AccessToken_id=1
+     </update>
+   
+
+  </mapper>

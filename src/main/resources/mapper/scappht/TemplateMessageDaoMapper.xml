@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.scapp.dao.TemplateMessageDao">
+
+	<!-- 总数量 -->
+	<select id="getCount" parameterType="HashMap" resultType="int">
+		select count(*) from tb_templatemessage
+	</select>
+	<!-- 根据id查询对象 当语句里面只有一个 参数的时候，参数名称可以为任意名称 -->
+	<select id="getById" parameterType="String"
+		resultType="cc.mrbird.scapp.domain.TemplateMessage">
+		<!-- 调用公共配置 -->
+		select TemplateMessage_id,TemplateMessage_template_id,TemplateMessage_first,TemplateMessage_firstcolor,
+		TemplateMessage_keyword1,TemplateMessage_keyword1color,
+		TemplateMessage_keyword2,TemplateMessage_keyword2color,
+		TemplateMessage_keyword3,TemplateMessage_keyword3color,
+		TemplateMessage_keyword4,TemplateMessage_keyword4color,
+		TemplateMessage_keyword5,TemplateMessage_keyword5color,
+		TemplateMessage_keyword6,TemplateMessage_keyword6color
+		from tb_templatemessage  where TemplateMessage_id=#{TemplateMessage_id}
+	</select>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="cc.mrbird.scapp.domain.TemplateMessage">
+		<!-- 使用实体传值，必须和属性完全一致 -->
+		insert into tb_templatemessage(TemplateMessage_template_id,TemplateMessage_first,TemplateMessage_firstcolor,
+		TemplateMessage_keyword1,TemplateMessage_keyword1color,
+		TemplateMessage_keyword2,TemplateMessage_keyword2color,
+		TemplateMessage_keyword3,TemplateMessage_keyword3color,
+		TemplateMessage_keyword4,TemplateMessage_keyword4color,
+		TemplateMessage_keyword5,TemplateMessage_keyword5color,
+		TemplateMessage_keyword6,TemplateMessage_keyword6color)
+		values(
+		#{TemplateMessage_template_id},
+		#{TemplateMessage_first},
+		#{TemplateMessage_firstcolor},
+		#{TemplateMessage_keyword1},
+		#{TemplateMessage_keyword1color},
+		#{TemplateMessage_keyword2},
+		#{TemplateMessage_keyword2color},
+		#{TemplateMessage_keyword3},
+		#{TemplateMessage_keyword3color},
+		#{TemplateMessage_keyword4},
+		#{TemplateMessage_keyword4color},
+		#{TemplateMessage_keyword5},
+		#{TemplateMessage_keyword5color},
+		#{TemplateMessage_keyword6},
+		#{TemplateMessage_keyword6color},
+		)
+	</insert>
+
+	<!-- 更新 -->
+	<update id="update" parameterType="cc.mrbird.scapp.domain.TemplateMessage">
+		update tb_templatemessage
+		<set>
+			<if test="TemplateMessage_template_id!=null">
+				TemplateMessage_template_id = #{TemplateMessage_template_id},
+			</if>
+			<if test="TemplateMessage_first!=null">
+				TemplateMessage_first = #{TemplateMessage_first},
+			</if>
+			<if test="TemplateMessage_firstcolor!=null">
+				TemplateMessage_firstcolor = #{TemplateMessage_firstcolor},
+			</if>
+			<if test="TemplateMessage_keyword1!=null">
+				TemplateMessage_keyword1 = #{TemplateMessage_keyword1},
+			</if>
+			<if test="TemplateMessage_keyword1color!=null">
+				TemplateMessage_keyword1color = #{TemplateMessage_keyword1color},
+			</if>
+			<if test="TemplateMessage_keyword2!=null">
+				TemplateMessage_keyword2 = #{TemplateMessage_keyword2},
+			</if>
+			<if test="TemplateMessage_keyword2color!=null">
+				TemplateMessage_keyword2color = #{TemplateMessage_keyword2color},
+			</if>
+			<if test="TemplateMessage_keyword3!=null">
+				TemplateMessage_keyword3 = #{TemplateMessage_keyword3},
+			</if>
+			<if test="TemplateMessage_keyword3color!=null">
+				TemplateMessage_keyword3color = #{TemplateMessage_keyword3color},
+			</if>
+			<if test="TemplateMessage_keyword4!=null">
+				TemplateMessage_keyword4 = #{TemplateMessage_keyword4},
+			</if>
+			<if test="TemplateMessage_keyword4color!=null">
+				TemplateMessage_keyword4color = #{TemplateMessage_keyword4color},
+			</if>
+			<if test="TemplateMessage_keyword5!=null">
+				TemplateMessage_keyword5 = #{TemplateMessage_keyword5},
+			</if>
+			<if test="TemplateMessage_keyword5color!=null">
+				TemplateMessage_keyword5color = #{TemplateMessage_keyword5color},
+			</if>
+			<if test="TemplateMessage_keyword6!=null">
+				TemplateMessage_keyword6 = #{TemplateMessage_keyword6},
+			</if>
+			<if test="TemplateMessage_keyword6color!=null">
+				TemplateMessage_keyword6color = #{TemplateMessage_keyword6color},
+			</if>
+			
+		</set>
+		where TemplateMessage_id = #{TemplateMessage_id}
+	</update>
+
+</mapper>

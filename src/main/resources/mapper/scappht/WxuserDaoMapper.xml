@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.scapp.dao.WxuserDao">
+    <!-- 根据uid得到用户信息 -->
+    <select id="getList" parameterType="String"
+            resultType="cc.mrbird.scapp.domain.Wxuser">
+        select user_uid ,user_nickname,
+        user_gender,user_province,user_city,user_country,user_deptpic,user_registeredtime,user_logindtime,user_phonebrand,user_phonemodel,user_wxversion,
+        user_pixelRatio, user_screenWidth, user_screenHeight,
+        user_windowWidth, user_windowHeight, user_language
+        , user_system,
+        user_platform, user_fontSizeSetting,
+        user_SDKVersion,user_form_id,user_unionid,user_gzhopenid,user_openid
+        from
+        tb_user
+        <if test="user_uid!=null and user_uid!='' ">
+            where user_uid = #{user_uid}
+        </if>
+    </select>
+    <!-- 根据user_unionid查询对象 当语句里面只有一个 参数的时候，参数名称可以为任意名称 -->
+    <select id="getByOpenid" parameterType="String"
+            resultType="cc.mrbird.scapp.domain.Wxuser">
+		select user_uid ,user_nickname,
+		user_gender,user_province,user_city,user_country,user_openid,user_deptpic,user_registeredtime,user_logindtime,user_phonebrand,user_phonemodel,user_wxversion,
+		user_pixelRatio, user_screenWidth, user_screenHeight,
+		user_windowWidth, user_windowHeight, user_language
+		, user_system,
+		user_platform, user_fontSizeSetting,
+		user_SDKVersion,user_form_id,user_unionid,user_gzhopenid
+		from
+		tb_user
+		where user_unionid=#{user_unionid}
+	</select>
+    <!-- 根据uid查询对象 当语句里面只有一个 参数的时候，参数名称可以为任意名称 -->
+    <select id="getByUser_uid" parameterType="String"
+            resultType="cc.mrbird.scapp.domain.Wxuser">
+		select user_uid ,user_nickname,
+		user_gender,user_province,user_city,user_country,user_openid,user_deptpic,user_registeredtime,user_logindtime,user_phonebrand,user_phonemodel,user_wxversion,
+		user_pixelRatio, user_screenWidth, user_screenHeight,
+		user_windowWidth, user_windowHeight, user_language
+		, user_system,
+		user_platform, user_fontSizeSetting,
+		user_SDKVersion,user_form_id,user_unionid,user_gzhopenid
+		from
+		tb_user
+		where user_uid=#{user_uid}
+	</select>
+
+    <!-- 用户添加 -->
+    <insert id="add" parameterType="cc.mrbird.scapp.domain.Wxuser">
+        <!-- 使用实体传值，必须和属性完全一致 -->
+        insert into tb_user(user_nickname,
+        user_gender,user_province,user_city,user_country,
+        <if test="user_openid!=null and user_openid!='' ">
+            user_openid,
+        </if>
+        <if test="user_gzhopenid!=null and user_gzhopenid!='' ">
+            user_gzhopenid,
+        </if>
+        user_deptpic,user_uid,user_registeredtime,user_logindtime,user_phonebrand,user_phonemodel,user_wxversion,
+        user_pixelRatio, user_screenWidth, user_screenHeight,
+        user_windowWidth, user_windowHeight, user_language
+        , user_system,
+        user_platform, user_fontSizeSetting, user_SDKVersion,user_unionid)
+        values(#{user_nickname},#{user_gender},#{user_province},#{user_city}
+        ,#{user_country},
+        <if test="user_openid!=null and user_openid!='' ">
+            #{user_openid},
+        </if>
+        <if test="user_gzhopenid!=null and user_gzhopenid!='' ">
+            #{user_gzhopenid},
+        </if>
+        #{user_deptpic},#{user_uid},#{user_registeredtime},#{user_logindtime},#{user_phonebrand},#{user_phonemodel},#{user_wxversion},
+        #{user_pixelRatio},#{user_screenWidth}
+        ,#{user_screenHeight},#{user_windowWidth},#{user_windowHeight},#{user_language},
+        #{user_system},#{user_platform},#{user_fontSizeSetting},#{user_SDKVersion},#{user_unionid})
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="cc.mrbird.scapp.domain.Wxuser">
+        update tb_user
+        <set>
+            <if test="user_nickname!=null">
+                user_nickname = #{user_nickname},
+            </if>
+            <if test="user_gender!=null">
+                user_gender = #{user_gender},
+            </if>
+            <if test="user_province!=null">
+                user_province = #{user_province},
+            </if>
+            <if test="user_city!=null">
+                user_city = #{user_city},
+            </if>
+            <if test="user_country!=null">
+                user_country = #{user_country},
+            </if>
+            <if test="user_deptpic!=null">
+                user_deptpic = #{user_deptpic},
+            </if>
+            <if test="user_logindtime!=null">
+                user_logindtime = #{user_logindtime},
+            </if>
+            <if test="user_phonebrand!=null">
+                user_phonebrand = #{user_phonebrand},
+            </if>
+            <if test="user_phonemodel!=null">
+                user_phonemodel = #{user_phonemodel},
+            </if>
+            <if test="user_wxversion!=null">
+                user_wxversion = #{user_wxversion},
+            </if>
+
+            <if test="user_pixelRatio!=null">
+                user_pixelRatio = #{user_pixelRatio},
+            </if>
+            <if test="user_screenWidth!=null">
+                user_screenWidth = #{user_screenWidth},
+            </if>
+            <if test="user_screenHeight!=null">
+                user_screenHeight = #{user_screenHeight},
+            </if>
+            <if test="user_windowWidth!=null">
+                user_windowWidth = #{user_windowWidth},
+            </if>
+            <if test="user_windowHeight!=null">
+                user_windowHeight = #{user_windowHeight},
+            </if>
+            <if test="user_language!=null">
+                user_language = #{user_language},
+            </if>
+            <if test="user_system!=null">
+                user_system = #{user_system},
+            </if>
+            <if test="user_platform!=null">
+                user_platform = #{user_platform},
+            </if>
+            <if test="user_fontSizeSetting!=null">
+                user_fontSizeSetting = #{user_fontSizeSetting},
+            </if>
+            <if test="user_SDKVersion!=null">
+                user_SDKVersion = #{user_SDKVersion},
+            </if>
+            <if test="user_form_id!=null">
+                user_form_id = #{user_form_id},
+            </if>
+            <if test="user_openid!=null">
+                user_openid = #{user_openid},
+            </if>
+            <if test="user_gzhopenid!=null">
+                user_gzhopenid = #{user_gzhopenid},
+            </if>
+        </set>
+        where user_unionid = #{user_unionid}
+    </update>
+
+
+    <!-- 总数量 -->
+    <select id="getCount" parameterType="HashMap" resultType="int">
+
+        select count(*) from tb_user
+        <where>
+            <choose>
+                <when test="parama!=null and parama!='' and paramb!=null and paramb!='' ">
+                    and between #{parama} and #{paramb}
+                </when>
+                <when test="parama!=null and parama!='' ">
+                    and = #{parama}
+                </when>
+                <when test="paramb!=null and paramb!='' ">
+                    and = #{paramb}
+                </when>
+                <otherwise>
+                    and 1=1
+                </otherwise>
+            </choose>
+        </where>
+        <if test="paramc!=null and paramc!='' ">
+            and like CONCAT(CONCAT('%',#{paramc}),'%')
+        </if>
+        <if test="paramd!=null and paramd!='' ">
+            and = #{paramd}
+        </if>
+
+    </select>
+</mapper>

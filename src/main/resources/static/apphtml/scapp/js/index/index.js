@@ -2,9 +2,7 @@
  * niuhao-2018-09-28
  * @type {主页}
  */
-/**/
-var httpurl = "http://www.niuxinghao.top:9080/";
-//var httpurl="http://10.20.11.78:9080/";
+document.write("<script language=javascript src='js/deploy.js'></script>");
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
@@ -68,7 +66,7 @@ function bannerimglist() {
         async: false,//同步
         dataType: "json",
         cache: false,//不缓存此页面
-        //url: "http://localhost:9080/" + "scapp/getBannerimgTop3",
+        //url: "http://localhost:80/" + "scapp/getBannerimgTop3",
         url: httpurl + "scapp/getBannerimgTop3",
         data: {
             merchant_id: merchant_id,
@@ -165,6 +163,7 @@ function advertisinglist() {
                 advertisinglist += "</ul>\n" +
                     "        </div>";
                 $("#advertisinglist").html(advertisinglist);
+                setTimeout('carousel()', 1000);
             }
 
         },
@@ -172,7 +171,7 @@ function advertisinglist() {
 
         }
     });
-    setTimeout('bb()', 2000);
+
 }
 
 /*栏目更多*/
@@ -194,8 +193,8 @@ function more() {
     });
 
 }
-
-function bb() {
+/*轮播*/
+function carousel() {
     $(".txtMarquee-top").slide({mainCell: ".bd ul", autoPlay: true, effect: "topMarquee", vis: 5, interTime: 60});
 
 }

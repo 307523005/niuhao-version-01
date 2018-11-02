@@ -3,8 +3,7 @@
  * @type {主页}
  */
 /**/
-var httpurl="http://www.niuxinghao.top:9080/";
-//var httpurl = "http://10.20.11.78:8081/";
+document.write("<script language=javascript src='js/deploy.js'></script>");
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
@@ -115,5 +114,6 @@ function copyFn(){
     var val = document.getElementById('copyMy');
     window.getSelection().selectAllChildren(val);
     document.execCommand ("Copy");
-
+    document.getElementById("copyMy").style.display="none";//隐藏
+    new TipBox({type:'success',str:'复制商品信息成功',hasBtn:true});
 }

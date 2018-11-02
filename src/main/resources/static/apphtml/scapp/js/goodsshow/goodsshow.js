@@ -2,9 +2,7 @@
  * niuhao-2018-09-28
  * @type {主页}
  */
-/*www.niuxinghao.top 59.110.241.188*/
-var httpurl="http://www.niuxinghao.top:9080/";
-//var httpurl = "http://10.20.11.78:8081/";
+document.write("<script language=javascript src='js/deploy.js'></script>");
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
