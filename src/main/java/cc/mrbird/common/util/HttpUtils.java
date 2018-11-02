@@ -54,7 +54,25 @@ public class HttpUtils {
         }
         return result.toString();
     }
-
+    public static String sendGet(String url) throws IOException {
+        String urlNameString = url ;
+        URL realUrl = new URL(urlNameString);
+        URLConnection connection = realUrl.openConnection();
+        StringBuilder result = new StringBuilder();
+        connection.setRequestProperty(USER_AGENT, USER_AGENT_VALUE);
+        connection.setRequestProperty(CONNECTION, CONNECTION_VALUE);
+        connection.setRequestProperty(ACCEPT, "*/*");
+        connection.connect();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                result.append(line);
+            }
+        } catch (Exception e) {
+            log.error("发送GET请求出现异常！", e);
+        }
+        return result.toString();
+    }
     /**
      * 向指定 URL 发送POST方法的请求
      *

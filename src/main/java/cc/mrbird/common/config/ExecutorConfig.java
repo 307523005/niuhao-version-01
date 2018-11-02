@@ -3,8 +3,10 @@ package cc.mrbird.common.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.lang.reflect.Method;
@@ -18,23 +20,26 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date: 2018/11/1 17:58
  */
 
-//@Configuration
-public class AsyncExecutorPoolConfig implements AsyncConfigurer {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+@Configuration
+@EnableAsync
+public class ExecutorConfig {
 
-    @Override
-    public Executor getAsyncExecutor() {
+    private static final Logger logger = LoggerFactory.getLogger(ExecutorConfig.class);
+
+    @Bean
+    public Executor asyncServiceExecutor() {
+        logger.info("start asyncServiceExecutor");
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //配置核心线程数
         executor.setCorePoolSize(20);
         //配置最大线程数
-        executor.setMaxPoolSize(30);
+        executor.setMaxPoolSize(50);
         //配置队列大小
-        executor.setQueueCapacity(100);
-        //线程池维护线程所允许的空闲时间
+        executor.setQueueCapacity(99999);
+        //活跃时间
         executor.setKeepAliveSeconds(60 * 15);
         //配置线程池中的线程的名称前缀
-        executor.setThreadNamePrefix("-*-asyncTaskExecutor-");
+        executor.setThreadNamePrefix("async-addHitsAdvertising-");
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
@@ -42,45 +47,25 @@ public class AsyncExecutorPoolConfig implements AsyncConfigurer {
         executor.initialize();
         return executor;
     }
-
-    /**
-     * 异步任务中异常处理
-     *
-     * @return
-     */
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return new AsyncUncaughtExceptionHandler() {
-
-            @Override
-            public void handleUncaughtException(Throwable arg0, Method arg1, Object... arg2) {
-                logger.error("====AsyncExecutorPoolConfig======" + arg0.getMessage() + "===========", arg0);
-                logger.error("exception method:" + arg1.getName());
-            }
-        };
-    }
-}
-/*
-//第二种方式
-@Configuration
-public class AsyncExecutorPoolConfig extends AsyncConfigurerSupport {
     @Bean
-    public Executor taskExecutor() {
+    public Executor asyncServiceExecutor2() {
+        logger.info("start asyncServiceExecutor");
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //配置核心线程数
         executor.setCorePoolSize(20);
         //配置最大线程数
-        executor.setMaxPoolSize(30);
+        executor.setMaxPoolSize(50);
         //配置队列大小
-        executor.setQueueCapacity(100);
-        //线程池维护线程所允许的空闲时间
-        executor.setKeepAliveSeconds(300);
+        executor.setQueueCapacity(99999);
+        //活跃时间
+        executor.setKeepAliveSeconds(60 * 15);
         //配置线程池中的线程的名称前缀
-        executor.setThreadNamePrefix("asyncTaskExecutor-");
+        executor.setThreadNamePrefix("async--");
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        //执行初始化
+        executor.initialize();
         return executor;
     }
 }
-*/

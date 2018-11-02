@@ -17,7 +17,7 @@ public interface LogService extends IService<SysLog> {
 	@CacheEvict(allEntries = true)
 	void deleteLogs(String logIds);
 
-	@Async
+	@Async(value = "asyncServiceExecutor2")
 	@CacheEvict(allEntries = true)
 	void saveLog(ProceedingJoinPoint point, long time, String ip,String name) throws JsonProcessingException;
 }

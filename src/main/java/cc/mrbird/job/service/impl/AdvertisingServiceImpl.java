@@ -35,6 +35,11 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
     }
 
     @Override
+    public List<Advertising> findAllAdvertising() {
+        return this.selectAll();
+    }
+
+    @Override
     public List<Advertising> findAllAdvertising(Advertising advertising) {
         try {
             Example example = new Example(Advertising.class);
@@ -47,7 +52,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
                 criteria.andCondition("date_format(advertising_updatetime,'%Y-%m-%d') >=", timeArr[0]);
                 criteria.andCondition("date_format(advertising_updatetime,'%Y-%m-%d') <=", timeArr[1]);
             }
-                example.setOrderByClause("advertising_updatetime desc");
+            example.setOrderByClause("advertising_updatetime desc");
             List<Advertising> advertisings = this.selectByExample(example);
             return advertisings;
         } catch (Exception e) {
@@ -63,7 +68,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
             Example example = new Example(Advertising.class);
             Criteria criteria = example.createCriteria();
             //按照商户id
-            criteria.andCondition("merchant_id  = ", advertising.getMerchant_id() );
+            criteria.andCondition("merchant_id  = ", advertising.getMerchant_id());
 
             if (StringUtils.isNotBlank(advertising.getAdvertising_title())) {
                 criteria.andCondition("advertising_title  like ", "%" + advertising.getAdvertising_title() + "%");
@@ -74,7 +79,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
                 criteria.andCondition("date_format(advertising_updatetime,'%Y-%m-%d') <=", timeArr[1]);
             }
             if (StringUtils.isNotBlank(request.getSort())) {
-                example.setOrderByClause(request.getSort()+" " + request.getSortOrder());
+                example.setOrderByClause(request.getSort() + " " + request.getSortOrder());
             } else {
                 example.setOrderByClause("advertising_updatetime desc");
             }
@@ -115,7 +120,9 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
     @Override
     public List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id) {
         Example example = new Example(Advertising.class);
-        example.createCriteria().andCondition("merchant_id=", merchant_id);
+        if (StringUtils.isNotBlank(merchant_id)) {
+            example.createCriteria().andCondition("merchant_id=", merchant_id);
+        }
         example.setOrderByClause("advertising_updatetime desc");
         List<Advertising> list = this.selectByExample(example);
         return list;

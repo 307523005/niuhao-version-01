@@ -107,7 +107,7 @@ public class LogServiceImpl extends BaseService<SysLog> implements LogService {
             // 保存系统日志
             save(log);
         //} else {
-           // System.out.println("----保存系统日志cuowu---user - null--");
+            System.out.println("----保存系统日志--");
        // }
     }
 

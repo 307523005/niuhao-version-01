@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public interface AdvertisingService extends IService<Advertising> {
     @Cacheable(key = "'findAdvertising-'+#p0")
     Advertising findAdvertising(Long advertising_id);
+
     @Cacheable(key = "'findAllAdvertising-'+ #advertising.toString()")
     List<Advertising> findAllAdvertising(Advertising advertising);
 
@@ -26,10 +28,13 @@ public interface AdvertisingService extends IService<Advertising> {
 
     @CacheEvict(allEntries = true)
     void deleteAdvertising(String advertisingid);
-
+    @Async(value = "asyncServiceExecutor")
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
 
     @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0")
     List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id);
+
+    @Cacheable(key = "'findAllAdvertising'")
+    List<Advertising> findAllAdvertising();
 }

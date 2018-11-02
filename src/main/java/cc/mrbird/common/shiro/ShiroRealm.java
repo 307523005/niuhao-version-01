@@ -105,7 +105,7 @@ public class ShiroRealm extends AuthorizingRealm {
     /**
      * 用户认证
      *
-     * @param   身份认证 token
+     * @param   authcToken
      * @return AuthenticationInfo 身份认证信息
      * @throws AuthenticationException 认证相关异常
      */

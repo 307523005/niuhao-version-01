@@ -21,7 +21,7 @@ public class Advertising implements Serializable {
     @ExportConfig(value = "商户码")
     private String merchant_id;
     @Column(name = "advertising_content")
-    @ExportConfig(value = "内容")
+    //@ExportConfig(value = "内容")
     private String advertising_content;
     @Column(name = "advertising_addtime")
     @ExportConfig(value = "添加时间")
@@ -41,6 +41,9 @@ public class Advertising implements Serializable {
     @Column(name = "advertising_title")
     @ExportConfig(value = "标题")
     private String advertising_title;
+    @Column(name = "advertising_hits")
+    @ExportConfig(value = "点击量")
+    private String advertising_hits;
 
     public Long getAdvertising_id() {
         return advertising_id;
@@ -114,6 +117,14 @@ public class Advertising implements Serializable {
         this.advertising_title = advertising_title;
     }
 
+    public String getAdvertising_hits() {
+        return advertising_hits;
+    }
+
+    public void setAdvertising_hits(String advertising_hits) {
+        this.advertising_hits = advertising_hits;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -126,6 +137,7 @@ public class Advertising implements Serializable {
                 .add("advertising_updateuser", advertising_updateuser)
                 .add("advertising_remarks", advertising_remarks)
                 .add("advertising_title", advertising_title)
+                .add("advertising_hits", advertising_hits)
                 .toString();
     }
 }

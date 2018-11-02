@@ -30,7 +30,7 @@ import java.util.Objects;
 /**
  * 接口限流注解，示例见 cc.mrbird.common.controller.TestController
  */
-@Aspect
+@Aspect//使之成为切面类
 @Component
 public class LimitAspect {
 
@@ -43,12 +43,12 @@ public class LimitAspect {
         this.limitRedisTemplate = limitRedisTemplate;
     }
 
-    @Pointcut("@annotation(cc.mrbird.common.annotation.Limit)")
+    @Pointcut("@annotation(cc.mrbird.common.annotation.Limit)")//Pointcut切面；annotation用于匹配当前执行方法持有指定注解的方法
     public void pointcut() {
         // do nothing
     }
 
-    @Around("pointcut()")
+    @Around("pointcut()")//是可以同时在所拦截方法的前后执行一段逻辑
     public Object around(ProceedingJoinPoint point) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
 

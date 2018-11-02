@@ -78,7 +78,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         return new JedisConnectionFactory(redisStandaloneConfiguration, jedisClientConfiguration.build());
     }
 
-   /* @Bean(name = "redisTemplate")
+    @Bean(name = "redisTemplate")
     @SuppressWarnings({"unchecked", "rawtypes"})
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
@@ -87,18 +87,22 @@ public class RedisConfig extends CachingConfigurerSupport {
         //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
         @SuppressWarnings({"rawtypes", "unchecked"})
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
-
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(mapper);
-
+        // value序列化方式采用jackson
         template.setValueSerializer(serializer);
+        // hash的value序列化方式采用jackson
+        template.setHashValueSerializer(serializer);
         //使用StringRedisSerializer来序列化和反序列化redis的key值
-        template.setKeySerializer(new StringRedisSerializer());
+        template.setKeySerializer(stringRedisSerializer);
+        // hash的key也采用String的序列化方式
+        template.setHashKeySerializer(stringRedisSerializer);
         template.afterPropertiesSet();
         return template;
-    }*/
+    }
 
     //缓存管理器
   /*  @Bean
