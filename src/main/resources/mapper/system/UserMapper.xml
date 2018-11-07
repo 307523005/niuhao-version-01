@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.system.dao.UserMapper">
-   <!-- <resultMap id="BaseResultMap" type="cc.mrbird.system.domain.User">
-        &lt;!&ndash;
-          WARNING - @mbg.generated
-        &ndash;&gt;
-        <id column="USER_ID" jdbcType="DECIMAL" property="userId"/>
-        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
-        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
-        <result column="DEPT_ID" jdbcType="DECIMAL" property="deptId"/>
-        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
-        <result column="MOBILE" jdbcType="VARCHAR" property="mobile"/>
-        <result column="STATUS" jdbcType="CHAR" property="status"/>
-        <result column="CRATE_TIME" jdbcType="TIMESTAMP" property="crateTime"/>
-        <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime"/>
-        <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime"/>
-        <result column="SSEX" jdbcType="CHAR" property="ssex"/>
-        <result column="THEME" jdbcType="VARCHAR" property="theme"/>
-        <result column="AVATAR" jdbcType="VARCHAR" property="avatar"/>
-        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
-        &lt;!&ndash;<result column="merchant_id" jdbcType="VARCHAR" property="merchant_id"/>&ndash;&gt;
-        &lt;!&ndash;<result column="merchantname" jdbcType="VARCHAR" property="merchant_name"/>&ndash;&gt;
-    </resultMap>-->
 
     <select id="findUserWithDept" resultType="cc.mrbird.system.domain.User" parameterType="cc.mrbird.system.domain.User">
         select u.user_id userId,u.merchant_id,m.merchant_name,u.username,u.email,u.mobile,u.status,u.crate_time crateTime,
@@ -44,7 +23,7 @@
     </select>
 
 
-    <select id="findUserWithRole" resultType="userWithRole">
+    <select id="findUserWithRole" resultType="cc.mrbird.system.domain.UserWithRole">
 		select u.user_id userId, u.merchant_id,m.merchant_name,u.username,u.dept_id deptId,u.email,u.mobile,
 		u.status,u.ssex,ur.role_id roleId from t_user u
 		left join t_user_role ur on (u.user_id = ur.user_id) LEFT JOIN t_merchant m on (u.merchant_id=m.merchant_id)

@@ -1,13 +1,17 @@
 $(function () {
     var $advertisingTableForm = $(".advertising-table-form");
+    var pageSizes;
+    var pageNumbers;
     var settings = {
         url: ctx + "advertising/list",
         queryParams: function (params) { //得到查询的参数
+            pageSizes = params.limit;
+            pageNumbers = params.offset / params.limit + 1;
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
-                advertising_title: $advertisingTableForm.find("input[name='advertising_title']").val().trim(),
-                advertising_updatetime: $advertisingTableForm.find("input[name='advertising_updatetime']").val().trim(),
+                advertisingTitle: $advertisingTableForm.find("input[name='advertisingTitle']").val().trim(),
+                advertisingUpdatetime: $advertisingTableForm.find("input[name='advertisingUpdatetime']").val().trim(),
                 sort: params.sort,      //排序列名
                 sortOrder: params.order //排位命令（desc，asc）
             };
@@ -16,57 +20,63 @@ $(function () {
             checkbox: true
         },
             {
-                field: 'advertising_id',
-                title: '广告ID',
-                width: 150,
-                sortable: true,//列排序
-                align: 'center'
+                title: '序号',
+                field: '',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    return pageSizes * (pageNumbers - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+                }
             }, {
-                field: 'advertising_name',
+                field: 'advertisingName',
                 title: '广告名称',
                 align: 'center'
             }, {
-                field: 'merchant_id',
+                field: 'advertisingHits',
+                title: '阅读量',
+                sortable: true,//列排序
+                align: 'center'
+            }, {
+                field: 'advertisingTypeName',
+                title: '广告类型',
+                align: 'center'
+            }, {
+                field: 'merchantId',
                 title: '商户码',
                 align: 'center'
-            },  {
-                field: 'advertising_title',
+            }, {
+                field: 'advertisingTitle',
                 title: '标题',
                 align: 'center'
-            }/*,{
-                field: 'advertising_content',
-                title: '内容',
-                align: 'center'
-            }*/,{
-                field: 'advertising_remarks',
+            }, {
+                field: 'advertisingRemarks',
                 title: '备注',
                 align: 'center'
-            },{
-                field: 'advertising_addtime',
+            }, {
+                field: 'advertisingAddtime',
                 title: '添加时间',
                 align: 'center'
-            },{
-                field: 'advertising_updatetime',
+            }, {
+                field: 'advertisingUpdatetime',
                 sortable: true,//列排序
                 title: '修改时间',
                 align: 'center'
-            },{
-                field: 'advertising_updateuser',
+            }, {
+                field: 'advertisingUpdateuser',
                 title: '操作用户',
                 align: 'center'
             }, {
-                field: 'advertising_content',
+                field: 'advertisingContent',
                 title: '查看',
                 formatter: function (value, row, index) {
-                    return ' <a target="_blank" href="http://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id='+row.merchant_id+'&advertising_id='+row.advertising_id+'" class="btn">查看</a>';
-/*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
+                    return ' <a target="_blank" href="http://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id=' + row.merchantId + '&advertising_id=' + row.advertisingId + '" class="btn">查看</a>';
+                    /*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
                 }
             }
         ]
     };
 
     $MB.initTable('advertisingTable', settings);
-    $MB.calenders('input[name="advertising_updatetime"]', true, false);//日期
+    $MB.calenders('input[name="advertisingUpdatetime"]', true, false);//日期
 });
 
 function search() {
@@ -87,7 +97,7 @@ function deleteadvertising() {
     }
     var ids = "";
     for (var i = 0; i < selected_length; i++) {
-        ids += selected[i].advertising_id;
+        ids += selected[i].advertisingId;
         if (i !== (selected_length - 1)) ids += ",";
     }
     $MB.confirm({

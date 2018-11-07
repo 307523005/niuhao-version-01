@@ -1,8 +1,12 @@
 $(function () {
     var $goodsTableForm = $(".goods-table-form");
+    var pageSizes;
+    var pageNumbers;
     var settings = {
         url: ctx + "goods/list",
         queryParams: function (params) { //得到查询的参数
+            pageSizes=params.limit;
+            pageNumbers=params.offset / params.limit + 1;
             return {
                 pageSize: params.limit,
                 pageNum: params.offset / params.limit + 1,
@@ -15,6 +19,13 @@ $(function () {
         columns: [{
             checkbox: true
         }, {
+            title: '序号',
+            field: '',
+            align: 'center',
+            formatter: function (value, row, index) {
+                return pageSizes * (pageNumbers - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+            }
+        },{
             field: 'goods_name',
             title: '商品名称',
             align: 'center'

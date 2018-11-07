@@ -1,5 +1,5 @@
 server:
-  port: 9080
+  port: 80
   tomcat:
     uri-encoding: utf-8
 spring:
@@ -51,7 +51,7 @@ spring:
       web-stat-filter:
         enabled: true
         #配置profileEnable能够监控单个url调用的sql列表
-        profile-enable: truw
+        profile-enable: true
         #session统计功能
         session-stat-enable: false
         #最大session数

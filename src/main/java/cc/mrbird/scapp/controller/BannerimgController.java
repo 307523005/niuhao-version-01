@@ -203,8 +203,8 @@ public class BannerimgController extends BaseController {
             return true;
         }
         User user = RequestUtils.currentLoginUser();
-        Bannerimg result = this.bannerimgService.findByName(bannerimg_name, user.getMerchantId());
-        return result == null;
+        boolean result = this.bannerimgService.findByName(bannerimg_name, user.getMerchantId());
+        return result;
     }
 
     /**

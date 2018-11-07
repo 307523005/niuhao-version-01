@@ -2,15 +2,19 @@ package cc.mrbird.common.domain;
 
 import com.google.common.base.MoreObjects;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 public class QueryRequest implements Serializable {
 
 	private static final long serialVersionUID = -4869594085374385813L;
-
+	@Transient
 	private int pageSize;
+	@Transient
 	private int pageNum;
+	@Transient
 	private String sort;
+	@Transient
 	private String sortOrder;
 
 	public int getPageSize() {

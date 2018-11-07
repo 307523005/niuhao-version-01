@@ -50,8 +50,8 @@ public class HitsServiceImpl implements HitsService {
             log.info("addHitsAdvertising1");
         } else {
             Advertising advertising = advertisingService.findAdvertising(Long.valueOf(advertising_id));
-            advertising.getAdvertising_hits();
-            redisUtils.hSet("advertising_intraday", advertising_id, Integer.valueOf(advertising.getAdvertising_hits()));
+            advertising.getAdvertisingHits();
+            redisUtils.hSet("advertising_intraday", advertising_id, Integer.valueOf(advertising.getAdvertisingHits()));
             hincr = redisUtils.hincr("advertising_intraday", advertising_id, 1);
             i = new Double(hincr).intValue();
             map.put("advertising_intraday", i);

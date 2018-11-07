@@ -36,13 +36,13 @@ public class GoodstypeServiceImpl extends BaseService<Goodstype> implements Good
     }
 
     @Override
-    public Goodstype findByName(String goodstype_name,String merchant_id) {
+    public boolean findByName(String goodstype_name,String merchant_id) {
         Example example = new Example(Goodstype.class);
         Criteria criteria = example.createCriteria();
         criteria.andCondition("goodstype_name=", goodstype_name);
         criteria.andCondition("merchant_id=", merchant_id);
         List<Goodstype> list = this.selectByExample(example);
-        return list.isEmpty() ? null : list.get(0);
+        return list.isEmpty() ? true : false;
     }
 
     @Override

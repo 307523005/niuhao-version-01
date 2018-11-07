@@ -103,7 +103,7 @@ public class WxuserController {
     public String requestCodeUrl(TemplateMessage templatemessage)
             throws Exception {
         // 生成给微信的h5链接
-        String requestCodeUrl = WXDefinedChars.getRequestCodeUrl("http://www.niuxinghao.top:9080/apphtml/scapp/index.html?merchant_id=c5c05b29ee4c");
+        String requestCodeUrl = WXDefinedChars.getRequestCodeUrl("http://www.niuxinghao.top/apphtml/scapp/index.html?merchant_id=c5c05b29ee4c");
         return requestCodeUrl;
     }
 

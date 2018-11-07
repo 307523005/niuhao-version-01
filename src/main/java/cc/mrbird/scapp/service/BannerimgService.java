@@ -18,7 +18,7 @@ public interface BannerimgService extends IService<Bannerimg> {
     Bannerimg findBannerimg(String bannerimg_id);
 
     @Cacheable(key = "'findByName-'+#bannerimg_name+#merchant_id")
-    Bannerimg findByName(String bannerimg_name, String merchant_id);
+    boolean findByName(String bannerimg_name, String merchant_id);
 
     @Cacheable(key = "'findAllBannerimg-'+#request.toString()+#bannerimg.toString()")
     List<Bannerimg> findAllBannerimg(QueryRequest request, Bannerimg bannerimg);

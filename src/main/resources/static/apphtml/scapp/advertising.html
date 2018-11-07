@@ -11,13 +11,14 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/amazeui.min.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/headBand.min.js"></script>
     <script src="js/common.js"></script>
 </head>
 
 <body>
 
 <!--header-end-->
-
+<div class="test"></div>
 <article class="am-article">
     <div class="am-article-hd" id="advertisingshowtitle">
   <!--      <h1 class="am-article-title" >你好啊</h1>
@@ -44,6 +45,10 @@
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="js/advertising/advertising.js"></script>
 <script type="text/javascript">
+    $('.test').headBand({
+        'background':'#008aff',
+        'height':"3"
+    });
 </script>
 </body>
 </html>

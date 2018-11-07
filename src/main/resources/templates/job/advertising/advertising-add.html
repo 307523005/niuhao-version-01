@@ -13,16 +13,30 @@
 					               广告名称：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="advertising_name" class="form-control">
-                                    <input type="text" name="advertising_addtime" hidden class="form-control">
-                                    <input type="text" name="advertising_id" hidden class="form-control">
-                                    <input type="text" id="advertising_content" name="advertising_content" hidden class="form-control">
-                                    <input type="text" name="merchant_id" hidden class="form-control">
+                                    <input type="text" name="advertisingName" class="form-control">
+                                    <input type="text" hidden name="oldadvertisingName" >
+                                    <input type="text" name="advertisingAddtime" hidden >
+                                    <input type="text" name="advertisingId" hidden >
+                                    <input type="text" id="advertisingContent" name="advertisingContent" hidden >
+                                    <input type="text" name="merchantId" hidden >
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 广告类型：
+					             </span>
+                                <div class="form-group">
+                                    <select name="advertisingTypeIdSelect" multiple="multiple"></select>
+                                    <!--multiple="multiple" 多选-->
+                                    <input name="advertisingTypeId" hidden/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-11">
                             <div class="input-group">
@@ -30,7 +44,7 @@
 					               	广告标题：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="advertising_title" class="form-control">
+                                    <input type="text" name="advertisingTitle" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -42,7 +56,7 @@
 					               	广告备注：
 					            </span>
                                 <div class="form-group">
-                                    <input type="text" name="advertising_remarks" class="form-control">
+                                    <input type="text" name="advertisingRemarks" class="form-control">
                                 </div>
                             </div>
                         </div>

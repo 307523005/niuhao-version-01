@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.job.dao.AdvertisingMapper">
-<!--  <resultMap id="BaseResultMap" type="cc.mrbird.job.domain.Advertising">
-    &lt;!&ndash;
-      WARNING - @mbg.generated
-    &ndash;&gt;
-    <id column="JOB_ID" jdbcType="DECIMAL" property="jobId" />
-    <result column="BEAN_NAME" jdbcType="VARCHAR" property="beanName" />
-    <result column="METHOD_NAME" jdbcType="VARCHAR" property="methodName" />
-    <result column="PARAMS" jdbcType="VARCHAR" property="params" />
-    <result column="CRON_EXPRESSION" jdbcType="VARCHAR" property="cronExpression" />
-    <result column="STATUS" jdbcType="CHAR" property="status" />
-    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>-->
-  
+
+  <!--  <sql id="advertising_sql">
+
+    </sql>
+    <include refid="condition_sql"></include>-->
+
+    <select id="findAdvertisingWithAdvertisingType" resultType="cc.mrbird.job.domain.Advertising"
+            parameterType="cc.mrbird.job.domain.Advertising">
+        select a.advertising_id advertisingId,
+        a.merchant_id merchantId,
+        a.advertising_content advertisingContent ,
+        a.advertising_addtime advertisingAddtime ,
+        a.advertising_updatetime advertisingUpdatetime ,
+        a.advertising_updateuser advertisingUpdateuser ,
+        a.advertising_name advertisingName ,
+        a.advertising_remarks advertisingRemarks ,
+        a.advertising_title advertisingTitle ,
+        a.advertising_hits advertisingHits ,
+        a.advertisingtype_id advertisingTypeId ,
+        t.advertisingtype_name advertisingTypeName from t_advertising a
+        left join t_advertisingtype t on(a.advertisingtype_id = t.advertisingtype_id)
+        where 1=1
+        <if test="merchantId != null and merchantId != ''">
+            AND a.merchant_id = #{merchantId}
+        </if>
+        <if test="advertisingTitle != null and advertisingTitle != ''">
+            AND a.advertising_title like '%#{advertisingTitle}%'
+        </if>
+        <if test="advertisingUpdatetime != null and advertisingUpdatetime != '' and advertisingAddtime != null and advertisingAddtime != ''">
+            AND date_format(a.advertising_updatetime,'%Y-%m-%d') <![CDATA[ >= ]]> #{advertisingAddtime}
+            AND date_format(a.advertising_updatetime,'%Y-%m-%d') &lt;= #{advertisingUpdatetime}
+        </if>
+        <if test="sort != null and sort != ''">
+            order by ${sort}
+        </if>
+    </select>
+
 </mapper>
+        <!--
+         select a.advertising_id advertising_id,t.advertisingtype_name from t_advertising a
+        left join t_advertisingtype t on(a.advertisingtype_id = t.advertisingtype_id)
+        where 1=1
+        <if test="merchant_id != null and merchant_id != ''">
+                         AND a.merchant_id = #{merchant_id}
+                     </if>
+                     <if test="advertising_title != null and advertising_title != ''">
+                         AND a.advertising_title = #{advertising_title}
+                     </if>
+                     <if test="advertising_updatetime != null and advertising_updatetime != '' and advertising_addtime != null and advertising_addtime != ''">
+                         AND date_format(a.advertising_updatetime,'%Y-%m-%d') <![CDATA[ >= ]]> #{advertising_addtime}
+                         AND date_format(a.advertising_updatetime,'%Y-%m-%d') &lt;= #{advertising_updatetime}
+                     </if>-->
+        <!-- <if test="sort != null and sort != ''">
+             order by #{sort}
+         </if>-->

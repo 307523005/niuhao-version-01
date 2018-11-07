@@ -7,9 +7,11 @@ import cc.mrbird.common.shiro.RequestUtils;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.job.domain.Advertising;
 import cc.mrbird.job.service.AdvertisingService;
+import cc.mrbird.scapp.domain.Goods;
 import cc.mrbird.system.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,8 +77,8 @@ public class AdvertisingController extends BaseController {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
         log.info("---merchantId--"+merchantId);
-        advertising.setMerchant_id(user.getMerchantId());
-        PageInfo<Advertising> pageInfo = this.advertisingService.PageList(request, advertising);
+        advertising.setMerchantId(user.getMerchantId());
+        PageInfo<Advertising> pageInfo = advertisingService.PageList(request, advertising);
         return getDataTable(pageInfo);
     }
 
@@ -113,10 +115,10 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("advertising/update")
     @ResponseBody
     public ResponseBo updateadvertising(Advertising advertising) {
-        log.info("update--+"+advertising.getAdvertising_name());
+        log.info("update--+"+advertising.getAdvertisingName());
         try {
             User user = RequestUtils.currentLoginUser();
-            advertising.setAdvertising_updateuser(user.getUsername());
+            advertising.setAdvertisingUpdateuser(user.getUsername());
             this.advertisingService.updateAdvertising(advertising);
             return ResponseBo.ok("修改广告成功！");
         } catch (Exception e) {
@@ -145,8 +147,8 @@ public class AdvertisingController extends BaseController {
     public ResponseBo addAdvertising(Advertising advertising) throws Exception {
         try {
             User user = RequestUtils.currentLoginUser();
-            advertising.setAdvertising_updateuser(user.getUsername());
-            advertising.setMerchant_id(user.getMerchantId());
+            advertising.setAdvertisingUpdateuser(user.getUsername());
+            advertising.setMerchantId(user.getMerchantId());
             this.advertisingService.addAdvertising(advertising);
             return ResponseBo.ok("新增广告成功！");
         } catch (Exception e) {
@@ -157,9 +159,9 @@ public class AdvertisingController extends BaseController {
 
     @RequestMapping("advertising/getadvertising")
     @ResponseBody
-    public ResponseBo getadvertising(Long advertising_id) {
+    public ResponseBo getadvertising(Long advertisingId) {
         try {
-            Advertising advertising = this.advertisingService.findAdvertising(advertising_id);
+            Advertising advertising = this.advertisingService.findAdvertising(advertisingId);
             return ResponseBo.ok(advertising);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);
@@ -169,14 +171,15 @@ public class AdvertisingController extends BaseController {
 
     /**
      * 商城根据id获取广告
-     * @param advertising_id
+     * @param advertisingId
      * @return
      */
     @RequestMapping("scapp/scappgetadvertising")
     @ResponseBody
-    public ResponseBo scappgetadvertising(Long advertising_id) {
+    public ResponseBo scappgetadvertising(Long advertisingId) {
+        log.info("----"+advertisingId.toString());
         try {
-            Advertising advertising = this.advertisingService.findAdvertising(advertising_id);
+            Advertising advertising = this.advertisingService.findAdvertising(advertisingId);
             return ResponseBo.ok(advertising);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);
@@ -191,14 +194,40 @@ public class AdvertisingController extends BaseController {
      */
     @RequestMapping("scapp/scappGetAdvertisingByMerchant_id")
     @ResponseBody
-    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id) {
+    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id,Long advertisingTypeId) {
         try {
-            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id);
+            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id,advertisingTypeId);
             return ResponseBo.ok(list);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);
             return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
         }
+    }
+    /**
+     * 商城根据商户id获取广告列表
+     * @param merchant_id
+     * @return
+     */
+    @RequestMapping("scapp/scappGetAdvertisingByMerchant_idTop10")
+    @ResponseBody
+    public ResponseBo scappGetAdvertisingByMerchant_idTop10(String merchant_id ) {
+        try {
+            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_idTop10(merchant_id);
+            return ResponseBo.ok(list);
+        } catch (Exception e) {
+            log.error("获取广告信息失败", e);
+            return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
+        }
+    }
+    @RequestMapping("advertising/checkadvertisingName")
+    @ResponseBody
+    public boolean checkadvertisingName(String advertisingName, String oldadvertisingName) {
+        if (StringUtils.isNotBlank(oldadvertisingName) && advertisingName.equalsIgnoreCase(oldadvertisingName)) {
+            return true;
+        }
+        User user = RequestUtils.currentLoginUser();
+        boolean result = this.advertisingService.findByName(advertisingName, user.getMerchantId());
+        return result;
     }
     @RequestMapping("advertising/excel")
     @ResponseBody

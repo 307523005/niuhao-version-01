@@ -16,7 +16,7 @@ public interface GoodsService extends IService<Goods> {
     Goods findGoods(String goods_id);
 
     @Cacheable(key = "'findByName-'+#goods_name+#merchant_id")
-    Goods findByName(String goods_name, String merchant_id);
+    boolean findByName(String goods_name, String merchant_id);
 
     @Cacheable(key = "'findAllGoods-'+#request.toString()+#goods.toString()")
     List<Goods> findAllGoods(QueryRequest request, Goods goods);

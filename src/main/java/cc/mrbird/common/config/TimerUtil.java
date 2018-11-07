@@ -36,12 +36,12 @@ public class TimerUtil {
 
         List<Advertising> allAdvertising = advertisingService.findAllAdvertising();
         for (Advertising advertising : allAdvertising) {
-            Long advertising_id = advertising.getAdvertising_id();
+            Long advertising_id = advertising.getAdvertisingId();
             Object intraday = redisUtils.hget("advertising_intraday", advertising_id.toString());
             if (intraday != null) {
                 Advertising advertisings = new Advertising();
-                advertisings.setAdvertising_hits(intraday.toString());
-                advertisings.setAdvertising_id(advertising_id);
+                advertisings.setAdvertisingHits(intraday.toString());
+                advertisings.setAdvertisingId(advertising_id);
                 advertisingService.updateAdvertising(advertisings);
                 log.info("同步点击量:" + advertising_id.toString());
             }

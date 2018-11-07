@@ -8,12 +8,13 @@ document.write("<script language=javascript src='js/deploy.js'></script>");
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
+        if (r != null) return decodeURI (r[2]);
         return null;
     }
 })(jQuery);
 var merchant_id = $.getUrlParam('merchant_id');
 var goodstype_id = $.getUrlParam('goodstype_id');
+var type = $.getUrlParam('type');
 window.onload = function () {
     merchant();
 
@@ -66,6 +67,9 @@ function goodsshow() {
                 }
                 //$("#title").html(goodstype_id);
                 $("#goodsshow").html(goodshtml);
+                $("#title").html(type);
+                $("#title_hi").html(type);
+
 
             } else {
                 $("#container").html("您访问的链接有问题!!!");

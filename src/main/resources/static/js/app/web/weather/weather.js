@@ -214,7 +214,7 @@ function search() {
             }
         });
     } else {
-        $MB.n_warning("请输入城市！");
+        $MB.n_warning("请选择输入框下方城市！");
     }
 
 }

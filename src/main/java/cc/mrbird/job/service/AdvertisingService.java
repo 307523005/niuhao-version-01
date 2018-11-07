@@ -27,14 +27,20 @@ public interface AdvertisingService extends IService<Advertising> {
     void addAdvertising(Advertising advertising);
 
     @CacheEvict(allEntries = true)
-    void deleteAdvertising(String advertisingid);
+    void deleteAdvertising(String advertising_id);
+
     @Async(value = "asyncServiceExecutor")
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
 
-    @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0")
-    List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id);
+    @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0+#p1")
+    List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId);
+
+    @Cacheable(key = "'scappGetAdvertisingByMerchant_idTop10-'+#p0+#p1")
+    List<Advertising> scappGetAdvertisingByMerchant_idTop10(String merchant_id);
 
     @Cacheable(key = "'findAllAdvertising'")
     List<Advertising> findAllAdvertising();
+
+    boolean findByName(String advertising_name, String merchant_id);
 }

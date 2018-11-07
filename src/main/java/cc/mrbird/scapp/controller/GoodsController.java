@@ -174,8 +174,8 @@ public class GoodsController extends BaseController {
             return true;
         }
         User user = RequestUtils.currentLoginUser();
-        Goods result = this.goodsService.findByName(goods_name, user.getMerchantId());
-        return result == null;
+        boolean result = this.goodsService.findByName(goods_name, user.getMerchantId());
+        return result;
     }
 
     /**

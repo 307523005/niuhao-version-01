@@ -3,18 +3,17 @@
  * @type {广告详情}
  */
 document.write("<script language=javascript src='js/deploy.js'></script>");
-//
 /*获取到Url里面的参数*/
 (function ($) {
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
+        if (r != null) return decodeURI (r[2]);
         return null;
     }
 })(jQuery);
 var merchant_id = $.getUrlParam('merchant_id');
-var advertising_id = $.getUrlParam('advertising_id');
+var advertisingId = $.getUrlParam('advertising_id');
 window.onload = function () {
     merchant();
 }
@@ -56,22 +55,22 @@ function showadvertising(merchant_name) {
         cache: false,//不缓存此页面
         url: httpurl + "scapp/scappgetadvertising",
         data: {
-            advertising_id: advertising_id,
+            advertisingId: advertisingId,
         },
         success: function (r) {
             if (r.code === 0) {
 
                 var advertising = r.msg;
                 var num = intraday();
-                var advertisinghtml = "<h1 class=\"am-article-title\" >" + advertising.advertising_title + "</h1>\n" +
-                    "        <p class=\"am-article-meta\" >" + merchant_name + "&nbsp;&nbsp;&nbsp;&nbsp;" + advertising.advertising_updatetime + "&nbsp;&nbsp;&nbsp;&nbsp;阅读量:" + num + "</p>";
+                var advertisinghtml = "<h1 class=\"am-article-title\" >" + advertising.advertisingTitle + "</h1>\n" +
+                    "        <p class=\"am-article-meta\" >" + merchant_name + "&nbsp;&nbsp;&nbsp;&nbsp;" + advertising.advertisingUpdatetime + "&nbsp;&nbsp;&nbsp;&nbsp;阅读量:" + num + "</p>";
                 $("#advertisingshowtitle").html(advertisinghtml);
                 var arrEntities = {'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"'};
-                var advertising_content = advertising.advertising_content.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
+                var advertisingContent = advertising.advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
                     return arrEntities[t];
                 });
-                $("#advertisingshow").html(advertising_content);
-                $("#title").html(advertising.advertising_title);
+                $("#advertisingshow").html(advertisingContent);
+                $("#title").html(advertising.advertisingTitle);
 
             } else {
                 $("#container").html("您访问的链接有问题!!!");
@@ -94,6 +93,7 @@ function footer_ul() {
 }
 
 function intraday() {
+
     var cip = returnCitySN["cip"];
     var cname = returnCitySN["cname"];
     //var allcookies = document.cookie;
@@ -105,7 +105,7 @@ function intraday() {
         cache: false,//不缓存此页面
         url: httpurl + "scapp/addHitsAdvertising",
         data: {
-            advertising_id: advertising_id,
+            advertising_id: advertisingId,
             cip: cip + cname,
         },
         success: function (r) {
