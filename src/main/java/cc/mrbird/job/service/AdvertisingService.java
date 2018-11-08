@@ -33,8 +33,8 @@ public interface AdvertisingService extends IService<Advertising> {
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
 
-    @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0+#p1")
-    List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId);
+    @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0+#p1+#p2")
+    List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId,String num);
 
     @Cacheable(key = "'scappGetAdvertisingByMerchant_idTop10-'+#p0+#p1")
     List<Advertising> scappGetAdvertisingByMerchant_idTop10(String merchant_id);

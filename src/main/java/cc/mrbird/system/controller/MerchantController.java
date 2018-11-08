@@ -155,6 +155,6 @@ public class MerchantController extends BaseController {
     public Map<String, Object> fileUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
             FileUploadException {
         User user = RequestUtils.currentLoginUser();
-        return FileUploadUtil.fileUploadImages(request, response, "merchant_wximge",  "merchant_wximge", user,500,500);
+        return FileUploadUtil.fileUploadImages(request, response, "merchant_wximge",  "merchant_wximge", user,1000,1000);
     }
 }

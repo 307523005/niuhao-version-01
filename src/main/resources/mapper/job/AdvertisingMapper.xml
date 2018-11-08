@@ -27,7 +27,7 @@
             AND a.merchant_id = #{merchantId}
         </if>
         <if test="advertisingTitle != null and advertisingTitle != ''">
-            AND a.advertising_title like '%#{advertisingTitle}%'
+            AND a.advertising_title LIKE '%${advertisingTitle}%'
         </if>
         <if test="advertisingUpdatetime != null and advertisingUpdatetime != '' and advertisingAddtime != null and advertisingAddtime != ''">
             AND date_format(a.advertising_updatetime,'%Y-%m-%d') <![CDATA[ >= ]]> #{advertisingAddtime}
@@ -39,6 +39,7 @@
     </select>
 
 </mapper>
+<!--CONCAT('%',#{advertisingTitle},'%')-->
         <!--
          select a.advertising_id advertising_id,t.advertisingtype_name from t_advertising a
         left join t_advertisingtype t on(a.advertisingtype_id = t.advertisingtype_id)

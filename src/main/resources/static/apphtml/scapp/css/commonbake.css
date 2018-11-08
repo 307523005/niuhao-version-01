@@ -74,7 +74,7 @@ ul.intro li:last-child{border-right:1px solid #ededed;}
 .pro-list ul li a .pro-list-txt span{ color:#fff; font-size:0.6rem; background-color:#fa4b28; padding:0 0.1rem; }
 .pro-list ul li a .pro-list-txt p{ color:#999999; font-size:0.7rem; }
 /*----货运配送------*/
-.goods-allocation ul{ background-color:transparent; } 
+.goods-allocation ul{ background-color:transparent; }
 .goods-allocation ul li{ background-color:#fff; margin-top:0.3rem; padding:0.6rem;  }
 .goods-allocation ul li a{background:url(../images/my-arrow.png) 95% center no-repeat; background-size:0.275rem 0.5rem; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; box-align: center; -webkit-align-items: center; align-items: center;}
 .goods-allocation-img{ width:3.2rem; height:3.2rem; margin-right:0.5rem; overflow:hidden; }

@@ -103,8 +103,8 @@ function goodsparticulars() {
 }*/
 function footer() {
     var footer = "";
-    footer += "<div class=\"min-price-tel\"><a href=\"javascript:copyFn();\" >点击复制</a></div>" +
-        "        <div class=\"min-price-order\"><a href=\"contactmerchant.html?merchant_id="+merchant_id+"\">微信联系</a></div>";
+    footer += "<div class=\"min-price-tel\"><a href=\"javascript:copyFn();\" >复制商品信息</a></div>" +
+        "        <div class=\"min-price-order\"><a href=\"contactmerchant.html?merchant_id="+merchant_id+"\">微信发送商户</a></div>";
     $("#footer").html(footer);
 }
 

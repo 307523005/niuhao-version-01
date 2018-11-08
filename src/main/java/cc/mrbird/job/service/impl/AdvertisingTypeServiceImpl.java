@@ -71,7 +71,9 @@ public class AdvertisingTypeServiceImpl extends BaseService<AdvertisingType> imp
             Criteria criteria = example.createCriteria();
             //按照商户id
             criteria.andCondition("merchant_id  = ", advertisingtype.getMerchant_id());
-
+            if (StringUtils.isNotBlank(advertisingtype.getAdvertisingtype_name())) {
+                criteria.andCondition("advertisingtype_name  like ", "%" + advertisingtype.getAdvertisingtype_name() + "%");
+            }
             if (StringUtils.isNotBlank(advertisingtype.getAdvertisingtype_updatetime())) {
                 String[] timeArr = advertisingtype.getAdvertisingtype_updatetime().split("~");
                 criteria.andCondition("date_format(advertisingtype_updatetime,'%Y-%m-%d') >=", timeArr[0]);

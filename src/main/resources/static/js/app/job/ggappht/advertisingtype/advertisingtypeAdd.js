@@ -50,7 +50,7 @@ function validateRule() {
             advertisingtype_name: {
                 required: true,
                 minlength: 3,
-                maxlength: 25,
+                maxlength: 5,
                 remote: {
                     url: "advertisingtype/checkadvertisingtype_name\"",
                     type: "get",
@@ -82,7 +82,7 @@ function validateRule() {
         messages: {
             advertisingtype_name: {
                 required: icon + "请输入广告类型名",
-                minlength: icon + "广告类型名长度3到25个字符",
+                minlength: icon + "广告类型名长度3到5个字符",
                 remote: icon + "广告类型名已经存在"
             },
             advertisingtype_num: icon + "请输入广告类型优先级码",

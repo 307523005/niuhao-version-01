@@ -194,9 +194,9 @@ public class AdvertisingController extends BaseController {
      */
     @RequestMapping("scapp/scappGetAdvertisingByMerchant_id")
     @ResponseBody
-    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id,Long advertisingTypeId) {
+    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id,Long advertisingTypeId,String num) {
         try {
-            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id,advertisingTypeId);
+            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id,advertisingTypeId,num);
             return ResponseBo.ok(list);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);

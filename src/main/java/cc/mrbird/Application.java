@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,7 +18,7 @@ import java.time.LocalTime;
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("cc.mrbird.*.dao")
-@EnableConfigurationProperties({NniuhaoProperies.class})//// 开启配置属性支持
+@EnableConfigurationProperties({NniuhaoProperies.class})// 开启配置属性支持
 @EnableCaching
 @EnableAsync
 public class Application /*extends SpringBootServletInitializer*/ {

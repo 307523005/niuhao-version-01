@@ -7,11 +7,34 @@
     <meta content="yes" name="apple-mobile-web-app-capable"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <meta content="telephone=no" name="format-detection"/>
+    <!--<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">-->
     <title id="title">广告资讯</title>
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/mescroll.css">
+    <link rel="stylesheet" type="text/css" href="css/mescroll-option.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script src="js/common.js"></script>
+    <style type="text/css">
+
+
+        /*列表*/
+        .mescroll {
+            position: fixed;
+            top: 40px;
+            bottom: 51px;
+            height: auto;
+        }
+
+        /*回到顶部按钮*/
+        .mescroll-totop {
+            bottom: 100px;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -21,26 +44,10 @@
 </header>
 <!--header-end-->
 
-<div class="container" id="container">
+<div>
 
-    <div id="mescroll" class="goods-allocation">
+    <div id="mescroll" class="goods-allocation mescroll">
         <ul id="advertisinglist">
-           <!-- <li>
-                <a href="advertising.html?merchant_id=39b39045d292&advertising_id=13">
-                    <div class="goods-allocation-txt">
-                        <h2><span style="float:left;width:260px;overflow: hidden;
-            text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            white-space:nowrap;"></span>大型卡车</h2>
-                        <p>载重：1.8吨</p>
-                        <p><span style="float:left;width:260px;overflow: hidden;
-            text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            white-space:nowrap;">长*宽*高：宽*高：4.2*2.1*8宽*高：4.2*2.1*8宽*高：4.2*2.1*8宽*高：4.2*2.1*8宽*高：4.2*2.1*8宽*高：4.2*2.1*8宽*高：4.2*2.1*84.2*2.1*8m</span>
-                        </p>
-                    </div>
-                </a>
-            </li>-->
         </ul>
     </div>
     <!--goods-allocation-end-->
@@ -52,11 +59,135 @@
     <ul class="footnav box-flex" id="footer_ul">
     </ul>
 </footer>
+</body>
 <script src="js/advertising/advertisingshow.js"></script>
 
 <!--可把mescroll-option.js代码拷贝到mescroll.min.js中,合为一个js文件,方便引用-->
 <script src="js/mescroll.js"></script>
+<script src="js/mescroll-option.js" type="text/javascript" charset="utf-8"></script>
 <!--container-end-->
-</body>
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        //创建MeScroll对象
+        var mescroll = initMeScroll("mescroll", {
+            down: {
+                auto: false,//是否在初始化完毕之后自动执行下拉回调callback; 默认true
+                callback: downCallback, //下拉刷新的回调
+            },
+            up: {
+                auto: false,//初始化完毕,是否自动触发上拉加载的回调
+                isBoth: true, //上拉加载时,如果滑动到列表顶部是否可以同时触发下拉刷新;默认false,两者不可同时触发; 这里为了演示改为true,不必等列表加载完毕才可下拉;
+                callback: upCallback, //上拉加载的回调
+            }
+        });
+
+        /*下拉刷新的回调 */
+        function downCallback() {
+            //加载轮播数据..
+            //...
+            //加载列表数据
+            /* getListDataFromNet(0, 1, function (data) {
+                 //联网成功的回调,隐藏下拉刷新的状态
+                 mescroll.endSuccess();
+                 //设置列表数据
+                // setListData(data, false);
+                 //显示提示
+                 $("#downloadTip").css("top", "44px");
+                 setTimeout(function () {
+                     $("#downloadTip").css("top", "20px");
+                 }, 2000);
+             }, function () {
+                 //联网失败的回调,隐藏下拉刷新的状态
+                 mescroll.endErr();
+             });*/
+            mescroll.endErr();
+        }
+
+        /*上拉加载的回调 page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+        function upCallback(page) {
+            //联网加载数据
+            console.log("page.num=" + page.num);
+            getListDataFromNet(page.num, page.size, function (data) {
+                //联网成功的回调,隐藏上拉加载的状态
+                mescroll.endSuccess(data);//传参:数据的总数; mescroll会自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+                //设置列表数据
+
+                //setListData(data, true);
+            }, function () {
+                //联网失败的回调,隐藏上拉加载的状态
+                mescroll.endErr();
+            });
+        }
+
+        /*设置列表数据*/
+        function setListData(data, isAppend) {
+            var listDom = document.getElementById("advertisinglist");
+            for (var i = 0; i < data.length; i++) {
+                var newObj = data[i];
+                var str = "<a href=\"advertising.html?merchant_id=c5c05b29ee4c&amp;advertising_id=5\">\n" +
+                    "                    <div class=\"goods-allocation-txt\">\n" +
+                    "                        <h2><span style=\"float:left;width:260px;overflow: hidden;\n" +
+                    "            text-overflow: ellipsis;\n" +
+                    "            -o-text-overflow: ellipsis;\n" +
+                    "            white-space:nowrap;\"></span>大数据的一天</h2>\n" +
+                    "                        <p>2018-11-03 17:35:44.0</p>\n" +
+                    "                    </div>\n" +
+                    "                </a>"
+                //var str = '<p>' + newObj.title + '</p>';
+                //str += '<p class="new-content">' + newObj.content + '</p>';
+                var liDom = document.createElement("li");
+                liDom.innerHTML = str;
+
+                if (isAppend) {
+                    listDom.appendChild(liDom);//加在列表的后面,上拉加载
+                } else {
+                    listDom.insertBefore(liDom, listDom.firstChild);//加在列表的前面,下拉刷新
+                }
+            }
+        }
+
+        /*联网加载列表数据*/
+        var downIndex = 0;
+
+        function getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
+            //延时一秒,模拟联网
+            setTimeout(function () {
+                try {
+                    var a = advertisinglist(pageNum);
+                    /*var newArr = [];
+                    if (pageNum == 0) {
+                        //此处模拟下拉刷新返回的数据
+                        downIndex++;
+                        var newObj = {title: "【新增话题" + downIndex + "】 新增话题", content: "新增话题的内容"};
+                        newArr.push(newObj);
+                    } else {
+                        //此处模拟上拉加载返回的数据
+                        if (pageNum != 10) {
+                        for (var i = 0; i < pageSize; i++) {
+                            var upIndex = (pageNum - 1) * pageSize + i + 1;
+                            var newObj = {title: "【话题" + upIndex + "】 标题标题标题标题标题标题", content: "内容内容内容内容内容内容内容内容内容内容"};
+                            newArr.push(newObj);
+                        }
+                        }else {
+
+                        }
+                    }*/
+                    //联网成功的回调
+                    successCallback && successCallback(a);
+                } catch (e) {
+                    //联网失败的回调
+                    errorCallback && errorCallback();
+                }
+            }, 1000)
+        }
+
+        //禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
+        document.ondragstart = function () {
+            return false;
+        }
+    });
+</script>
+
+
 </html>
 

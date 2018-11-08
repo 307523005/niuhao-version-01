@@ -50,7 +50,7 @@ function validateRule() {
             goodstype_name: {
                 required: true,
                 minlength: 3,
-                maxlength: 25,
+                maxlength: 5,
                 remote: {
                     url: "goodstype/checkgoodstype_name",
                     type: "get",
@@ -82,7 +82,7 @@ function validateRule() {
         messages: {
             goodstype_name: {
                 required: icon + "请输入商品类型名",
-                minlength: icon + "商品类型名长度3到25个字符",
+                minlength: icon + "商品类型名长度3到5个字符",
                 remote: icon + "商品类型名已经存在"
             },
             goodstype_num: icon + "请输入商品类型优先级码",

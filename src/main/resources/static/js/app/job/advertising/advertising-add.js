@@ -134,7 +134,7 @@ function validateRule() {
             advertisingName: {
                 required: true,
                 minlength: 2,
-                maxlength: 20,
+                maxlength: 50,
                 remote: {
                     url: "advertising/checkadvertisingName",
                     type: "get",
@@ -166,7 +166,7 @@ function validateRule() {
         messages: {
             advertisingName: {
                 required: icon + "请输入广告名",
-                minlength: icon + "广告名长度2到20个字符",
+                minlength: icon + "广告名长度2到50个字符",
                 remote: icon + "广告名已经存在"
             },
             advertisingNum: icon + "请输入广告优先级码",

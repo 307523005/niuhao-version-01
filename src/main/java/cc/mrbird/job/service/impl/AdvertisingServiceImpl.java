@@ -110,15 +110,22 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
     }
 
     @Override
-    public List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId) {
+    public List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId, String num) {
         Example example = new Example(Advertising.class);
         Criteria criteria = example.createCriteria();
         criteria.andCondition("merchant_id =", merchant_id);
+        String page = " limit 10";
+        if (num != null && !num.equals("")) {
+          //  if (Integer.valueOf(num) > 1) {
+                page = " limit " + Integer.valueOf(num) * 10 + ", " + (Integer.valueOf(num)+1) * 10;
+           // }
+        }
+
         if (advertisingTypeId != null && !advertisingTypeId.equals("")) {
             criteria.andCondition("advertisingtype_id =", advertisingTypeId);
-            example.setOrderByClause("advertising_updatetime desc");
+            example.setOrderByClause("advertising_updatetime desc " + page);
         } else {
-            example.setOrderByClause("advertising_updatetime desc limit 10");
+            example.setOrderByClause("advertising_updatetime desc " + page);
         }
 
         List<Advertising> list = this.selectByExample(example);

@@ -85,10 +85,10 @@ function goodsshow() {
 /*footer_ul*/
 function footer_ul() {
     var footer_ul = "";
-    footer_ul += "      <li class=\"on\"><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">加盟</span></a></li>\n" +
-        "        <li><a href=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">订单</span></a></li>\n" +
-        "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">我的</span></a></li>";
+    footer_ul += "      <li ><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
+        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li class=\"on\"><a href=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
+        "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }
 
