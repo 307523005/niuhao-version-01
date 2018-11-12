@@ -31,8 +31,8 @@ function merchant() {
         success: function (r) {
             if (r.code === 0) {
                 var merchant = r.msg;
-                var merchanthtml = "<em>" + merchant.merchant_region + "</em>\n" +
-                    "<h2>" + merchant.merchant_name + "</h2>\n<a href=\"tel:" + merchant.merchant_phone + "\"><span class=\"tel\"></span></a>"
+                var merchanthtml = "<em>" + merchant.merchant_region + "</em>" +
+                    "<h2>" + merchant.merchant_name + "</h2><a href=\"tel:" + merchant.merchant_phone + "\"><span class=\"tel\"></span></a>"
                 $("#merchant").html(merchanthtml);
                 $("#title").html(merchant.merchant_name);
                 bannerimglist();
@@ -40,7 +40,6 @@ function merchant() {
                 advertisingtypelist();
                 advertisinglist();
                 footer_ul();
-                //bb();
             } else {
                 $("#container").html("您访问的链接有问题!!!");
             }
@@ -239,8 +238,8 @@ function carousel() {
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li class=\"on\"><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
-        "        <li><a href=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
+        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }

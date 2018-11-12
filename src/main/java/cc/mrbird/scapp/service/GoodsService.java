@@ -21,8 +21,8 @@ public interface GoodsService extends IService<Goods> {
     @Cacheable(key = "'findAllGoods-'+#request.toString()+#goods.toString()")
     List<Goods> findAllGoods(QueryRequest request, Goods goods);
 
-    @Cacheable(key = "'getGoods-'+#p0+#p1")
-    List<Goods> getGoods(String merchant_id, String goodstype_id);
+    @Cacheable(key = "'getGoods-'+#p0+#p1+#p2")
+    List<Goods> getGoods(String merchant_id, String goodstype_id,String query);
 
     @Cacheable(key = "'PageList-'+#request.toString() + #goods.toString()")
     PageInfo<Goods> PageList(QueryRequest request, Goods goods);

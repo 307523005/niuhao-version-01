@@ -47,7 +47,7 @@ function merchant() {
 }
 
 /*goodsshow*/
-function goodsshow() {
+function goodsshow(query) {
     $.ajax({
         type: "POST",
         async: false,//同步
@@ -57,6 +57,7 @@ function goodsshow() {
         data: {
             merchant_id: merchant_id,
             goodstype_id: goodstype_id,
+            query:query,
         },
         success: function (r) {
             if (r.code === 0) {
@@ -86,10 +87,14 @@ function goodsshow() {
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li ><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
-        "        <li class=\"on\"><a href=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
+        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li class=\"on\"><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">"+type+"</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }
 
 
+function query() {
+    var query = $("#query").val();
+    goodsshow(query.replace(/\s+/g,""));
+}

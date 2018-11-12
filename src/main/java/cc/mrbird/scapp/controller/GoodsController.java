@@ -133,9 +133,9 @@ public class GoodsController extends BaseController {
 
     @RequestMapping("scapp/scappGetGoods")
     @ResponseBody
-    public ResponseBo scappGetGoods(String merchant_id,String goodstype_id) {
+    public ResponseBo scappGetGoods(String merchant_id,String goodstype_id,String query) {
         try {
-            List<Goods> list = this.goodsService.getGoods(merchant_id,goodstype_id);
+            List<Goods> list = this.goodsService.getGoods(merchant_id,goodstype_id,query);
             return ResponseBo.ok(list);
         } catch (Exception e) {
             log.error("获取商品信息失败", e);

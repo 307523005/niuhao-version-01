@@ -9,7 +9,7 @@ document.write("<script language=javascript src='js/deploy.js'></script>");
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return decodeURI (r[2]);
+        if (r != null) return decodeURI(r[2]);
         return null;
     }
 })(jQuery);
@@ -47,8 +47,9 @@ function merchant() {
 }
 
 /*广告列表*/
-var size=0;
-function advertisinglist(num) {
+var size = 0;
+
+function advertisinglist(num,query) {
     var advertisinglist = "";
     $.ajax({
         type: "POST",
@@ -59,7 +60,8 @@ function advertisinglist(num) {
         data: {
             merchant_id: merchant_id,
             advertisingTypeId: advertisingTypeId,
-            num:num,
+            num: num,
+            query:query,
         },
         success: function (r) {
             if (r.code === 0) {
@@ -67,19 +69,22 @@ function advertisinglist(num) {
                 size = advertising.length;
                 for (var i = 0; i < advertising.length; i++) {
                     advertisinglist += " <li>\n" +
-                        "                <a href=\"advertising.html?merchant_id="+merchant_id+"&advertising_id="+advertising[i].advertisingId+"\">\n" +
+                        "                <a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\">\n" +
                         "                    <div class=\"goods-allocation-txt\">\n" +
                         "                        <h2><span style=\"float:left;width:260px;overflow: hidden;\n" +
                         "            text-overflow: ellipsis;\n" +
                         "            -o-text-overflow: ellipsis;\n" +
-                        "            white-space:nowrap;\"></span>"+advertising[i].advertisingTitle+"</h2>\n" +
-                        "                        <p>"+advertising[i].advertisingUpdatetime+"</p>\n" +
+                        "            white-space:nowrap;\"></span>" + advertising[i].advertisingTitle + "</h2>\n" +
+                        "                        <p>" + advertising[i].advertisingUpdatetime + "</p>\n" +
                         "                    </div>\n" +
                         "                </a>\n" +
                         "            </li>";
                 }
-                var aa =  $("#advertisinglist").html();
-                $("#advertisinglist").html(aa+advertisinglist);
+                if (num<1){
+                    $("#advertisinglist").html("");
+                }
+                var aa = $("#advertisinglist").html();
+                $("#advertisinglist").html(aa + advertisinglist);
                 $("#title").html(type);
                 $("#titl_hi").html(type);
             }
@@ -91,12 +96,18 @@ function advertisinglist(num) {
     });
     return size;
 }
+
 /*footer_ul*/
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li ><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
-        "        <li><a href=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
+        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id + "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">" + type + "</span></a></li>\n" +
+        "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
+}
+
+function query() {
+    var query = $("#query").val();
+    advertisinglist(0,query.replace(/\s+/g,""));
 }

@@ -68,9 +68,12 @@ public class GoodsServiceImpl extends BaseService<Goods> implements GoodsService
     }
 
     @Override
-    public List<Goods> getGoods(String merchant_id,String goodstype_id) {
+    public List<Goods> getGoods(String merchant_id,String goodstype_id,String query) {
         Example example = new Example(Goods.class);
         Criteria criteria = example.createCriteria();
+        if (query != null && !query.equals("")) {
+            criteria.andCondition("goods_name like ", "%" + query + "%");
+        }
         criteria.andCondition("merchant_id =", merchant_id);
         criteria.andCondition("goodstype_id =", goodstype_id);
         example.setOrderByClause("goods_num ASC");

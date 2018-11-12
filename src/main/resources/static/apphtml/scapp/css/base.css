@@ -176,6 +176,12 @@ img {
 	padding-left:0.625rem;
 	margin:0 0.625rem;
 }
+.header a.query {
+	background:url(../images/chaxun.png) left center no-repeat;
+	background-size:auto 50%;
+	padding-left:0.625rem;
+	margin:0 0.625rem;
+}
 .header h1{ color:#fff; font-size:0.8rem; margin-right:3.25rem; text-align:center;-webkit-box-flex: 1;-moz-box-flex: 1;-ms-box-flex: 1; box-flex: 1;}
 .header-save h1{ margin-right:0; }
 .header-save button{ color:#fff; padding-left: 0.625rem; margin:0 0.625rem;font-size: 0.7rem;}

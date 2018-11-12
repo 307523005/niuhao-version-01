@@ -124,7 +124,7 @@ public class AdvertisingTypeServiceImpl extends BaseService<AdvertisingType> imp
         if (StringUtils.isNotBlank(merchant_id)) {
             example.createCriteria().andCondition("merchant_id=", merchant_id);
         }
-        example.setOrderByClause("advertisingtype_updatetime desc");
+        example.setOrderByClause("advertisingtype_num ASC");
         List<AdvertisingType> list = this.selectByExample(example);
         return list;
     }
