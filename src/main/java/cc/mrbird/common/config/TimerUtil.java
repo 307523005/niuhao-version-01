@@ -42,7 +42,7 @@ public class TimerUtil {
                 Advertising advertisings = new Advertising();
                 advertisings.setAdvertisingHits(intraday.toString());
                 advertisings.setAdvertisingId(advertising_id);
-                advertisingService.updateAdvertising(advertisings);
+                advertisingService.updateAdvertisingRedis(advertisings);
                 log.info("同步点击量:" + advertising_id.toString());
             }
         }

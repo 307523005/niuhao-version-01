@@ -184,7 +184,6 @@ function exportJobExcel() {
     $.post(ctx + "job/excel", $(".job-table-form").serialize(), function (r) {
         if (r.code === 0) {
             window.location.href = "common/download?fileName=" + r.msg + "&delete=" + true;
-            alert(r.msg)
         } else {
             $MB.n_warning(r.msg);
         }

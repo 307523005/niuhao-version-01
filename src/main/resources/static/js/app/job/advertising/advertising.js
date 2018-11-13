@@ -27,6 +27,14 @@ $(function () {
                     return pageSizes * (pageNumbers - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
                 }
             }, {
+                field: 'advertisingContent',
+                title: '查看',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    return ' <a target="_blank" href="http://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id=' + row.merchantId + '&advertising_id=' + row.advertisingId + '" class="btn">查看</a>';
+                    /*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
+                }
+            }, {
                 field: 'advertisingName',
                 title: '广告名称',
                 align: 'center'
@@ -64,13 +72,6 @@ $(function () {
                 field: 'advertisingUpdateuser',
                 title: '操作用户',
                 align: 'center'
-            }, {
-                field: 'advertisingContent',
-                title: '查看',
-                formatter: function (value, row, index) {
-                    return ' <a target="_blank" href="http://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id=' + row.merchantId + '&advertising_id=' + row.advertisingId + '" class="btn">查看</a>';
-                    /*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
-                }
             }
         ]
     };

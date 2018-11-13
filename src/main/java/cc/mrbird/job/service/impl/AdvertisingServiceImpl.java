@@ -108,6 +108,11 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
         advertising.setAdvertisingUpdatetime(dateFormat);
         this.updateNotNull(advertising);
     }
+    @Override
+    @Transactional
+    public void updateAdvertisingRedis(Advertising advertising) {
+        this.updateNotNull(advertising);
+    }
 
     @Override
     public List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId, String num, String query) {

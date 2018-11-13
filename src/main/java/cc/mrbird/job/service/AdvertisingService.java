@@ -29,9 +29,11 @@ public interface AdvertisingService extends IService<Advertising> {
     @CacheEvict(allEntries = true)
     void deleteAdvertising(String advertising_id);
 
-    @Async(value = "asyncServiceExecutor")
     @CacheEvict(allEntries = true)
     void updateAdvertising(Advertising advertising);
+    @Async(value = "asyncServiceExecutor")
+    @CacheEvict(allEntries = true)
+    void updateAdvertisingRedis(Advertising advertising);
 
     @Cacheable(key = "'scappGetAdvertisingByMerchant_id-'+#p0+#p1+#p2+#p3")
     List<Advertising> scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId,String num, String query);
