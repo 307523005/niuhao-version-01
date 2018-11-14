@@ -68,6 +68,7 @@ function goodsparticulars() {
                     "    <ul class=\"details-price clearfix\">\n" +
                     "        <li><em>"+goods.goods_price+"</em>"+goods.goods_units+"</li>\n" +
                     "    </ul>\n" +
+                    "    <div class=\"tip\">温馨提示：具体服务和配件价格请和师傅商定后确认</div>" +
                     "    <div class=\"min-price\">\n" +
                     "        <div class=\"min-price-tit\"><h2>活动</h2></div>\n" +
                     "        <div class=\"min-price-con\">"+goods.goods_activity+"</div>\n" +
