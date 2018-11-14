@@ -7,12 +7,15 @@ var editor1;
 $(function () {
     KindEditor.ready(function (K) {
         editor1 = K.create('#paperTitle', {
-            items: ["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste", "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", "multiimage", "flash", "media", "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", "|", "about"],
+            items: ["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste", "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", /*"multiimage", "flash", "media",*/ "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", "|", "about"],
             cssPath: 'js/kindeditor/plugins/code/prettify.css',
             uploadJson: 'fileUpload',
             fileManagerJson: 'fileManager',
-            allowFileManager: true,
-            autoHeightMode: true,
+            //allowFileManager: true,
+            // autoHeightMode: true,
+            minWidth: 200,
+            minHeight: 200,
+            cssData: 'body img{max-width:500px}'
             //关键所在，当失去焦点时执行this.sync()，同步输入的值到textarea中;
             /* afterBlur: function () {
                  this.sync();
@@ -65,6 +68,16 @@ $(function () {
         closeModal();
     });
 });*/
+function fixedKeToolbar() {
+    var keContainer = $(".ke-container"), keToolbar = $(".ke-toolbar");
+    var winScollTop = $(window).scrollTop();
+    if (winScollTop - keContainer.offset().top > 0)
+        keToolbar.css({"position": "fixed", "top": 0, "width": keToolbar.closest("div").width()});
+    else
+        keToolbar.removeAttr("style");
+}
+
+window.onscroll = fixedKeToolbar;
 var validator;
 var $advertisingAddForm = $("#advertising-add-form");
 var advertisingTypeId = $advertisingAddForm.find("input[name='advertisingTypeId']");

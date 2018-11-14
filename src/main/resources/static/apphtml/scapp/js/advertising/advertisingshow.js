@@ -87,11 +87,13 @@ function advertisinglist(num,query) {
                 $("#advertisinglist").html(aa + advertisinglist);
                 $("#title").html(type);
                 $("#titl_hi").html(type);
+            }else {
+                $("#container").html("暂无数据。。。");
             }
 
         },
         error: function () {
-
+            $("#container").html("您访问的链接有问题!!!");
         }
     });
     return size;

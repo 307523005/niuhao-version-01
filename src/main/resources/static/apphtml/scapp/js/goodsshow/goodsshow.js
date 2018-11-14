@@ -73,7 +73,7 @@ function goodsshow(query) {
 
 
             } else {
-                $("#container").html("您访问的链接有问题!!!");
+                $("#container").html("您访问的信息已删除!!!");
             }
 
         },

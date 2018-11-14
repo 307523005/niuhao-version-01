@@ -46,7 +46,7 @@ public class FileUploadUtil {
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("extension", "gif,jpg,jpeg,png,bmp");//扩展名
         // 最大文件大小
-        long maxSize = 1000000;
+        long maxSize = 3000000;
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -187,7 +187,7 @@ public class FileUploadUtil {
         extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
         // 最大文件大小
-        long maxSize = 1000000;
+        long maxSize = 3000000;
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -309,7 +309,7 @@ public class FileUploadUtil {
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");*/
 
         // 最大文件大小
-        long maxSize = 100000;
+        long maxSize = 300000;
 
         response.setContentType("text/html; charset=UTF-8");
 
