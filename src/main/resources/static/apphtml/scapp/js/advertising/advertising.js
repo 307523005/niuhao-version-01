@@ -8,7 +8,7 @@ document.write("<script language=javascript src='js/deploy.js'></script>");
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return decodeURI (r[2]);
+        if (r != null) return decodeURI(r[2]);
         return null;
     }
 })(jQuery);
@@ -71,6 +71,7 @@ function showadvertising(merchant_name) {
                 });
                 $("#advertisingshow").html(advertisingContent);
                 $("#title").html(advertising.advertisingTitle);
+                showMessage();
 
             } else {
                 $("#container").html("您访问的信息已删除!!!");
@@ -86,7 +87,7 @@ function showadvertising(merchant_name) {
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li ><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id + "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
         "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
@@ -117,4 +118,48 @@ function intraday() {
         }
     });
     return advertisingnum;
+}
+
+/*评论展示*/
+function showMessage() {
+    $.ajax({
+        type: "POST",
+        async: true,//异步
+        dataType: "json",
+        cache: false,//不缓存此页面
+        url: httpurl + "scapp/getAdvertisingMessageByadvertisingId",
+        data: {
+            advertisingId: advertisingId,
+        },
+        success: function (r) {
+            if (r.code === 0) {
+                var advertisingMessage = r.msg;
+                var message = "<div style=\"margin-left:20px;float: left;margin-top: 10px;\">精选留言</div>\n" +
+                    "        <div style=\"margin-right: 20px;float: right;margin-top: 10px;\"><a\n" +
+                    "                href=\"advertising-message.html?type=" + "" + "&merchant_id=" + merchant_id + "&advertising_id=" + advertisingId + "\"><span>留言</span></a>" +
+                    "        </div>" +
+                    "<br>" +
+                    "<br>" +
+                    "        <div class=\"add-class\">";
+                if (advertisingMessage.length > 0) {
+                    for (var i = 0; i < advertisingMessage.length; i++) {
+                        message += "<li class=\"clearfix\"><span class=\"am-article-tourist\">游客</span><br>" + advertisingMessage[i].advmessageContent + "</li>";
+                    }
+                }else {
+                    message +="<span class=\"am-article-tourist\">暂无留言</span>";
+                }
+
+
+                message += "<li class=\"clearfix\"><span class=\"am-article-author\">作者</span><br>感谢您的答复！</li></ul></div>";
+                $("#show-message").html(message);
+            } else {
+                $("#show-message").html("您访问的出现异常!!!");
+            }
+
+        },
+        error: function () {
+            $("#show-message").html("您访问的出现异常!!!");
+        }
+    });
+
 }

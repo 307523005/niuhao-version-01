@@ -48,7 +48,6 @@ function merchant() {
 
 /*广告列表*/
 var size = 0;
-
 function advertisinglist(num,query) {
     var advertisinglist = "";
     $.ajax({

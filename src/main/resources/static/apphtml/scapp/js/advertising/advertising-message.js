@@ -8,12 +8,13 @@ document.write("<script language=javascript src='js/deploy.js'></script>");
     $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return decodeURI (r[2]);
+        if (r != null) return decodeURI(r[2]);
         return null;
     }
 })(jQuery);
 var merchant_id = $.getUrlParam('merchant_id');
 var advertisingId = $.getUrlParam('advertising_id');
+var type = $.getUrlParam('type');
 window.onload = function () {
     merchant();
 }
@@ -33,8 +34,7 @@ function merchant() {
             footer_ul();
             var merchant = r.msg;
             if (r.code === 0) {
-                showadvertising(merchant.merchant_name);
-
+                $("#title").html(type);
             } else {
                 $("#container").html("您访问的链接有问题!!!");
             }
@@ -50,11 +50,38 @@ function merchant() {
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li ><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li class=\"on\"><a  href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id + "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
         "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">活动促销</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
 }
+
 function message() {
-    window.location.href="/apphtml/scapp/advertising.html?merchant_id=c5c05b29ee4c&advertising_id=5";
+    window.location.href = "/apphtml/scapp/advertising.html?merchant_id="+merchant_id+"&advertising_id="+advertisingId;
+}
+
+/*提交留言*/
+function upmessage() {
+    $.ajax({
+        type: "POST",
+        async: true,//异步
+        dataType: "json",
+        cache: false,//不缓存此页面
+        url: httpurl + "scapp/addAdvertisingMessage",
+        data: {
+            merchantId: merchant_id, advertisingId: advertisingId, advmessageContent: $("#message-content").val(),
+        },
+        success: function (r) {
+            if (r.code === 0) {
+                new TipBox({type: 'success', str: '留言提交成功', hasBtn: true});
+                message();
+            } else {
+                $("#container").html("您访问的链接有问题!!!");
+            }
+
+        },
+        error: function () {
+            $("#container").html("您访问的链接有问题!!!");
+        }
+    });
 }

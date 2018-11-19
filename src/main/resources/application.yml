@@ -18,8 +18,8 @@ spring:
       # 数据库访问配置, 使用druid数据源 
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
-      #url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      #url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       username:  niuhao
       password:  niuhao
       #username: basewin
@@ -89,8 +89,8 @@ spring:
     # Redis数据库索引（默认为0）
     database: 1
     # Redis服务器地址 59.110.241.188
-    host: 59.110.241.188
-    #host: localhost
+    #host: 59.110.241.188
+    host: localhost
     # Redis服务器连接端口
     port: 6479
     # Redis 密码
