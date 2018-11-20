@@ -43,13 +43,11 @@ public class WxuserServiceImpl implements WxuserService {
     public Map<String, Object> H5login(String code) throws Exception {
         String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .format(new Date());// new Date()为获取当前系统时间
-        System.out.println("-----redirectUrl----" + code);
         Map map = new HashMap();
         // 根据code得到access_token,openid
         String getH5OpenidUrl = WXDefinedChars.getH5Openid(code);
         String rec = HttpUtils.sendGet(getH5OpenidUrl);
         JSONObject json = JSON.parseObject(rec);
-        System.out.println("------------json------" + json);
         // 获取回执的openid
         // 获取access_token
         String gzhopenid = json.getString("openid");

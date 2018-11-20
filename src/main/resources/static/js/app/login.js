@@ -41,20 +41,24 @@ function reloadCode() {
 
 function login() {
     var $loginButton = $("#loginButton");
+    $loginButton.attr("disabled", true);
     var username = $(".one input[name='username']").val().trim();
     var password = $(".one input[name='password']").val().trim();
     var code = $(".one input[name='code']").val().trim();
     var rememberMe = $(".one input[name='rememberMe']").is(':checked');
     if (username === "") {
         $MB.n_warning("请输入用户名！");
+        $loginButton.attr("disabled", false);
         return;
     }
     if (password === "") {
         $MB.n_warning("请输入密码！");
+        $loginButton.attr("disabled", false);
         return;
     }
     if (code === "") {
         $MB.n_warning("请输入验证码！");
+        $loginButton.attr("disabled", false);
         return;
     }
     $loginButton.html("").append("<div class='login-loder'><div class='line-scale'><div></div><div></div><div></div><div></div><div></div></div></div>");
@@ -79,32 +83,40 @@ function login() {
             }
         }
     });
+    $loginButton.attr("disabled", false);
 }
 
 function regist() {
+    $("#regist").attr("disabled", true);
     var username = $(".two input[name='username']").val().trim();
     var password = $(".two input[name='password']").val().trim();
     var cpassword = $(".two input[name='cpassword']").val().trim();
     if (username === "") {
         $MB.n_warning("用户名不能为空！");
+        $("#regist").attr("disabled", false);
         return;
     } else if (username.length > 10) {
         $MB.n_warning("用户名长度不能超过10个字符！");
+        $("#regist").attr("disabled", false);
         return;
     } else if (username.length < 3) {
         $MB.n_warning("用户名长度不能少于3个字符！");
+        $("#regist").attr("disabled", false);
         return;
     }
     if (password === "") {
         $MB.n_warning("密码不能为空！");
+        $("#regist").attr("disabled", false);
         return;
     }
     if (cpassword === "") {
         $MB.n_warning("请再次输入密码！");
+        $("#regist").attr("disabled", false);
         return;
     }
     if (cpassword !== password) {
         $MB.n_warning("两次密码输入不一致！");
+        $("#regist").attr("disabled", false);
         return;
     }
     $.ajax({
@@ -127,6 +139,7 @@ function regist() {
             }
         }
     });
+    $("#regist").attr("disabled", false);
 }
 
 document.onkeyup = function (e) {

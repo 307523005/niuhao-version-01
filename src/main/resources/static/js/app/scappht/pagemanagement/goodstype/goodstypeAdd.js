@@ -4,6 +4,7 @@ $(function () {
     validateRule();
 
     $("#goodstype-add .btn-save").click(function () {
+        $("#goodstype-add-button").attr("disabled", true);
         var name = $(this).attr("name");
         validator = $goodstypeAddForm.validate();
         var flag = validator.form();
@@ -37,6 +38,7 @@ $(function () {
 
 function closeModal() {
     $("#goodstype-add-button").attr("name", "save");
+    $("#goodstype-add-button").attr("disabled", false);
     $("#goodstype-add-modal-title").html('新增商品类型');
     $goodstypeAddForm.find("input[name='goodstype_name']").removeAttr("readonly");
     validator.resetForm();

@@ -58,7 +58,6 @@ public class GoodstypeController extends BaseController {
     public Map<String, Object> goodstypeList(QueryRequest request, Goodstype goodstype) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--" + merchantId);
         goodstype.setMerchant_id(user.getMerchantId());
         PageInfo<Goodstype> pageInfo = this.goodstypeService.PageList(request, goodstype);
         return getDataTable(pageInfo);

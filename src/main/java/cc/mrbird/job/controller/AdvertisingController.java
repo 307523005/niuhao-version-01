@@ -76,7 +76,6 @@ public class AdvertisingController extends BaseController {
     public Map<String, Object> advertisingList(QueryRequest request, Advertising advertising) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--"+merchantId);
         advertising.setMerchantId(user.getMerchantId());
         PageInfo<Advertising> pageInfo = advertisingService.PageList(request, advertising);
         return getDataTable(pageInfo);
@@ -115,7 +114,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("advertising/update")
     @ResponseBody
     public ResponseBo updateadvertising(Advertising advertising) {
-        log.info("update--+"+advertising.getAdvertisingName());
         try {
             User user = RequestUtils.currentLoginUser();
             advertising.setAdvertisingUpdateuser(user.getUsername());
@@ -177,7 +175,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("scapp/scappgetadvertising")
     @ResponseBody
     public ResponseBo scappgetadvertising(Long advertisingId) {
-        log.info("----"+advertisingId.toString());
         try {
             Advertising advertising = this.advertisingService.findAdvertising(advertisingId);
             return ResponseBo.ok(advertising);
@@ -196,7 +193,6 @@ public class AdvertisingController extends BaseController {
     @ResponseBody
     public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id,Long advertisingTypeId,String num,String query) {
         try {
-            log.info(num+"..+.+.+.+.++..."+query);
             List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id,advertisingTypeId,num,query);
             return ResponseBo.ok(list);
         } catch (Exception e) {

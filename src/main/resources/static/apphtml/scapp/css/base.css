@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
+/* CSS Document 下方菜单样式*/
  /*css reset*/
 * {
     box-sizing: border-box;
@@ -254,7 +254,7 @@ img {
 .footer {
     position: fixed;
     bottom: 0;
-    left: 0;
+    /*left: 0;*/
     width: 100%;
     max-width: 600px;
     border-top: 1px solid #e9e9e9;

@@ -4,6 +4,7 @@ $(function () {
     validateRule();
 
     $("#bannerimg-add .btn-save").click(function () {
+        $("#bannerimg-add-button").attr("disabled", true);
         var name = $(this).attr("name");
         validator = $bannerimgAddForm.validate();
         var flag = validator.form();
@@ -37,6 +38,7 @@ $(function () {
 
 function closeModal() {
     $("#bannerimg-add-button").attr("name", "save");
+    $("#bannerimg-add-button").attr("disabled", false);
     $("#bannerimg-add-modal-title").html('新增轮播图');
     $bannerimgAddForm.find("input[name='bannerimg_name']").removeAttr("readonly");
     validator.resetForm();

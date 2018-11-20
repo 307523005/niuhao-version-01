@@ -104,7 +104,6 @@ public class SendTemplateUtil {
                             first+keyword1+keyword2+keyword3+keyword4+keyword5+keyword6+
                              "}"+
                             "}";        
-            System.out.println(params);
             out.write(params.getBytes("UTF-8"));
             out.flush();
             out.close(); 
@@ -114,7 +113,6 @@ public class SendTemplateUtil {
             while ((line = reader.readLine()) != null){
                 responseStr+=line;
             }
-            System.out.println(responseStr);
             reader.close();
             urlConnection.disconnect();
 

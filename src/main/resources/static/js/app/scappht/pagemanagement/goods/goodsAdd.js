@@ -7,6 +7,7 @@ $(function () {
     validateRule();
     initgoodstype();//获取商品类型列表
     $("#goods-add .btn-save").click(function () {
+        $("#goods-add-button").attr("disabled", true);
         var name = $(this).attr("name");
         validator = $goodsAddForm.validate();
         var flag = validator.form();
@@ -40,6 +41,7 @@ $(function () {
 
 function closeModal() {
     $("#goods-add-button").attr("name", "save");
+    $("#goods-add-button").attr("disabled", false);
     $("#goods-add-modal-title").html('新增商品');
 
     $goodstype_idSelect.multipleSelect('setSelects', []);

@@ -14,7 +14,7 @@ var $MB = (function () {
         strictSearch: false,//全匹配搜索，否则为模糊搜索
         showColumns: true,//是否显示所有的列
         minimumCountColumns: 2,//最少允许的列数
-        clickToSelect: true,//是否启用点击选中行
+        clickToSelect: false,//是否启用点击选中行
         uniqueId: "ID",//每一行的唯一标识，一般为主键列
         showToggle: true, //是否显示详细视图和列表视图的切换按钮
         cardView: false,//是否默认显示详细视图

@@ -87,8 +87,8 @@ $(function () {
     validateRule();
     initadvertisingType()
     $("#advertising-add .btn-save").click(function () {
+        $("#advertising-add-button").attr("disabled", true);
         editor1.sync();//将KindEditor的数据同步到textarea标签。
-
         // var html = $("#paperTitle").value;
         var html = $('#paperTitle').val();
         html = html.replace(ctx + "/images22/g", "/images22").replace("/images22/g", ctx + "/images22");
@@ -131,6 +131,7 @@ $(function () {
 function closeModal() {
     KindEditor.html("#paperTitle", "");//给富文本赋值
     $("#advertising-add-button").attr("name", "save");
+    $("#advertising-add-button").attr("disabled", false);
     //$MB.closeModal("advertising-add");
     $MB.closeAndRestModal("advertising-add");
     $advertisingTypeIdSelect.multipleSelect('setSelects', []);

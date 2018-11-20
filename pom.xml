@@ -6,7 +6,7 @@
     <groupId>cc.mrbird</groupId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <!--<packaging>war</packaging>-->
+<!--    <packaging>war</packaging>-->
     <name>niuhao-version-01</name>
     <artifactId>niuhao-version-01</artifactId>
 
