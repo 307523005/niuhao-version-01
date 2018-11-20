@@ -14,7 +14,7 @@ public interface AdvertisingMessageService extends IService<AdvertisingMessage> 
 
     @CacheEvict(allEntries = true)
     void addAdvertisingMessage(AdvertisingMessage advertisingMessage);
-    @Cacheable(key = "'getAdvertisingMessageByadvertisingId-'+#p0")
+    @Cacheable(key = "'get-'+#advertisingMessage.toString()")
     List<AdvertisingMessage> getAdvertisingMessageByadvertisingId(AdvertisingMessage advertisingMessage);
 
 /*

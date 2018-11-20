@@ -44,7 +44,20 @@ public class AdvertisingMessage implements Serializable {
 
     @Column(name = "advmessage_show")
     private int advmessageShow;
-
+    @Override
+    public String toString() {
+        return "AdvertisingMessage{" +
+                "advmessageId=" + advmessageId +
+                ", merchantId='" + merchantId + '\'' +
+                ", advertisingId='" + advertisingId + '\'' +
+                ", wxuserId='" + wxuserId + '\'' +
+                ", advmessageContent=" + advmessageContent +
+                ", advmessageAddtime='" + advmessageAddtime + '\'' +
+                ", advmessageAuthorcontent='" + advmessageAuthorcontent + '\'' +
+                ", advmessageUpdateuser='" + advmessageUpdateuser + '\'' +
+                ", advmessageShow='" + advmessageShow + '\'' +
+                '}';
+    }
     public String getAdvmessageId() {
         return advmessageId;
     }

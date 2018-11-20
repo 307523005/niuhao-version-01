@@ -15,7 +15,7 @@ import java.util.List;
 
 
 /**
- * 广告评论
+ * 广告留言
  */
 @Controller
 public class AdvertisingMessageController extends BaseController {
@@ -25,7 +25,7 @@ public class AdvertisingMessageController extends BaseController {
 
 
     /**
-     * 添加广告评论
+     * 添加广告留言
      *
      * @param advertisingMessage
      * @return
@@ -36,10 +36,10 @@ public class AdvertisingMessageController extends BaseController {
     public ResponseBo addAdvertisingMessage(AdvertisingMessage advertisingMessage) throws Exception {
         try {
             this.advertisingMessageService.addAdvertisingMessage(advertisingMessage);
-            return ResponseBo.ok("新增广告评论成功！");
+            return ResponseBo.ok("新增广告留言成功！");
         } catch (Exception e) {
-            log.error("新增广告评论失败", e);
-            return ResponseBo.error("新增广告评论失败，请联系网站管理员！");
+            log.error("新增广告留言失败", e);
+            return ResponseBo.error("新增广告留言失败，请联系网站管理员！");
         }
     }
     @RequestMapping(value = "scapp/getAdvertisingMessageByadvertisingId")
@@ -49,8 +49,8 @@ public class AdvertisingMessageController extends BaseController {
             List<AdvertisingMessage> list = this.advertisingMessageService.getAdvertisingMessageByadvertisingId(advertisingMessage);
             return ResponseBo.ok(list);
         } catch (Exception e) {
-            log.error("获取广告评论失败", e);
-            return ResponseBo.error("获取广告评论失败，请联系网站管理员！");
+            log.error("获取广告留言失败", e);
+            return ResponseBo.error("获取广告留言失败，请联系网站管理员！");
         }
     }
 

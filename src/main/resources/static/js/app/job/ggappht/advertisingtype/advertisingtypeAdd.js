@@ -4,6 +4,7 @@ $(function () {
     validateRule();
 
     $("#advertisingtype-add .btn-save").click(function () {
+        $("#advertisingtype-add-button").attr("disabled", true);
         var name = $(this).attr("name");
         validator = $advertisingtypeAddForm.validate();
         var flag = validator.form();
@@ -37,6 +38,7 @@ $(function () {
 
 function closeModal() {
     $("#advertisingtype-add-button").attr("name", "save");
+    $("#advertisingtype-add-button").attr("disabled", false);
     $("#advertisingtype-add-modal-title").html('新增广告类型');
     $advertisingtypeAddForm.find("input[name='advertisingtype_name']").removeAttr("readonly");
     validator.resetForm();
@@ -50,7 +52,7 @@ function validateRule() {
             advertisingtype_name: {
                 required: true,
                 minlength: 2,
-                maxlength: 5,
+                maxlength: 10,
                 remote: {
                     url: "advertisingtype/checkadvertisingtype_name\"",
                     type: "get",
@@ -82,7 +84,7 @@ function validateRule() {
         messages: {
             advertisingtype_name: {
                 required: icon + "请输入广告类型名",
-                minlength: icon + "广告类型名长度2到5个字符",
+                minlength: icon + "广告类型名长度2到10个字符",
                 remote: icon + "广告类型名已经存在"
             },
             advertisingtype_num: icon + "请输入广告类型优先级码",

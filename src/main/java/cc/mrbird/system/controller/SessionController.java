@@ -49,7 +49,6 @@ public class SessionController {
     public ResponseBo forceLogout(String id) {
         try {
             sessionService.forceLogout(id);
-            log.info("--id--sessid"+id);
             return ResponseBo.ok();
         } catch (Exception e) {
             log.error("踢出用户失败", e);

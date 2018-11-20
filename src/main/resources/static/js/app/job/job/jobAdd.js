@@ -9,6 +9,7 @@ $(function () {
     initmethodName();
     initCron();
     $("#job-add .btn-save").click(function () {
+        $("#job-add-button").attr("disabled", true);
         var name = $(this).attr("name");
         validator = $jobAddForm.validate();
         var flag = validator.form();
@@ -49,6 +50,8 @@ function closeModal() {
 
 
     $("#job-add-button").attr("name", "save");
+    $("#job-add-button").attr("disabled", false);
+
     $MB.closeAndRestModal("job-add");
     validator.resetForm();
     $("#job-add-modal-title").html('新增任务');

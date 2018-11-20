@@ -61,7 +61,6 @@ public class AdvertisingTypeController extends BaseController {
     public Map<String, Object> advertisingtypeList(QueryRequest request, AdvertisingType advertisingtype) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--" + merchantId);
         advertisingtype.setMerchant_id(user.getMerchantId());
         PageInfo<AdvertisingType> pageInfo = this.advertisingtypeService.PageList(request, advertisingtype);
         return getDataTable(pageInfo);
@@ -100,7 +99,6 @@ public class AdvertisingTypeController extends BaseController {
     @RequestMapping("advertisingtype/update")
     @ResponseBody
     public ResponseBo updateadvertisingtype(AdvertisingType advertisingtype) {
-        log.info("update--+" + advertisingtype.getAdvertisingtype_name());
         try {
             User user = RequestUtils.currentLoginUser();
             advertisingtype.setAdvertisingtype_updateuser(user.getUsername());

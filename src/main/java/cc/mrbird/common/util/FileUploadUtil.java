@@ -38,10 +38,8 @@ public class FileUploadUtil {
         ServletContext application = request.getSession().getServletContext();
         String savePath = application.getRealPath("/") + savePatha + "/" + newFileName2 + "/";
         //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
-        System.out.println("--***fileUpload***getRealPath****-" + savePath);
         // 文件保存目录URL
         String saveUrl = request.getContextPath() + "/" + savePatha + "/" + newFileName2 + "/";
-        System.out.println("--*****fileUpload*getContextPath****-" + saveUrl);
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("extension", "gif,jpg,jpeg,png,bmp");//扩展名
@@ -116,8 +114,8 @@ public class FileUploadUtil {
                 try {
                     BufferedImage image = ImageIO.read(file.getInputStream());
                     if (image != null) {//如果image=null 表示上传的不是图片格式
-                        System.out.println("获取图片宽度，单位px" + image.getWidth());//获取图片宽度，单位px
-                        System.out.println("获取图片高度，单位px" + image.getHeight());//获取图片高度，单位px
+                        //ntln("获取图片宽度，单位px" + image.getWidth());//获取图片宽度，单位px
+                        //System.out.println("获取图片高度，单位px" + image.getHeight());//获取图片高度，单位px
                         if (image.getWidth() > widthSize || image.getHeight() > heightSize) {
                             return getError("上传图片宽高超过限制。");
                         }
@@ -247,8 +245,8 @@ public class FileUploadUtil {
                     try {
                         BufferedImage image = ImageIO.read(file.getInputStream());
                         if (image != null) {//如果image=null 表示上传的不是图片格式
-                            System.out.println("获取图片宽度，单位px" + image.getWidth());//获取图片宽度，单位px
-                            System.out.println("获取图片高度，单位px" + image.getHeight());//获取图片高度，单位px
+                            //System.out.println("获取图片宽度，单位px" + image.getWidth());//获取图片宽度，单位px
+                            //System.out.println("获取图片高度，单位px" + image.getHeight());//获取图片高度，单位px
                             if (image.getWidth() > widthSize || image.getHeight() > heightSize) {
                                 return getError("上传图片宽高超过限制。");
                             }
@@ -277,7 +275,6 @@ public class FileUploadUtil {
             }
             msg.put("error", 0);//上传成功
             msg.put("url", questionList);
-            System.out.println("***msg***" + msg.toString());
             return msg;
         }
         return null;

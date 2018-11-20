@@ -86,7 +86,6 @@ public class BannerimgController extends BaseController {
     public Map<String, Object> bannerimgList(QueryRequest request, Bannerimg bannerimg) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--" + merchantId);
         bannerimg.setMerchant_id(user.getMerchantId());
         PageInfo<Bannerimg> pageInfo = this.bannerimgService.PageList(request, bannerimg);
         return getDataTable(pageInfo);
@@ -111,7 +110,6 @@ public class BannerimgController extends BaseController {
     @RequestMapping("bannerimg/update")
     @ResponseBody
     public ResponseBo updatebannerimg(Bannerimg bannerimg) {
-        log.info("update--+" + bannerimg.getBannerimg_name());
         try {
             User user = RequestUtils.currentLoginUser();
             bannerimg.setBannerimg_updateuser(user.getUsername());

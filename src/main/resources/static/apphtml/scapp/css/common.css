@@ -1,12 +1,13 @@
 @charset "utf-8";
-/* CSS Document */
+/* CSS Document 整体结构样式*/
 /* 首页 */
 body, html {
-    min-width: 100px;
+    min-width: 10px;
     max-width: 600px;
-    word-wrap:break-word;
-    word-break:break-all;
-    text-align:justify;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: justify; /*文字左右两端对齐*/
+    margin: 0 auto;
 }
 
 html {
@@ -586,12 +587,11 @@ ul.intro li:last-child {
 }
 
 .min-price-bot {
-   /* min-width: 100px;
-    max-width: 600px;*/
+    max-width: 600px;
     width: 100%;
     position: fixed;
     bottom: 0;
-    left: 0;
+    /*left: 0;*/
     height: 2.1rem;
     line-height: 2.1rem;
 }

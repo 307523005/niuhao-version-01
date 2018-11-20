@@ -50,7 +50,6 @@ public class GoodsController extends BaseController {
     public Map<String, Object> goodsList(QueryRequest request, Goods goods) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--" + merchantId);
         goods.setMerchant_id(user.getMerchantId());
         PageInfo<Goods> pageInfo = this.goodsService.PageList(request, goods);
         return getDataTable(pageInfo);

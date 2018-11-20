@@ -49,7 +49,6 @@ public class MerchantController extends BaseController {
     public Map<String, Object> merchantList(QueryRequest request, Merchant merchant) {
         User user = RequestUtils.currentLoginUser();
         String merchantId = user.getMerchantId();
-        log.info("---merchantId--"+merchantId);
         PageInfo<Merchant> pageInfo = this.merchantService.PageList(request, merchant);
         return getDataTable(pageInfo);
     }
@@ -74,7 +73,6 @@ public class MerchantController extends BaseController {
     @RequestMapping("merchant/update")
     @ResponseBody
     public ResponseBo updatemerchant(Merchant merchant) {
-        log.info("update--+"+ JsonUtils.toJson(merchant));
         try {
             this.merchantService.updateMerchant(merchant);
             return ResponseBo.ok("修改商户成功！");
