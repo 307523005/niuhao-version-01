@@ -582,6 +582,7 @@ ul.intro li:last-child {
 .min-price-con {
     line-height: 1rem;
     padding-bottom: 0.75rem;
+    margin-bottom: 60px;
 }
 
 .min-price-bot {
