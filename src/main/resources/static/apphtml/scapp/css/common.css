@@ -2,7 +2,7 @@
 /* CSS Document 整体结构样式*/
 /* 首页 */
 body, html {
-    min-width: 10px;
+    min-width: 100px;
     max-width: 600px;
     word-wrap: break-word;
     word-break: break-all;
