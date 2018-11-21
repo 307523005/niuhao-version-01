@@ -71,7 +71,7 @@ function goodsparticulars() {
                     "    <div class=\"tip\">温馨提示：具体活动和产品价格请和商家再次联系后确认</div>" +
                     "    <div class=\"min-price\">\n" +
                     "        <div class=\"min-price-tit\"><h2>活动</h2></div>\n" +
-                    "        <div class=\"min-price-con\">"+goods.goods_activity+"</div>\n" +
+                    "        <div class=\"min-price-con1\">"+goods.goods_activity+"</div>\n" +
                     "    </div>\n" +
                     "    <div class=\"min-price\">\n" +
                     "        <div class=\"min-price-tit\"><h2>商品介绍</h2></div>\n" +
