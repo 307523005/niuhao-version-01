@@ -33,6 +33,7 @@ $(function () {
                 });
             }
         }
+        $("#job-add-button").attr("disabled", false);
     });
 
     $("#job-add .btn-close").click(function () {

@@ -31,6 +31,8 @@ $(function () {
                 });
             }
         }
+        $("#goods-add-button").attr("disabled", false);
+
     });
 
     $("#goods-add .btn-close").click(function () {
@@ -125,7 +127,7 @@ function initgoodstype() {
             onClose: function () {
                 goodstype_id.val($goodstype_idSelect.val());
                 validator.element("input[name='goodstype_id']");
-            },onOpen: function () {//打开当下拉列表被打开时触发。
+            }, onOpen: function () {//打开当下拉列表被打开时触发。
                 $goodstype_idSelect.multipleSelect('uncheckAll');
             },
         };

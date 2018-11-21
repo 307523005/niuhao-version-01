@@ -140,7 +140,7 @@
                     <div class="form-group">
                         <label>请选择小图（宽：260，高：220）</label>
                         <input id="goods_littleimge_file" type="file" name="goods_littleimge_file">
-                        <button type="button" class="btn btn-save" onclick="goods_littleimge_aa()">提交商品小图</button>
+                        <button type="button"  class="btn btn-save" onclick="goods_littleimge_aa()">提交商品小图</button>
                     </div>
                 </form>
                 <form id="goods_bigimge_form">
@@ -197,10 +197,10 @@
                     document.querySelectorAll("div.clearfix").innerHTML = "";
                     $MB.n_success("商品提交成功");
                     document.getElementById('goods_littleimge_form') && document.getElementById('goods_littleimge_form').reset();
+
                 } else {
                     $MB.n_danger(result.message);
                 }
-
             }, error: function () {
                 $MB.n_danger("商品提交失败，请联系管理员");
             }

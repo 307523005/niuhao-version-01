@@ -143,14 +143,14 @@ function showMessage() {
                     "        <div class=\"add-class\">";
                 if (advertisingMessage.length > 0) {
                     for (var i = 0; i < advertisingMessage.length; i++) {
-                        message += "<li class=\"clearfix\"><span class=\"am-article-tourist\">游客</span><br>" + advertisingMessage[i].advmessageContent + "</li>";
+                        message += "<li class=\"clearfix-message\"><span class=\"am-article-tourist\">游客</span><br>" + advertisingMessage[i].advmessageContent + "</li>";
                     }
                 }else {
                     message +="<span class=\"am-article-tourist\">暂无留言</span>";
                 }
 
 
-                message += "<li class=\"clearfix\"><span class=\"am-article-author\">作者</span><br>感谢您的留言！</li></ul></div>";
+                message += "<li class=\"clearfix-message\"><span class=\"am-article-author\">作者</span><br>感谢您的留言！</li></ul></div>";
                 $("#show-message").html(message);
             } else {
                 $("#show-message").html("您访问的出现异常!!!");

@@ -28,6 +28,7 @@ $(function () {
                 });
             }
         }
+        $("#goodstype-add-button").attr("disabled", false);
     });
 
     $("#goodstype-add .btn-close").click(function () {

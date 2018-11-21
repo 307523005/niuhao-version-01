@@ -120,6 +120,7 @@ $(function () {
                 });
             }
         }
+        $("#advertising-add-button").attr("disabled", false);
     });
 
     $("#advertising-add .btn-close").click(function () {

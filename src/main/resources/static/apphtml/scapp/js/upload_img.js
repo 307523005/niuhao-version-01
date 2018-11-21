@@ -6,7 +6,7 @@ $.selectPicture = function(callback) {
         $("#file_picture").trigger('click');
         if (callback) {
             $("#file_picture").unbind('change').change(function(event) {
-                $("#selectedimg").before("<img src='images/loading.gif' id='loading' style='width:50px;height:50px'>"); // 首先加载
+                $("#selectedimg").before("<img src='img/loading.gif' id='loading' style='width:50px;height:50px'>"); // 首先加载
                 var img = event.target.files[0];
                 if (!img) {
                     return false;

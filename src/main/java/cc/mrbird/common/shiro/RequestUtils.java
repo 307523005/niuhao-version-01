@@ -11,8 +11,6 @@ import java.io.Serializable;
 
 public class RequestUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(RequestUtils.class);
-
     /**
      * 获取当前登录的用户，若用户未登录，则返回未登录 json
      *
@@ -23,7 +21,6 @@ public class RequestUtils {
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
         Serializable id = session.getId();
-        System.out.println(id);
         return (User) subject.getPrincipal();
      /*   if (subject.isAuthenticated()) {
             Object principal = subject.getPrincipals().getPrimaryPrincipal();
