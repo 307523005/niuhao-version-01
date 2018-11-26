@@ -74,10 +74,20 @@ function bannerimglist() {
         success: function (r) {
             if (r.code === 0) {
                 var merchant = r.msg;
-                for (var i = 0; i < merchant.length; i++) {
-                    sc_List += "<li><a href=\"#\"><img src=\"" + httpurl + merchant[i].bannerimg_imgurl + "\" alt=\"\"/><\/a><\/li>";
+                if (merchant.length > 0) {
+                    $("#index-banner").html("   <div class=\"banner-pics\">\n" +
+                        "            <ul id=\"sc_List\" class=\"banner-pics-list OnSale-banner\">  </ul>\n" +
+                        "        </div>\n" +
+                        "        <ul class=\"banner-tit\">\n" +
+                        "            <li class=\"on\"></li>\n" +
+                        "            <li></li>\n" +
+                        "            <li></li>\n" +
+                        "        </ul>");
+                    for (var i = 0; i < merchant.length; i++) {
+                        sc_List += "<li><a href=\"#\"><img src=\"" + httpurl + merchant[i].bannerimg_imgurl + "\" alt=\"\"/><\/a><\/li>";
+                    }
+                    $("#sc_List").html(sc_List);
                 }
-                $("#sc_List").html(sc_List);
             }
 
         },
@@ -113,20 +123,27 @@ function goodstypelist() {
             if (r.code === 0) {
                 var merchant = r.msg;
                 /*goodstype_htmlurl,goodstype_imageurl*/
-                for (var i = 0; i < merchant.length; i++) {
-                    //if (i<7) {
-                    var url="goodsshow.html?type="+merchant[i].goodstype_name+"&merchant_id=" + merchant_id + "&goodstype_id=" + merchant[i].goodstype_id ;
-                    url= encodeURI(url);
-                    goodstype_List += "<li><div><a href=\""+url+"\"><i><img src=\"" + merchant[i].goodstype_imageurl + "\"><\/i><em>" + merchant[i].goodstype_name + "<\/em><\/a><\/div><\/li>";
-                    // }else {
-                    //  goodstype_List += "  <li><div><a href=\"add-class.html\"><i><img src=\"images\/xczx.png\"><\/i><em>"+merchant[i].goodstype_name+"<\/em><\/a><\/div><\/li>";
+                if (merchant.length > 0) {
+                    $("#zxsp").html("<div class=\"ind-tit\">\n" +
+                        "            <h2>最新商品</h2>\n" +
+                        "        </div>\n" +
+                        "        <ul class=\"clearfix\" id=\"goodstype_List\"></ul>");
+                    for (var i = 0; i < merchant.length; i++) {
+                        //if (i<7) {
+                        var url = "goodsshow.html?type=" + merchant[i].goodstype_name + "&merchant_id=" + merchant_id + "&goodstype_id=" + merchant[i].goodstype_id;
+                        url = encodeURI(url);
+                        goodstype_List += "<li><div><a href=\"" + url + "\"><i><img src=\"" + merchant[i].goodstype_imageurl + "\"><\/i><em>" + merchant[i].goodstype_name + "<\/em><\/a><\/div><\/li>";
+                        // }else {
+                        //  goodstype_List += "  <li><div><a href=\"add-class.html\"><i><img src=\"images\/xczx.png\"><\/i><em>"+merchant[i].goodstype_name+"<\/em><\/a><\/div><\/li>";
 
-                    // }
+                        // }
+                    }
+                    goodstype_List += " <li><div><a href=\"javascript:void(0)\" class=\"more\"><i><img src=\"images\/more.png\"><\/i><em>更多<\/em><\/a><\/div><\/li>";
+
+                    $("#goodstype_List").html(goodstype_List);
+                    more();
                 }
-                goodstype_List += " <li><div><a href=\"javascript:void(0)\" class=\"more\"><i><img src=\"images\/more.png\"><\/i><em>更多<\/em><\/a><\/div><\/li>";
 
-                $("#goodstype_List").html(goodstype_List);
-                more();
             }
 
 
@@ -136,6 +153,7 @@ function goodstypelist() {
         }
     });
 }
+
 /*广告类型列表*/
 function advertisingtypelist() {
     var advertisingtype_List = "";
@@ -151,15 +169,24 @@ function advertisingtypelist() {
         success: function (r) {
             if (r.code === 0) {
                 var merchant = r.msg;
-                for (var i = 0; i < merchant.length; i++) {
-                    var url= "advertisingshow.html?type="+merchant[i].advertisingtype_name+"&merchant_id=" + merchant_id + "&advertisingTypeId=" + merchant[i].advertisingtype_id ;
-                    url= encodeURI(url);
-                    advertisingtype_List += "<li><div><a href=\""+url+"\"><i><img src=\"" + merchant[i].advertisingtype_imageurl + "\"><\/i><em>" + merchant[i].advertisingtype_name + "<\/em><\/a><\/div><\/li>";
-                }
-                advertisingtype_List += " <li><div><a href=\"javascript:void(0)\" class=\"more\"><i><img src=\"images\/more.png\"><\/i><em>更多<\/em><\/a><\/div><\/li>";
+                if (merchant.length > 0) {
+                    $("#ggzx").html(" <div class=\"ind-tit\">\n" +
+                        "            <h2>广告资讯</h2>\n" +
+                        "        </div>\n" +
+                        "        <ul class=\"clearfix\" id=\"advertisingtype_List\">\n" +
+                        "        </ul>");
+                    for (var i = 0; i < merchant.length; i++) {
+                        var url = "advertisingshow.html?type=" + merchant[i].advertisingtype_name + "&merchant_id=" + merchant_id + "&advertisingTypeId=" + merchant[i].advertisingtype_id;
+                        url = encodeURI(url);
+                        advertisingtype_List += "<li><div><a href=\"" + url + "\"><i><img src=\"" + merchant[i].advertisingtype_imageurl + "\"><\/i><em>" + merchant[i].advertisingtype_name + "<\/em><\/a><\/div><\/li>";
+                    }
+                    advertisingtype_List += " <li><div><a href=\"javascript:void(0)\" class=\"more\"><i><img src=\"images\/more.png\"><\/i><em>更多<\/em><\/a><\/div><\/li>";
 
-                $("#advertisingtype_List").html(advertisingtype_List);
-                more();
+                    $("#advertisingtype_List").html(advertisingtype_List);
+                    more();
+                }
+
+
             }
 
 
@@ -176,7 +203,7 @@ function advertisinglist() {
         "\n" +
         "            <a class=\"next\"></a>\n" +
         "            <a class=\"prev\"></a>\n" +
-        "            <a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\"><span class=\"gengduo\" >点击查看更多...</span></a>" +
+        "            <a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id + "&advertisingTypeId=\"\"><span class=\"gengduo\" >点击查看更多...</span></a>" +
         "        </div>\n" +
         "        <div class=\"bd\">\n" +
         "            <ul class=\"infoList\" >";
@@ -192,13 +219,19 @@ function advertisinglist() {
         success: function (r) {
             if (r.code === 0) {
                 var advertising = r.msg;
-                for (var i = 0; i < advertising.length; i++) {
-                    advertisinglist += "<li><span class=\"date\">" + advertising[i].advertisingUpdatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\" ><span class=\"date2\">" + advertising[i].advertisingTitle + "</span></a></li>";
+
+                if (advertising.length > 0) {
+                    $("#zxzx").html("<div class=\"ind-tit\">\n" +
+                        "            <h2>最新资讯</h2>\n" +
+                        "        </div>");
+                    for (var i = 0; i < advertising.length; i++) {
+                        advertisinglist += "<li><span class=\"date\">" + advertising[i].advertisingUpdatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\" ><span class=\"date2\">" + advertising[i].advertisingTitle + "</span></a></li>";
+                    }
+                    advertisinglist += "</ul>\n" +
+                        "        </div>";
+                    $("#advertisinglist").html(advertisinglist);
+                    setTimeout('carousel()', 500);
                 }
-                advertisinglist += "</ul>\n" +
-                    "        </div>";
-                $("#advertisinglist").html(advertisinglist);
-                setTimeout('carousel()', 500);
             }
 
         },
@@ -228,6 +261,7 @@ function more() {
     });
 
 }
+
 /*轮播*/
 function carousel() {
     $(".txtMarquee-top").slide({mainCell: ".bd ul", autoPlay: true, effect: "topMarquee", vis: 5, interTime: 60});
@@ -238,7 +272,7 @@ function carousel() {
 function footer_ul() {
     var footer_ul = "";
     footer_ul += "      <li class=\"on\"><a href=\"index.html?merchant_id=" + merchant_id + "\" class=\"home\"><i></i><span class=\"full-block\">首页</span></a></li>\n" +
-        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id +  "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
+        "        <li><a href=\"advertisingshow.html?type=最新资讯&merchant_id=" + merchant_id + "&advertisingTypeId=\"\" class=\"foot-order\"><i></i><span class=\"full-block\">最新资讯</span></a></li>\n" +
         "        <li><a href=\"\" class=\"foot-worker\"><i></i><span class=\"full-block\">敬请期待</span></a></li>\n" +
         "        <li><a href=\"\" class=\"my\"><i></i><span class=\"full-block\">敬请期待</span></a></li>";
     $("#footer_ul").html(footer_ul);
