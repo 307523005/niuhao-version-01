@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * Shiro 配置类
  *
- * @author MrBird
+ * @author niuhao
  */
 @Configuration
 public class ShiroConfig {
@@ -113,14 +113,15 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 配置 SecurityManager，并注入 shiroRealm
-        securityManager.setRealm(shiroRealm());
+
         // 配置 rememberMeCookie
         securityManager.setRememberMeManager(rememberMeManager());
         // 配置 缓存管理类 cacheManager
         securityManager.setCacheManager(cacheManager());
         // 自定义session管理 使用redis
         securityManager.setSessionManager(sessionManager());
+        // 配置 SecurityManager，并注入 shiroRealm
+        securityManager.setRealm(shiroRealm());
         return securityManager;
     }
 
