@@ -25,7 +25,7 @@ import cc.mrbird.system.service.UserService;
 /**
  * 自定义实现 ShiroRealm，包含认证和授权两大模块
  *
- * @author MrBird
+ * @author niuhao
  */
 public class ShiroRealm extends AuthorizingRealm {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
