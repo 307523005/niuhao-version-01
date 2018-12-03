@@ -1,3 +1,4 @@
+# 容器 配置
 server:
   port: 80
   tomcat:
@@ -18,8 +19,8 @@ spring:
       # 数据库访问配置, 使用druid数据源 
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
-      #url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      #url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       username:  niuhao
       password:  niuhao
       #username: basewin
@@ -59,7 +60,7 @@ spring:
         # 添加过滤规则
         url-pattern: /*
         # 忽略过滤的格式
-        exclusions: '*.jsp,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/actuator/*'
+        #exclusions: '*.jsp,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/actuator/*
 
       # StatViewServlet配置 
       stat-view-servlet:
@@ -89,8 +90,8 @@ spring:
     # Redis数据库索引（默认为0）
     database: 1
     # Redis服务器地址 59.110.241.188
-    host: 59.110.241.188
-    #host: localhost
+    #host: 59.110.241.188
+    host: localhost
     # Redis服务器连接端口
     port: 6479
     # Redis 密码
@@ -116,16 +117,6 @@ spring:
   cache:
     type:
       redis
-
-  # spring boot admin配置
- # boot:
-    #admin:
-     # client:
-     #   url: http://localhost:8081
-     #   username: mrbird
-     #   password: 123456
-  #application:
-  #  name: febs
 
  #发送邮件配置
   mail:
@@ -159,22 +150,34 @@ spring:
         time_format: HH:mm:ss
         datetime_format: yyyy-MM-dd HH:mm:ss
 
+#spring boot admin配置
+  #boot:
+    #admin:
+      #client:
+        #url: http://localhost:8081/admin
+        #username: mrbird
+        #password: 123456
+  #application:
+    #name: niuhao
+#admin
+#management:
+  #endpoints:
+    #web:
+      #exposure:
+        #include: '*'
+  #endpoint:
+    #health:
+      #show-details: ALWAYS
+
 #其他配置
 info:
   app:
     name: "niuhao"
     description: "spring boot&shiro NIUHAO广商管理系统"
     version: "2.0"
-    spring-boot-version: "2.0.4.RELEASE"
+    spring-boot-version: "2.0.3.RELEASE"
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: ALWAYS
+
 
 mybatis:
   config-location: classpath:config/mybatis-config.xml

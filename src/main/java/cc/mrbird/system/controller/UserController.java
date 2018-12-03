@@ -3,6 +3,8 @@ package cc.mrbird.system.controller;
 import java.util.List;
 import java.util.Map;
 
+import cc.mrbird.common.annotation.Limit;
+import cc.mrbird.common.domain.LimitType;
 import cc.mrbird.common.shiro.RequestUtils;
 import com.github.pagehelper.Page;
 import org.apache.commons.lang3.StringUtils;
@@ -109,6 +111,7 @@ public class UserController extends BaseController {
      * @param user
      * @return
      */
+    @Limit(key = "regist", period = 60, count = 1, name = "regist", prefix = "regist",limitType = LimitType.IP)
     @RequestMapping("user/regist")
     @ResponseBody
     public ResponseBo regist(User user) {

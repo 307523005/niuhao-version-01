@@ -1,6 +1,8 @@
 package cc.mrbird.job.controller;
 
+import cc.mrbird.common.annotation.Limit;
 import cc.mrbird.common.controller.BaseController;
+import cc.mrbird.common.domain.LimitType;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.job.domain.AdvertisingMessage;
 import cc.mrbird.job.service.AdvertisingMessageService;
@@ -31,6 +33,7 @@ public class AdvertisingMessageController extends BaseController {
      * @return
      * @throws Exception
      */
+    @Limit(key = "addAdvertisingMessage", period = 10, count = 2, name = "addAdvertisingMessage", prefix = "addAdvertisingMessage",limitType = LimitType.IP)
     @RequestMapping(value = "scapp/addAdvertisingMessage")
     @ResponseBody
     public ResponseBo addAdvertisingMessage(AdvertisingMessage advertisingMessage) throws Exception {

@@ -13,10 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Lulei on 2016/12/26.
  * time : 17:07
  * date : 2016/12/26
- * mail to lulei4461@gmail.com
  */
 
 public class JsonUtils {

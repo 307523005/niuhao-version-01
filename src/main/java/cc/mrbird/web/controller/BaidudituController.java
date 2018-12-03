@@ -21,7 +21,7 @@ import java.net.URL;
 @Controller
 public class BaidudituController extends BaseController {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Log("获取地图")
     @RequestMapping("baiduditu")
@@ -44,7 +44,7 @@ public class BaidudituController extends BaseController {
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
         JSONObject json = JSON.parseObject(br.readLine()).getJSONArray("result").getJSONObject(0);
-        System.out.println(json.toJSONString());
+        logger.info(json.toJSONString());
         double x = json.getDoubleValue("x");
         double y = json.getDoubleValue("y");
         String data = x+","+y;

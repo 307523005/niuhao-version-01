@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +21,7 @@ import cc.mrbird.system.domain.User;
 import cc.mrbird.system.service.MenuService;
 import cc.mrbird.system.service.RoleService;
 import cc.mrbird.system.service.UserService;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * 自定义实现 ShiroRealm，包含认证和授权两大模块
@@ -28,12 +29,15 @@ import cc.mrbird.system.service.UserService;
  * @author niuhao
  */
 public class ShiroRealm extends AuthorizingRealm {
-    private static org.slf4j.Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
+    private static Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
     @Autowired
+    @Lazy //就是这里，必须延时加载，根本原因是bean实例化的顺序上，shiro的bean必须要先实例化，否则@Cacheable注解无效，理论上可以用@Order控制顺序
     private UserService userService;
     @Autowired
+    @Lazy
     private RoleService roleService;
     @Autowired
+    @Lazy
     private MenuService menuService;
 
     /**
@@ -63,7 +67,7 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         simpleAuthorizationInfo.setStringPermissions(permissionSet);
         return simpleAuthorizationInfo;*/
-        logger.info("---------------- 执行 Shiro 权限获取 ---------------------");
+        logger.info("------ShiroRealm--- 执行 Shiro 权限获取 ---------1-");
 
 
         Object principal = principals.getPrimaryPrincipal();
@@ -86,7 +90,7 @@ public class ShiroRealm extends AuthorizingRealm {
             simpleAuthorizationInfo.addStringPermissions(permissionSet);
         }
 
-        logger.info("---- 获取到以下权限 ----");
+        logger.info("---- 获取到以下权限 ---2-");
         return simpleAuthorizationInfo;
         /*if (principal instanceof User) {
             User userLogin = (User) principal;
@@ -98,7 +102,7 @@ public class ShiroRealm extends AuthorizingRealm {
         }*/
 
       /*  logger.info(authorizationInfo.getStringPermissions().toString());
-        logger.info("---------------- Shiro 权限获取成功 ----------------------");
+        logger.info("--------- Shiro 权限获取成功 --------------");
         return authorizationInfo;*/
     }
 
@@ -129,7 +133,7 @@ public class ShiroRealm extends AuthorizingRealm {
             throw new LockedAccountException("账号已被锁定,请联系管理员！");
         }
         return new SimpleAuthenticationInfo(user, password, getName());*/
-        logger.info("---------------- 执行 Shiro 凭证认证 ----------------------");
+        logger.info("---ShiroRealm---- 执行 Shiro 凭证认证 -----3---");
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         String name = token.getUsername();
         String password = String.valueOf(token.getPassword());
@@ -143,7 +147,7 @@ public class ShiroRealm extends AuthorizingRealm {
             if (User.STATUS_LOCK.equals(user.getStatus())) {
                 throw new LockedAccountException("账号已被锁定,请联系管理员！");
             }
-            logger.info("---------------- Shiro 凭证认证成功 ----------------------");
+            logger.info("---ShiroRealm----- Shiro 凭证认证成功 ------4---");
             SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                     userList, //用户
                     userList.getPassword(), //密码

@@ -25,7 +25,7 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class DictServiceImpl extends BaseService<Dict> implements DictService {
 
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public PageInfo<Dict> PageList(QueryRequest request, Dict dict) {
@@ -57,7 +57,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 			PageInfo<Dict> pageInfo = new PageInfo<>(dicts);
 			return pageInfo;
 		} catch (Exception e) {
-			log.error("获取字典信息失败", e);
+			logger.error("获取字典信息失败", e);
 			return new PageInfo<>(null);
 		}
 	}
@@ -66,7 +66,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 		try {
 			Example example = new Example(Dict.class);
 			Criteria criteria = example.createCriteria();
-			System.out.println("--keyy--"+dict.getKeyy());
+			logger.info("--keyy--"+dict.getKeyy());
 			if (StringUtils.isNotBlank(dict.getKeyy())) {
 				criteria.andCondition("keyy=", Long.valueOf(dict.getKeyy()));
 			}
@@ -83,7 +83,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 			List<Dict> dicts = this.selectByExample(example);
 			return dicts;
 		} catch (Exception e) {
-			log.error("获取字典信息失败", e);
+			logger.error("获取字典信息失败", e);
 			return new ArrayList<>();
 		}
 	}

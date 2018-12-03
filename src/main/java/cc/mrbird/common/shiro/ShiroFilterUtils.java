@@ -11,10 +11,9 @@ import java.io.PrintWriter;
 
 /**
  * 
- * @项目名称：wyait-manager
  * @类名称：ShiroFilterUtils
  * @类描述：shiro工具类
- * @创建人：wyait
+ * @创建人：niuhao
  * @创建时间：2018年4月24日 下午5:12:04 
  * @version：
  */
@@ -25,7 +24,6 @@ public class ShiroFilterUtils {
     /**
      * 
      * @描述：判断请求是否是ajax
-     * @创建人：wyait
      * @创建时间：2018年4月24日 下午5:00:22
      * @param request
      * @return
@@ -43,7 +41,6 @@ public class ShiroFilterUtils {
 	/**
 	 *
 	 * @描述：response输出json
-	 * @创建人：wyait
 	 * @创建时间：2018年4月24日 下午5:14:22
 	 * @param response
 	 * @param result

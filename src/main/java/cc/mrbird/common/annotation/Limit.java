@@ -24,5 +24,9 @@ public @interface Limit {
     int count();
 
     // 限制类型
+    /* 传统类型
+    CUSTOMER,
+    根据 IP 限制
+    IP;*/
     LimitType limitType() default LimitType.CUSTOMER;
 }

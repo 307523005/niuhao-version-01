@@ -25,6 +25,19 @@
     <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
     <!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>-->
     <script src="js/common.js"></script>
+    <style type="text/css">
+        .goTop >img{
+            width: 36px;
+            height: 36px;
+            /*cursor: pointer;*/
+            border-radius: 50%;
+        }
+        .goTop{
+            position: fixed;
+            right : 10px;
+            bottom : 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,8 +82,11 @@
         <li><a href="" class="my"><i></i><span class="full-block"></span></a></li>
     </ul>
 </footer>
+<div class="goTop" id="js-go_top"><img src="css/mescroll-totop.png" alt="回到顶部图片"></div>
 <!--container-end-->
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script><!--获取ip位置信息用-->
+<script src="js/GoToTop.js"></script>
 <script src="js/advertising/advertising.js"></script>
+
 </body>
 </html>

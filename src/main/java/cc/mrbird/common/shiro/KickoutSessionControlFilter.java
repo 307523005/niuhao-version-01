@@ -2,7 +2,6 @@ package cc.mrbird.common.shiro;
 
 import cc.mrbird.system.domain.User;
 import com.alibaba.fastjson.JSON;
-import io.lettuce.core.output.ScanOutput;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
@@ -11,6 +10,8 @@ import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -24,8 +25,10 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class KickoutSessionControlFilter extends AccessControlFilter {
+    private static final Logger logger = LoggerFactory
+            .getLogger(KickoutSessionControlFilter.class);
 
-    private String kickoutUrl="/login"; //踢出后到的地址
+    private String kickoutUrl = "/login"; //踢出后到的地址
     private boolean kickoutAfter = false; //踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
     private int maxSession = 1; //同一个帐号最大会话数 默认1
 
@@ -47,10 +50,10 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     public void setSessionManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
+
     //设置Cache的key的前缀
-    public void setCacheManager(CacheManager cacheManager)
-    {
-            System.out.println("------获取sesion---------------------");
+    public void setCacheManager(CacheManager cacheManager) {
+        logger.info("---KickoutSessionControlFilter---huoqu sesion-------------1");
         this.cache = cacheManager.getCache("niuhaoone-cache:");
     }
 
@@ -61,9 +64,9 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        System.out.println("------onAccessDenied---------------------");
+        logger.info("---KickoutSessionControlFilter---onAccessDenied---------2-");
         Subject subject = getSubject(request, response);
-        if(!subject.isAuthenticated() && !subject.isRemembered()) {
+        if (!subject.isAuthenticated() && !subject.isRemembered()) {
             //如果没有登录，直接进行之后的流程
             return true;
         }
@@ -79,13 +82,13 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
         //如果此用户没有session队列，也就是还没有登录过，缓存中没有
         //就new一个空队列，不然deque对象为空，会报空指针
-        if(deque==null){
+        if (deque == null) {
             deque = new LinkedList<Serializable>();
         }
 
         //如果队列里没有此sessionId，且用户没有被踢出；放入队列
-        if(!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
-            System.out.println("------sessionId，且用户没有被踢出；放入队列---------------------");
+        if (!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
+            logger.info("---KickoutSessionControlFilter---sessionId，且用户没有被踢出；放入队列-------3--");
             //将sessionId存入队列
             deque.push(sessionId);
             //将用户的sessionId队列缓存
@@ -93,9 +96,9 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
 
         //如果队列里的sessionId数超出最大会话数，开始踢人
-        while(deque.size() > maxSession) {
+        while (deque.size() > maxSession) {
             Serializable kickoutSessionId = null;
-            if(kickoutAfter) { //如果踢出后者
+            if (kickoutAfter) { //如果踢出后者
                 kickoutSessionId = deque.removeFirst();
                 //踢出后再更新下缓存队列
                 cache.put(username, deque);
@@ -106,12 +109,11 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             }
 
 
-
             try {
-                System.out.println("------获取被踢出的sessionId的session对象-------------------");
+                logger.info("---KickoutSessionControlFilter---获取被踢出的sessionId的session对象-------44---");
                 //获取被踢出的sessionId的session对象
                 Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
-                if(kickoutSession != null) {
+                if (kickoutSession != null) {
                     //设置会话的kickout属性表示踢出了
                     kickoutSession.setAttribute("kickout", true);
                 }
@@ -132,13 +134,13 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             Map<String, String> resultMap = new HashMap<String, String>();
             //判断是不是Ajax请求
             if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {
-                System.out.println("-----是Ajax请求-------------------");
+                logger.info("--KickoutSessionControlFilter---是Ajax请求----------5---");
                 resultMap.put("user_status", "300");
                 resultMap.put("message", "您已经在其他地方登录，请重新登录！");
                 //输出json串
                 out(response, resultMap);
-            }else{
-                System.out.println("------重定向----------------");
+            } else {
+                logger.info("----KickoutSessionControlFilter--重定向---------6---");
                 //重定向
                 WebUtils.issueRedirect(request, response, kickoutUrl);
             }
@@ -146,6 +148,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
         return true;
     }
+
     private void out(ServletResponse hresponse, Map<String, String> resultMap)
             throws IOException {
         try {
@@ -155,7 +158,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             out.flush();
             out.close();
         } catch (Exception e) {
-            System.err.println("KickoutSessionFilter.class 输出JSON异常，可以忽略。");
+            logger.info("---KickoutSessionControlFilter.class 输出JSON异常，可以忽略。---");
         }
     }
 }

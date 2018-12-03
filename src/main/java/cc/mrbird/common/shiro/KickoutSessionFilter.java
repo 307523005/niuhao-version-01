@@ -24,10 +24,8 @@ import java.util.Deque;
 
 /**
  * **********弃用***
- * @项目名称：wyait-manage
  * @类名称：KickoutSessionFilter
  * @类描述：自定义过滤器，进行用户访问控制
- * @创建人：wyait
  * @创建时间：2018年4月24日 下午5:18:29
  * @version：
  */

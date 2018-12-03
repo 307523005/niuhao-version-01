@@ -113,15 +113,14 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-
-        // 配置 rememberMeCookie
-        securityManager.setRememberMeManager(rememberMeManager());
+        // 配置 SecurityManager，并注入 shiroRealm
+        securityManager.setRealm(shiroRealm());
         // 配置 缓存管理类 cacheManager
         securityManager.setCacheManager(cacheManager());
         // 自定义session管理 使用redis
         securityManager.setSessionManager(sessionManager());
-        // 配置 SecurityManager，并注入 shiroRealm
-        securityManager.setRealm(shiroRealm());
+        // 配置 rememberMeCookie
+        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
     }
 
@@ -155,8 +154,7 @@ public class ShiroConfig {
     private CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
-        // rememberMe cookie 加密的密钥
-        cookieRememberMeManager.setCipherKey(Base64.decode("4AvVhmFLUs0KTA3Kprsdag=="));
+        //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)        cookieRememberMeManager.setCipherKey(Base64.decode("4AvVhmFLUs0KTA3Kprsdag=="));
         return cookieRememberMeManager;
     }
 
@@ -214,7 +212,7 @@ public class ShiroConfig {
         kickoutSessionControlFilter.setCacheManager(cacheManager());
         kickoutSessionControlFilter.setSessionManager(sessionManager());
         kickoutSessionControlFilter.setKickoutAfter(false);
-        kickoutSessionControlFilter.setMaxSession(1);
+        kickoutSessionControlFilter.setMaxSession(2);
         kickoutSessionControlFilter.setKickoutUrl("/login");
         return kickoutSessionControlFilter;
     }
