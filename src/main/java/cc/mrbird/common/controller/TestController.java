@@ -19,6 +19,8 @@ public class TestController {
     @Limit(key = "test", period = 10, count = 10, name = "resource", prefix = "limit",limitType = LimitType.IP)
     @GetMapping("/test")
     public int testLimiter() {
+
+        System.out.println(1/0);
         return ATOMIC_INTEGER.incrementAndGet();
     }
 }

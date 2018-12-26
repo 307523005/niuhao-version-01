@@ -43,6 +43,7 @@ public class GlobalExceptionHandler {
 		log.error("获得被屏蔽的异常：" + exception.getSuppressed());
 		log.error("输出异常的描述信息：" + exception.getMessage());
 		log.error("将异常栈打印到输出流中：" + exception.getStackTrace());
+		log.error(exception.getMessage(),exception);
 		return "/error/error";//返回404页面
 	}
 }
