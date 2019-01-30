@@ -3,6 +3,15 @@ server:
   port: 80
   tomcat:
     uri-encoding: utf-8
+    #手动的将临时文件夹设置为自定义的文件夹，就不会被Linux删除了
+    basedir: /root/temp
+    max-http-header-size: 8192
+#    ssl:
+#      key-store: classpath:1791425.pfx
+#      key-store-password: y15F56bX
+#      keyStoreType: PKCS12
+#http:
+#  port: 80
 spring:
   #dubbo:
     #application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
@@ -16,11 +25,11 @@ spring:
 
   datasource:
     druid:
-      # 数据库访问配置, 使用druid数据源 
+      # 数据库访问配置, 使用druid数据源 59.110.241.188
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
-      #url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
+      #url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       username:  niuhao
       password:  niuhao
       #username: basewin
@@ -90,8 +99,8 @@ spring:
     # Redis数据库索引（默认为0）
     database: 1
     # Redis服务器地址 59.110.241.188
-    #host: 59.110.241.188
     host: localhost
+    #host: localhost
     # Redis服务器连接端口
     port: 6479
     # Redis 密码
@@ -220,7 +229,7 @@ niuhaoone:
     # rememberMe cookie有效时长，默认 86400 秒，即一天
     cookieTimeout: 86400
     # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**,/apphtml/**,/scapp/**,/scimages/**,/merchant_wximge/**,/images22/**
+    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/error/*,/gifCode,/,/actuator/**,/test/**,/apphtml/**,/scapp/**,/scimages/**,/merchant_wximge/**,/images22/**
     # 登录 url
     loginUrl: /login
     # 登录成功后跳转的 url

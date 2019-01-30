@@ -7,7 +7,7 @@ import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
 import cc.mrbird.common.util.MD5Utils;
 import cc.mrbird.common.util.vcode.Captcha;
-import cc.mrbird.common.util.vcode.GifCaptcha;
+import cc.mrbird.common.util.vcode.SpecCaptcha;
 import cc.mrbird.system.domain.User;
 import cc.mrbird.system.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -78,15 +78,23 @@ public class LoginController extends BaseController {
     @GetMapping(value = "gifCode")
     public void getGifCode(HttpServletResponse response, HttpServletRequest request) {
         try {
-            response.setHeader("Pragma", "No-cache");
+           /* response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expires", 0);
-            response.setContentType("image/gif");
+           // response.setContentType("image/gif");;*/
+            response.setDateHeader("Expires", 0L);
+            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+            response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+            response.setHeader("Pragma", "no-cache");
+            response.setContentType("image/png");
 
-            Captcha captcha = new GifCaptcha(
-                    nniuhaoProperies.getValidateCode().getWidth(),
+            Captcha captcha = new SpecCaptcha();
+                    /*nniuhaoProperies.getValidateCode().getWidth(),
                     nniuhaoProperies.getValidateCode().getHeight(),
-                    nniuhaoProperies.getValidateCode().getLength());
+                    nniuhaoProperies.getValidateCode().getLength());*/
+            captcha.setWidth(nniuhaoProperies.getValidateCode().getWidth());
+            captcha.setHeight(nniuhaoProperies.getValidateCode().getHeight());
+            captcha.setLen(nniuhaoProperies.getValidateCode().getLength());
             captcha.out(response.getOutputStream());
             HttpSession session = request.getSession(true);
             session.removeAttribute(CODE_KEY);

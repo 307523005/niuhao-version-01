@@ -28,4 +28,5 @@ public class Application /*extends SpringBootServletInitializer*/ {
         SpringApplication.run(Application.class, args);
         log.info("NIUHAO started up successfully at {} {}", LocalDate.now(), LocalTime.now());
     }
+
 }

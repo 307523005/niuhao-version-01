@@ -10,7 +10,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
-
+/**
+ * 动态图gif
+ */
 public class GifCaptcha extends Captcha {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());

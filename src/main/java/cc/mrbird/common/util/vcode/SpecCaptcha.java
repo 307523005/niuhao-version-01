@@ -10,6 +10,9 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 静态图png
+ */
 public class SpecCaptcha extends Captcha {
     public SpecCaptcha() {
     }
