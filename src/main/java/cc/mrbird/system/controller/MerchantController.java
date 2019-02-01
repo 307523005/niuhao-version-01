@@ -1,5 +1,6 @@
 package cc.mrbird.system.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -54,7 +55,7 @@ public class MerchantController extends BaseController {
     }
 
 
-    //@Log("删除商户")
+    @Log("删除商户")
     @RequiresPermissions("merchant:delete")
     @RequestMapping("merchant/delete")
     @ResponseBody
@@ -68,7 +69,7 @@ public class MerchantController extends BaseController {
         }
     }
 
-    //@Log("修改商户 ")
+    @Log("修改商户 ")
     @RequiresPermissions("merchant:update")
     @RequestMapping("merchant/update")
     @ResponseBody

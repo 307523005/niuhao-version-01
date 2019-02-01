@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.job.dao.AdvertisingMessageMapper">
-
+    <select id="findAdvertisingMessageInfo" resultType="cc.mrbird.job.domain.AdvertisingMessage"
+            parameterType="cc.mrbird.job.domain.AdvertisingMessage">
+        select a.advmessage_id advmessageId,
+        a.merchant_id merchantId,
+        a.advertising_id advertisingId,
+        a.advmessage_content advmessageContent,
+        a.advmessage_authorcontent advmessageAuthorcontent,
+        a.advmessage_updateuser advmessageUpdateuser,
+        a.advmessage_show advmessageShow,
+        a.advmessage_addtime advmessageAddtime,
+        b.advertising_title advertisingTitle
+        from t_advertisingmessage a
+        left join t_advertising b on a.advertising_id = b.advertising_id
+        where 1=1
+        <if test="merchantId != null and merchantId != ''">
+            AND a.merchant_id = #{merchantId}
+        </if>
+        <if test="advertisingTitle != null and advertisingTitle != ''">
+            AND b.advertising_title LIKE '%${advertisingTitle}%'
+        </if>
+        <if test="addBeginTime != null and addBeginTime != '' and addEndTime != null and addEndTime != ''">
+            AND date_format(a.advmessage_addtime,'%Y-%m-%d') <![CDATA[ >= ]]> #{addBeginTime}
+            AND date_format(a.advmessage_addtime,'%Y-%m-%d') &lt;= #{addEndTime}
+        </if>
+        <if test="sort != null and sort != ''">
+            order by ${sort}
+        </if>
+    </select>
 </mapper>

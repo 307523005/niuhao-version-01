@@ -1,5 +1,6 @@
 package cc.mrbird.scapp.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -63,7 +64,7 @@ public class GoodstypeController extends BaseController {
         return getDataTable(pageInfo);
     }
 
-    //@Log("删除商品类型")
+    @Log("删除商品类型")
     @RequiresPermissions("goodstype:delete")
     @RequestMapping("goodstype/delete")
     @ResponseBody
@@ -77,7 +78,7 @@ public class GoodstypeController extends BaseController {
         }
     }
 
-    //@Log("修改商品类型 ")
+    @Log("修改商品类型 ")
     @RequiresPermissions("goodstype:update")
     @RequestMapping("goodstype/update")
     @ResponseBody

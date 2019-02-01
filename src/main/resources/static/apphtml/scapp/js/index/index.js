@@ -225,7 +225,7 @@ function advertisinglist() {
                         "            <h2>最新资讯</h2>\n" +
                         "        </div>");
                     for (var i = 0; i < advertising.length; i++) {
-                        advertisinglist += "<li><span class=\"date\">" + advertising[i].advertisingUpdatetime + "</span><a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\" ><span class=\"date2\">" + advertising[i].advertisingTitle + "</span></a></li>";
+                        advertisinglist += "<li><span class=\"date\">" + advertising[i].advertisingUpdatetime + "</span><a href=\"advertisingmessage.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\" ><span class=\"date2\">" + advertising[i].advertisingTitle + "</span></a></li>";
                     }
                     advertisinglist += "</ul>\n" +
                         "        </div>";

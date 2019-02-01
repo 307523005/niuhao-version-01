@@ -1,5 +1,6 @@
 package cc.mrbird.job.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -9,13 +10,8 @@ import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.job.domain.AdvertisingType;
 import cc.mrbird.job.service.AdvertisingTypeService;
 import cc.mrbird.system.domain.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
-import com.google.common.io.ByteStreams;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -24,18 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -47,14 +36,12 @@ public class AdvertisingTypeController extends BaseController {
     @Autowired
     private AdvertisingTypeService advertisingtypeService;
 
-    // @Log("查看广告类型")
     @RequestMapping("advertisingtype")
     @RequiresPermissions("advertisingtype:list")
     public String advertisingtype() {
-        return "job/ggappht/advertisingtype/advertisingtype";
+        return "job/advertisingtype/advertisingtype";
     }
 
-    //@Log("查看广告类型列表")
     @RequestMapping("advertisingtype/list")
     @RequiresPermissions("advertisingtype:list")
     @ResponseBody
@@ -80,7 +67,7 @@ public class AdvertisingTypeController extends BaseController {
         }
     }*/
 
-    //@Log("删除广告类型")
+    @Log("删除广告类型")
     @RequiresPermissions("advertisingtype:delete")
     @RequestMapping("advertisingtype/delete")
     @ResponseBody
@@ -94,7 +81,7 @@ public class AdvertisingTypeController extends BaseController {
         }
     }
 
-    //@Log("修改广告类型 ")
+    @Log("修改广告类型 ")
     @RequiresPermissions("advertisingtype:update")
     @RequestMapping("advertisingtype/update")
     @ResponseBody

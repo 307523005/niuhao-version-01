@@ -61,7 +61,7 @@ public class JobController extends BaseController {
         }
     }
 
-    @Log("新增任务 ")
+    @Log("新增任务")
     @RequiresPermissions("job:add")
     @RequestMapping("job/add")
     @ResponseBody
@@ -103,7 +103,7 @@ public class JobController extends BaseController {
         }
     }
 
-    @Log("修改任务 ")
+    @Log("修改任务")
     @RequiresPermissions("job:update")
     @RequestMapping("job/update")
     @ResponseBody

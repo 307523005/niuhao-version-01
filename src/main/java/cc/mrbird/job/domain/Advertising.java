@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "t_advertising")
-public class Advertising extends QueryRequest {
-    //private static final long serialVersionUID = -400066840871805701L;
+public class Advertising extends QueryRequest implements Serializable{
+    private static final long serialVersionUID = -400066840871805701L;
     @Id
     @GeneratedValue(generator = "JDBC")
     @Column(name = "advertising_id")

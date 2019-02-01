@@ -10,6 +10,10 @@ import cc.mrbird.common.service.IService;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
+/**
+ * 数据库操作封装工具类
+ * @param <T>
+ */
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public abstract class BaseService<T> implements IService<T> {
 
@@ -44,6 +48,9 @@ public abstract class BaseService<T> implements IService<T> {
 
 	@Override
 	@Transactional
+	/**
+	 * property 为实体类的参数名（不是数据库字段）
+	 */
 	public int batchDelete(List<String> list, String property, Class<T> clazz) {
 		Example example = new Example(clazz);
 		example.createCriteria().andIn(property, list);

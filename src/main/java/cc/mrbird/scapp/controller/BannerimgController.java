@@ -1,5 +1,6 @@
 package cc.mrbird.scapp.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.config.RedisUtils;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
@@ -72,14 +73,12 @@ public class BannerimgController extends BaseController {
     }*/
 
 
-    // @Log("查看轮播图")
     @RequestMapping("bannerimg")
     @RequiresPermissions("bannerimg:list")
     public String bannerimg() {
         return "scappht/pagemanagement/bannerimg/bannerimg";
     }
 
-    //@Log("查看轮播图列表")
     @RequestMapping("bannerimg/list")
     @RequiresPermissions("bannerimg:list")
     @ResponseBody
@@ -91,7 +90,7 @@ public class BannerimgController extends BaseController {
         return getDataTable(pageInfo);
     }
 
-    //@Log("删除轮播图")
+    @Log("删除轮播图")
     @RequiresPermissions("bannerimg:delete")
     @RequestMapping("bannerimg/delete")
     @ResponseBody
@@ -105,7 +104,7 @@ public class BannerimgController extends BaseController {
         }
     }
 
-    //@Log("修改轮播图 ")
+    @Log("修改轮播图 ")
     @RequiresPermissions("bannerimg:update")
     @RequestMapping("bannerimg/update")
     @ResponseBody

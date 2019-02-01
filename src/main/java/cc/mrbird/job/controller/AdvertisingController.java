@@ -1,5 +1,6 @@
 package cc.mrbird.job.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -62,20 +63,17 @@ public class AdvertisingController extends BaseController {
     @Autowired
     private AdvertisingService advertisingService;
 
-    // @Log("查看广告")
     @RequestMapping("advertising")
     @RequiresPermissions("advertising:list")
     public String advertising() {
         return "job/advertising/advertising";
     }
 
-    //@Log("查看广告列表")
     @RequestMapping("advertising/list")
     @RequiresPermissions("advertising:list")
     @ResponseBody
     public Map<String, Object> advertisingList(QueryRequest request, Advertising advertising) {
         User user = RequestUtils.currentLoginUser();
-        String merchantId = user.getMerchantId();
         advertising.setMerchantId(user.getMerchantId());
         PageInfo<Advertising> pageInfo = advertisingService.PageList(request, advertising);
         return getDataTable(pageInfo);
@@ -95,7 +93,7 @@ public class AdvertisingController extends BaseController {
         }
     }*/
 
-    //@Log("删除广告")
+    @Log("删除广告")
     @RequiresPermissions("advertising:delete")
     @RequestMapping("advertising/delete")
     @ResponseBody
@@ -109,7 +107,7 @@ public class AdvertisingController extends BaseController {
         }
     }
 
-    //@Log("修改广告 ")
+    @Log("修改广告 ")
     @RequiresPermissions("advertising:update")
     @RequestMapping("advertising/update")
     @ResponseBody

@@ -1,0 +1,71 @@
+<div data-th-include="job/advertisingmessage/advertisingmessageAdd"></div>
+<div class="card">
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_buttons hidden-sm-down actions"style="position:relative;z-index:1;">
+                    <span class="actions__item zmdi zmdi-search" onclick="search()" title="搜索" />
+                    <span class="actions__item zmdi zmdi-refresh-alt" onclick="refresh()" title="刷新" />
+                    <div class="dropdown actions__item">
+                        <i data-toggle="dropdown" class="zmdi zmdi-download">
+                        </i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="excel" onclick="exportadvertisingmessageExcel()">
+                                Excel (.xlsx)
+                            </a>
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="csv" onclick="exportadvertisingmessageCsv()">
+                                CSV (.csv)
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="dropdown actions__item" shiro:hasAnyPermissions="advertisingmessage:add,advertisingmessage:update,advertisingmessage:delete">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#advertisingmessage-add" shiro:hasPermission="advertisingmessage:add">新增</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="updateadvertisingmessage()" shiro:hasPermission="advertisingmessage:update">回复</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="deleteadvertisingmessage()" shiro:hasPermission="advertisingmessage:delete">删除</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="data-table_filter" class="dataTables_filter"style="position:relative;z-index:0;">
+                    <form class="advertisingmessage-table-form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	广告名称：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="advertisingTitle" class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+					               	留言时间：
+					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="advmessageAddtime" class="form-control">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table id="advertisingmessageTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{js/app/job/advertisingmessage/advertisingmessage.js}"></script>
+<script data-th-src="@{js/app/job/advertisingmessage/advertisingmessageEdit.js}"></script>
+
+
+

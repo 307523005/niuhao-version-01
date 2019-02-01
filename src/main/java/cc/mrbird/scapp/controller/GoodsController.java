@@ -1,5 +1,6 @@
 package cc.mrbird.scapp.controller;
 
+import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
@@ -36,14 +37,12 @@ public class GoodsController extends BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private GoodsService goodsService;
-    // @Log("查看商品")
     @RequestMapping("goods")
     @RequiresPermissions("goods:list")
     public String goods() {
         return "scappht/pagemanagement/goods/goods";
     }
 
-    //@Log("查看商品列表")
     @RequestMapping("goods/list")
     @RequiresPermissions("goods:list")
     @ResponseBody
@@ -54,7 +53,7 @@ public class GoodsController extends BaseController {
         PageInfo<Goods> pageInfo = this.goodsService.PageList(request, goods);
         return getDataTable(pageInfo);
     }
-    //@Log("删除商品")
+    @Log("删除商品")
     @RequiresPermissions("goods:delete")
     @RequestMapping("goods/delete")
     @ResponseBody
@@ -68,7 +67,7 @@ public class GoodsController extends BaseController {
         }
     }
 
-    //@Log("修改商品 ")
+    @Log("修改商品 ")
     @RequiresPermissions("goods:update")
     @RequestMapping("goods/update")
     @ResponseBody

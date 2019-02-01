@@ -34,7 +34,6 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
 
     @Override
     public Advertising findAdvertising(Long advertising_id) {
-        log.info(selectByKey(advertising_id).getAdvertisingUpdatetime());
         return this.selectByKey(advertising_id);
     }
 

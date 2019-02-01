@@ -1,16 +1,14 @@
 package cc.mrbird.job.domain;
 
 import cc.mrbird.common.annotation.ExportConfig;
+import cc.mrbird.common.domain.QueryRequest;
 import com.google.common.base.MoreObjects;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "t_advertisingmessage")
-public class AdvertisingMessage implements Serializable {
+public class AdvertisingMessage extends QueryRequest implements Serializable{
     private static final long serialVersionUID = 400066840871805711L;
     @Id
     @Column(name = "advmessage_id")
@@ -44,6 +42,10 @@ public class AdvertisingMessage implements Serializable {
 
     @Column(name = "advmessage_show")
     private int advmessageShow;
+    @Transient
+    @ExportConfig(value = "标题")
+    private String advertisingTitle;
+
     @Override
     public String toString() {
         return "AdvertisingMessage{" +
@@ -56,6 +58,7 @@ public class AdvertisingMessage implements Serializable {
                 ", advmessageAuthorcontent='" + advmessageAuthorcontent + '\'' +
                 ", advmessageUpdateuser='" + advmessageUpdateuser + '\'' +
                 ", advmessageShow='" + advmessageShow + '\'' +
+                ", advertisingTitle='" + advertisingTitle + '\'' +
                 '}';
     }
     public String getAdvmessageId() {
@@ -128,5 +131,13 @@ public class AdvertisingMessage implements Serializable {
 
     public void setAdvmessageShow(int advmessageShow) {
         this.advmessageShow = advmessageShow;
+    }
+
+    public String getAdvertisingTitle() {
+        return advertisingTitle;
+    }
+
+    public void setAdvertisingTitle(String advertisingTitle) {
+        this.advertisingTitle = advertisingTitle;
     }
 }

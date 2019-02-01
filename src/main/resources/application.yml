@@ -22,7 +22,6 @@ spring:
       #name: dubbo
       #port: 20881
     #scan: cc.mrbird.job.service.impl  #服务暴露与发现消费所在的package
-
   datasource:
     druid:
       # 数据库访问配置, 使用druid数据源 59.110.241.188
