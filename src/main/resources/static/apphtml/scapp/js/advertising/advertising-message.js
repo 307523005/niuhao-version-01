@@ -57,7 +57,7 @@ function footer_ul() {
 }
 
 function message() {
-    window.location.href = "/apphtml/scapp/advertisingmessage.html?merchant_id=" + merchant_id + "&advertising_id=" + advertisingId;
+    window.location.href = "/apphtml/scapp/advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertisingId;
 }
 
 /*提交留言*/
