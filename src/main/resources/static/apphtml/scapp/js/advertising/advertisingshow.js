@@ -68,7 +68,7 @@ function advertisinglist(num,query) {
                 size = advertising.length;
                 for (var i = 0; i < advertising.length; i++) {
                     advertisinglist += " <li>\n" +
-                        "                <a href=\"advertisingmessage.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\">\n" +
+                        "                <a href=\"advertising.html?merchant_id=" + merchant_id + "&advertising_id=" + advertising[i].advertisingId + "\">\n" +
                         "                    <div class=\"goods-allocation-txt\">\n" +
                         "                        <h2><span style=\"float:left;width:260px;overflow: hidden;\n" +
                         "            text-overflow: ellipsis;\n" +
