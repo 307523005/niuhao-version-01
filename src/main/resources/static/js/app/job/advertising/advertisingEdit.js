@@ -27,10 +27,15 @@ function updateadvertising() {
             $form.find("input[name='advertisingId']").val(advertising.advertisingId);
             $form.find("select[name='advertisingTypeIdSelect']").multipleSelect('setSelects', advertisingTypeIdArr);
             $form.find("input[name='advertisingTypeId']").val($form.find("select[name='advertisingTypeIdSelect']").val());
-            var  advertisingContent=advertising.advertisingContent;
-            var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
-            advertisingContent=advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
-            KindEditor.html("#paperTitle",advertisingContent);//给富文本赋值
+            var advertisingContent = advertising.advertisingContent;
+            var arrEntities = {'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"'};
+            advertisingContent = advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
+                return arrEntities[t];
+            });
+            //alert(advertisingContent);
+           //contentEditor.setMarkdown(advertisingContent)
+            //CKEDITOR.instances.paperTitle.setData(advertisingContent);//给富文本赋值
+             KindEditor.html("#paperTitle",advertisingContent);//给富文本赋值
             $("#advertising-add-button").attr("name", "update");
         } else {
             $MB.n_danger(r.msg);

@@ -3206,7 +3206,7 @@
                 yesBtn: {
                     name: b.lang("yes"), click: function () {
                         var c = a(".ke-code-type", f.div).val(), e = g.val(), h = "" === c ? "" : " lang-" + c,
-                            i = '<pre class="prettyprint' + h + '">\n' + a.escape(e) + "</pre> ";
+                            i = '<pre class="prettyprint linenums' + h + '">\n' + a.escape(e) + "</pre> ";
                         return "" === a.trim(e) ? (alert(d.pleaseInput), void g[0].focus()) : void b.insertHtml(i).hideDialog().focus()
                     }
                 }

@@ -98,6 +98,7 @@ function validateRule() {
         }
     });
 }
+
 /*cron表达式列表*/
 function initCron() {
     $.post(ctx + "cron/list", {}, function (r) {
@@ -124,30 +125,33 @@ function initCron() {
         $cronExpressionSelect.multipleSelect(options);
     });
 }
+
 /*定时执行方法列表*/
 function initmethodName() {
-    //$.post(ctx + "cron/list", {}, function (r) {
-    //var data = r.rows;
-    var option = "";
-    //for (var i = 0; i < data.length; i++) {
-    option += "<option value='sendMail'>发送提醒邮件</option>";
-    option += "<option value='test'>test</option>";
-    //}
-    $methodNameSelect.html("").append(option);
-    var options = {
-        selectAllText: '所有方法',
-        allSelected: '所有方法',
-        width: '100%',
-        single: true,//是否单选
-        filter: true,//搜索
-        onClose: function () {
-            methodName.val($methodNameSelect.val());
-            validator.element("input[name='methodName']");
-        }, onOpen: function () {//打开当下拉列表被打开时触发。
-            $methodNameSelect.multipleSelect('uncheckAll');
-        },
-    };
+    $.post(ctx + "job/list", {}, function (r) {
+        var data = r.rows;
+        var option = "";
+        for (var i = 0; i < data.length; i++) {
+            option += "<option value='" + data[i].methodName + "'>" + data[i].methodName + "</option>"
 
-    $methodNameSelect.multipleSelect(options);
-    // });
+            /*option += "<option value='sendMail'>发送提醒邮件</option>";
+            option += "<option value='test'>test</option>";*/
+        }
+        $methodNameSelect.html("").append(option);
+        var options = {
+            selectAllText: '所有方法',
+            allSelected: '所有方法',
+            width: '100%',
+            single: true,//是否单选
+            filter: true,//搜索
+            onClose: function () {
+                methodName.val($methodNameSelect.val());
+                validator.element("input[name='methodName']");
+            }, onOpen: function () {//打开当下拉列表被打开时触发。
+                $methodNameSelect.multipleSelect('uncheckAll');
+            },
+        };
+
+        $methodNameSelect.multipleSelect(options);
+    });
 }

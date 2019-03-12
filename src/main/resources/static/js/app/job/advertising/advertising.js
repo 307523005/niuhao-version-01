@@ -31,12 +31,16 @@ $(function () {
                 title: '查看',
                 align: 'center',
                 formatter: function (value, row, index) {
-                    return ' <a target="_blank" href="http://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id=' + row.merchantId + '&advertising_id=' + row.advertisingId + '" class="btn">查看</a>';
+                    return ' <a target="_blank" href="https://www.niuxinghao.top/apphtml/scapp/advertising.html?merchant_id=' + row.merchantId + '&advertising_id=' + row.advertisingId + '" class="btn">查看</a>';
                     /*<button type="button" onclick="chakan(value)" class="btn">查看</button>*/
                 }
-            }, {
+            }/*, {
                 field: 'advertisingName',
                 title: '广告名称',
+                align: 'center'
+            }*/, {
+                field: 'advertisingTitle',
+                title: '标题',
                 align: 'center'
             }, {
                 field: 'advertisingHits',
@@ -50,10 +54,6 @@ $(function () {
             }, {
                 field: 'merchantId',
                 title: '商户码',
-                align: 'center'
-            }, {
-                field: 'advertisingTitle',
-                title: '标题',
                 align: 'center'
             }, {
                 field: 'advertisingRemarks',
