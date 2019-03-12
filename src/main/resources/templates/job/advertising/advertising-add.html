@@ -1,4 +1,4 @@
-<div class="modal fade" id="advertising-add" data-keyboard="false" data-backdrop="static" tabindex="-1">
+<div class="modal fade" id="advertising-add" data-keyboard="false" data-backdrop="static" <!--tabindex="-1"-->>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,11 +14,11 @@
 					            </span>
                                 <div class="form-group">
                                     <input type="text" name="advertisingName" class="form-control">
-                                    <input type="text" hidden name="oldadvertisingName" >
-                                    <input type="text" name="advertisingAddtime" hidden >
-                                    <input type="text" name="advertisingId" hidden >
-                                    <input type="text" id="advertisingContent" name="advertisingContent" hidden >
-                                    <input type="text" name="merchantId" hidden >
+                                    <input type="text" hidden name="oldadvertisingName">
+                                    <input type="text" name="advertisingAddtime" hidden>
+                                    <input type="text" name="advertisingId" hidden>
+                                    <input type="text" id="advertisingContent" name="advertisingContent" hidden>
+                                    <input type="text" name="merchantId" hidden>
                                 </div>
                             </div>
                         </div>
@@ -62,16 +62,14 @@
                         </div>
                     </div>
                 </form>
-                    <script data-th-src="@{js/kindeditor/kindeditor-all-min.js}"></script>
-                    <script data-th-src="@{js/kindeditor/lang/zh-CN.js}"></script>
-                    <script data-th-src="@{js/kindeditor/plugins/code/prettify.js}"></script>
-                    <!--<script data-th-src="@{js/jquery.min.js}"></script>-->
-                    <!--<form id="example" name="example" action="paperTitle" method="post">-->
-                    <textarea style="width:100%;height:300px;" id="paperTitle" name="paperTitle" cols="100"
-                              rows="20"></textarea>
-                    <!--<input type="submit" value="提交"/>-->
-                    <!--<input type="button" onclick="advertisingaa()" value="提交2"/>-->
-                    <!--</form>-->
+                <script data-th-src="@{js/kindeditor/kindeditor-all-min.js}"></script>
+                <script data-th-src="@{js/kindeditor/lang/zh-CN.js}"></script>
+                <script data-th-src="@{js/kindeditor/plugins/code/prettify.js}"></script>
+                <textarea style="width:100%;height:300px;" id="paperTitle" name="paperTitle" cols="100"
+                          rows="20"></textarea>
+                <!-- <script data-th-src="@{js/ckeditor/ckeditor.js}"></script>
+                <textarea cols="100" id="paperTitle"style="width:100%;height:300px;" name="paperTitle" rows="20" data-sample-short></textarea>
+-->
 
             </div>
 

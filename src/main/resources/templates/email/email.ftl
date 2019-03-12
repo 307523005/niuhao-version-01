@@ -27,7 +27,7 @@
 
                         <td  width="703" height="48" colspan="2" align="left" valign="middle"
                             style="font-size:16px;color:#ffffff; padding-right:20px;">
-                            &nbsp;&nbsp;<a href="http://www.niuxinghao.top:9080/login"
+                            &nbsp;&nbsp;<a href="https://www.niuxinghao.top:9080/login"
                                            target="_blank"
                                            style="color:#ffffff;text-decoration:none;font-family:'Microsoft YaHei';"
                                            rel="noopener">广商管理系统</a>
@@ -78,8 +78,8 @@
                     </tr>
                     <tr>
                         <td width="720" height="32" colspan="2" style="padding-left:40px;"><a
-                                href="http://www.niuxinghao.top/apphtml/scapp/index.html?merchant_id=c5c05b29ee4c"
-                                target="_blank" rel="noopener">http://www.niuxinghao.top/apphtml/scapp/contactmerchant.html?merchant_id=${(params.merchant_id)!""}</a>
+                                href="https://www.niuxinghao.top/apphtml/scapp/index.html?merchant_id=c5c05b29ee4c"
+                                target="_blank" rel="noopener">https://www.niuxinghao.top/apphtml/scapp/contactmerchant.html?merchant_id=${(params.merchant_id)!""}</a>
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +119,7 @@
                     <tr>
                         <td width="800" height="100" align="center" valign="middle">
                             <img border="0" height="100"
-                                 src="http://www.niuxinghao.top/merchant_wximge/20181013/1/merchant_wximge/20181013190102_152.jpg">
+                                 src="https://www.niuxinghao.top/merchant_wximge/20181013/1/merchant_wximge/20181013190102_152.jpg">
                         </td>
                     </tr>
                     </tbody>
