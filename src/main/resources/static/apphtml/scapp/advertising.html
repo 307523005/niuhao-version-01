@@ -9,63 +9,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <!--ios苹果工具栏和菜单栏设置 end-->
     <!-- 设置meta标签 清除页面缓存cache control: no cache;begin -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
     <!-- 设置meta标签 清除页面缓存cache control: no cache; end-->
     <title id="title">资讯</title>
-    <!--<link rel="stylesheet" type="text/css" href="css/base.css">-->
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <!---->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- kindeditor -->
+    <link rel="stylesheet" type="text/css" href="../../js/kindeditor/themes/default/default.css">
+    <link rel="stylesheet" type="text/css" href="../../js/kindeditor/plugins/code/prettify.css">
+    <script type="text/javascript" src="../../js/kindeditor/kindeditor-all-min.js"></script>
+    <script type="text/javascript" src="../../js/kindeditor/kindeditor-all.js"></script>
+    <script type="text/javascript" src="../../js/kindeditor/lang/zh-CN.js"></script>
+    <script type="text/javascript" src="../../js/kindeditor/plugins/code/prettify.js"></script>
+    <!--editormd-->
+    <!--<link rel="stylesheet" href="../../js/editormd/css/editormd.min.css">-->
+    <!--ckeditor-->
+    <!--
+        <script type="text/javascript" src="../../js/ckeditor/ckeditor.js"></script>
+    -->
+    <!--<link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css">
+&lt;!&ndash;    <link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css">&ndash;&gt;
+    <link rel="stylesheet" href="../../js/ckeditor/plugins/copyformatting/styles/copyformatting.css">
+    <link rel="stylesheet" href="../../js/ckeditor/plugins/tableselection/styles/tableselection.css">
+    <link rel="stylesheet" href="../../js/ckeditor/contents.css?t=J1QB">
+    <script  src="../../js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+    <script>
+            hljs.initHighlightingOnLoad();
+            alert(0);
+    </script>-->
+    <!--评论区样式-->
     <link rel="stylesheet" href="css/amazeui.min.css">
     <!--下方菜单样式-->
-    <link rel="stylesheet" type="text/css" href="css/base.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/advertisingBase.css">
 
-    <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
-    <!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>-->
     <script src="js/common.js"></script>
+    <!--回到顶样式-->
     <style type="text/css">
-        .goTop >img{
+        .goTop > img {
             width: 36px;
             height: 36px;
-            /*cursor: pointer;*/
             border-radius: 50%;
         }
-        .goTop{
+
+        .goTop {
             position: fixed;
-            right : 10px;
-            bottom : 100px;
+            right: 10px;
+            bottom: 100px;
         }
     </style>
 </head>
-
 <body>
 
 <!--header-end-->
 <article class="am-article">
 
     <div class="am-article-hd" id="advertisingshowtitle">
-        <!--      <h1 class="am-article-title" >你好啊</h1>
-              <p class="am-article-meta" >2018-10-12 20:25:22</p><p class="am-article-meta">家家网</p>
-         --> </div>
+    </div>
 
     <div class="am-article-bd" id="advertisingshow">
 
     </div>
     <div class="am-article-message" id="show-message">
-        <!--<div style="margin-left:20px;float: left;margin-top: 10px;">精选留言</div>
-        <div style="margin-right: 20px;float: right;margin-top: 10px;"><a
-                href="advertising-message.html?type=最新资讯&merchant_id=c5c05b29ee4c&advertising_id=12"><span>留言</span></a>
-        </div>
-        <br>
-        <br>
-        <div class="add-class">
-            <ul class="clearfix">
-                <li class="clearfix"><span class="am-article-tourist">游客</span><br>，产品名字和他们公司名字一样，叫做Uizar，，，</li>
-                <li class="clearfix"><span class="am-article-author">作者</span><br>感谢您的答复！</li>
-            </ul>
-        </div>-->
     </div>
     <div class="am-article-hd2">
         <br>
@@ -84,9 +89,8 @@
 </footer>
 <div class="goTop" id="js-go_top"><img src="css/mescroll-totop.png" alt="回到顶部图片"></div>
 <!--container-end-->
-<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script><!--获取ip位置信息用-->
+<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><!--获取ip位置信息用-->
 <script src="js/GoToTop.js"></script>
 <script src="js/advertising/advertising.js"></script>
-
 </body>
 </html>

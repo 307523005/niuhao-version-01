@@ -69,6 +69,7 @@ function showadvertising(merchant_name) {
                 var advertisingContent = advertising.advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
                     return arrEntities[t];
                 });
+                console.log(advertisingContent);
                 $("#advertisingshow").html(advertisingContent);
                 $("#title").html(advertising.advertisingTitle);
                 showMessage();
