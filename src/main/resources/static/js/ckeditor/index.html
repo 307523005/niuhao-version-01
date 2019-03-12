@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Using syntax highlighting</title>
+    <script type="text/javascript" charset="utf-8" src="ckeditor.js"></script>
+<!--
+    <script src="https://cdn.ckeditor.com/4.11.3/standard-all/ckeditor.js"></script>
+-->
+</head>
+
+<body>
+<textarea id="editor1" name="editor1" data-sample-preservewhitespace></textarea>
+</div>
+</body>
+<script>
+    var config = {
+        extraPlugins: 'codesnippet,image2',
+        codeSnippet_theme: 'monokai_sublime',
+        filebrowserImageUploadUrl: 'ckeditor/uploadImage',
+        /*      removeButtons  :'Source,Save,NewPage,Scayt',*/
+        height: 560,
+    };
+
+    CKEDITOR.replace('editor1', config);
+</script>
+</body>
+
+</html>
