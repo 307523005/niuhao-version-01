@@ -6,6 +6,7 @@ import cc.mrbird.common.util.DateUtil;
 import cc.mrbird.job.dao.AdvertisingMapper;
 import cc.mrbird.job.domain.Advertising;
 import cc.mrbird.job.service.AdvertisingService;
+import cc.mrbird.job.util.MarkdownUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,7 +35,8 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
 
     @Override
     public Advertising findAdvertising(Long advertising_id) {
-        return this.selectByKey(advertising_id);
+        Advertising advertising = selectByKey(advertising_id);
+        return advertising;
     }
 
 
@@ -107,6 +109,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
         advertising.setAdvertisingUpdatetime(dateFormat);
         this.updateNotNull(advertising);
     }
+
     @Override
     @Transactional
     public void updateAdvertisingRedis(Advertising advertising) {
@@ -126,7 +129,7 @@ public class AdvertisingServiceImpl extends BaseService<Advertising> implements 
         }
         if (query != null && !query.equals("")) {
             criteria.andCondition("advertising_title like ", "%" + query + "%");
-           // criteria.orCondition("advertising_content like ", "%" + query + "%");
+            // criteria.orCondition("advertising_content like ", "%" + query + "%");
         }
         if (advertisingTypeId != null && !advertisingTypeId.equals("")) {
             criteria.andCondition("advertisingtype_id =", advertisingTypeId);

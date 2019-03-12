@@ -38,7 +38,7 @@ public class BaidudituController extends BaseController {
     @RequestMapping("xiuzheng")
     @ResponseBody
     public ResponseBo xiuzheng(Double longitude,Double latitude) throws Exception{
-        HttpURLConnection conn = (HttpURLConnection) new URL("http://api.map.baidu.com/geoconv/v1/?coords=" + longitude + "," + latitude + "&from=3&to=5&ak=mC89ltNwqr0BMBPPGNcEiE74").openConnection();
+        HttpURLConnection conn = (HttpURLConnection) new URL("https://api.map.baidu.com/geoconv/v1/?coords=" + longitude + "," + latitude + "&from=3&to=5&ak=mC89ltNwqr0BMBPPGNcEiE74").openConnection();
         conn.setDoOutput(true);
         conn.setDoInput(true);
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));

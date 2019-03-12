@@ -21,7 +21,7 @@ import java.time.LocalTime;
 @EnableConfigurationProperties({NniuhaoProperies.class})// 开启配置属性支持
 @EnableCaching
 @EnableAsync
-public class Application /*extends SpringBootServletInitializer*/ {
+public class Application extends SpringBootServletInitializer {
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {

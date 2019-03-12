@@ -6,6 +6,7 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
@@ -186,7 +187,8 @@ public class RedisUtils {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
-                expire(key, time);
+                redisTemplate.expire(key, expireTime, TimeUnit.MINUTES);
+                //expire(key, time);
             }
             return true;
         } catch (Exception e) {
@@ -258,7 +260,31 @@ public class RedisUtils {
             return false;
         }
     }
+    /**
+     * 正序获取sortedSet对应的所有键值
+     *获取队列的方法，start表示起始位置的index，从0开始。index表示end的位置，-1表示获取全部
+     * @param key 键
+     * @return 对应的多个键值 ,返回的时候回带上score
+     */
 
+    public Set<ZSetOperations.TypedTuple<Object>> getZSetRange(String key, long start, long end) {
+
+        return redisTemplate.opsForZSet().rangeWithScores(key,start,end);
+
+    }
+
+    /**
+     *倒叙
+     * @param key
+     * @param start
+     * @param end
+     * @return返回的时候回带上score
+     */
+    public Set<ZSetOperations.TypedTuple<Object>>getZSetReverseRange(String key, long start, long end) {
+
+        return redisTemplate.opsForZSet().reverseRangeWithScores(key,start,end);
+
+    }
     /**
      * 过期时间，默认30分钟
      */

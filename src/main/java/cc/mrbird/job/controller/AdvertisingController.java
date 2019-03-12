@@ -7,8 +7,9 @@ import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
 import cc.mrbird.common.util.FileUtils;
 import cc.mrbird.job.domain.Advertising;
+import cc.mrbird.job.domain.EditormdUploadImageResModel;
+import cc.mrbird.job.domain.UploadImageResModel;
 import cc.mrbird.job.service.AdvertisingService;
-import cc.mrbird.scapp.domain.Goods;
 import cc.mrbird.system.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
@@ -28,17 +29,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -167,6 +158,7 @@ public class AdvertisingController extends BaseController {
 
     /**
      * 商城根据id获取广告
+     *
      * @param advertisingId
      * @return
      */
@@ -175,6 +167,7 @@ public class AdvertisingController extends BaseController {
     public ResponseBo scappgetadvertising(Long advertisingId) {
         try {
             Advertising advertising = this.advertisingService.findAdvertising(advertisingId);
+            String advertisingContent = advertising.getAdvertisingContent();
             return ResponseBo.ok(advertising);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);
@@ -184,28 +177,31 @@ public class AdvertisingController extends BaseController {
 
     /**
      * 商城根据商户id获取广告列表
+     *
      * @param merchant_id
      * @return
      */
     @RequestMapping("scapp/scappGetAdvertisingByMerchant_id")
     @ResponseBody
-    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id,Long advertisingTypeId,String num,String query) {
+    public ResponseBo scappGetAdvertisingByMerchant_id(String merchant_id, Long advertisingTypeId, String num, String query) {
         try {
-            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id,advertisingTypeId,num,query);
+            List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_id(merchant_id, advertisingTypeId, num, query);
             return ResponseBo.ok(list);
         } catch (Exception e) {
             log.error("获取广告信息失败", e);
             return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
         }
     }
+
     /**
      * 商城根据商户id获取广告列表
+     *
      * @param merchant_id
      * @return
      */
     @RequestMapping("scapp/scappGetAdvertisingByMerchant_idTop10")
     @ResponseBody
-    public ResponseBo scappGetAdvertisingByMerchant_idTop10(String merchant_id ) {
+    public ResponseBo scappGetAdvertisingByMerchant_idTop10(String merchant_id) {
         try {
             List<Advertising> list = this.advertisingService.scappGetAdvertisingByMerchant_idTop10(merchant_id);
             return ResponseBo.ok(list);
@@ -214,6 +210,7 @@ public class AdvertisingController extends BaseController {
             return ResponseBo.error("获取广告信息失败，请联系网站管理员！");
         }
     }
+
     @RequestMapping("advertising/checkadvertisingName")
     @ResponseBody
     public boolean checkadvertisingName(String advertisingName, String oldadvertisingName) {
@@ -224,6 +221,7 @@ public class AdvertisingController extends BaseController {
         boolean result = this.advertisingService.findByName(advertisingName, user.getMerchantId());
         return result;
     }
+
     @RequestMapping("advertising/excel")
     @ResponseBody
     public ResponseBo advertisingExcel(Advertising advertising) {
@@ -238,7 +236,7 @@ public class AdvertisingController extends BaseController {
 
     @RequestMapping("advertising/csv")
     @ResponseBody
-    public ResponseBo advertisingCsv(Advertising advertising,QueryRequest request) {
+    public ResponseBo advertisingCsv(Advertising advertising, QueryRequest request) {
         try {
             List<Advertising> list = this.advertisingService.findAllAdvertising(advertising);
             return FileUtils.createCsv("任务表", list, Advertising.class);
@@ -247,6 +245,7 @@ public class AdvertisingController extends BaseController {
             return ResponseBo.error("导出Csv失败，请联系网站管理员！");
         }
     }
+
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
@@ -552,4 +551,272 @@ public class AdvertisingController extends BaseController {
             }
         }
     }
+
+    /**
+     * ckeditor
+     *
+     * @return
+     */
+    @RequestMapping("ckeditor")
+    public String ckeditor() {
+        return "job/advertising/ckeditor";
+    }
+
+
+    /**
+     * ckeditor 上传文件
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     * @throws FileUploadException
+     */
+    @RequestMapping(value = "/ckeditor/uploadImage"/*, method = RequestMethod.POST*/)
+    @ResponseBody
+    public UploadImageResModel uploadImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+            FileUploadException {
+        UploadImageResModel res = new UploadImageResModel();
+        res.setUploaded(0);
+        ServletContext application = request.getSession().getServletContext();
+        String savePath = application.getRealPath("/") + "images22/";
+        User user = RequestUtils.currentLoginUser();
+        //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
+        // 文件保存目录URL
+        String saveUrl = request.getContextPath() + "/images22/";
+        // 定义允许上传的文件扩展名
+        HashMap<String, String> extMap = new HashMap<String, String>();
+        String dirName = user.getMerchantId();
+        extMap.put(dirName, "gif,jpg,jpeg,png,bmp");
+        extMap.put("flash", "swf,flv");
+        extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+
+        // 最大文件大小
+        long maxSize = 3000000;
+
+        response.setContentType("text/html; charset=UTF-8");
+
+        if (!ServletFileUpload.isMultipartContent(request)) {
+            return res;
+
+        }
+        // 检查目录
+        File uploadDir = new File(savePath);
+        if (!uploadDir.isDirectory()) {
+            uploadDir.mkdirs();
+            // return getError("上传目录不存在。");
+        }
+        // 检查目录写权限
+        if (!uploadDir.canWrite()) {
+            return res;
+
+        }
+
+        //String dirName = request.getParameter("dir");
+
+        if (dirName == null) {
+            dirName = "image";
+        }
+        if (!extMap.containsKey(dirName)) {
+            return res;
+
+        }
+        // 创建文件夹
+        savePath += dirName + "/";
+        saveUrl += dirName + "/";
+        File saveDirFile = new File(savePath);
+        if (!saveDirFile.exists()) {
+            saveDirFile.mkdirs();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String ymd = sdf.format(new Date());
+        savePath += ymd + "/";
+        saveUrl += ymd + "/";
+        File dirFile = new File(savePath);
+        if (!dirFile.exists()) {
+            dirFile.mkdirs();
+        }
+
+        FileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
+
+
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+        Iterator item = multipartRequest.getFileNames();
+        while (item.hasNext()) {
+
+            String fileName = (String) item.next();
+
+            MultipartFile file = multipartRequest.getFile(fileName);
+
+
+            // 检查文件大小
+
+            if (file.getSize() > maxSize) {
+
+                return res;
+
+
+            }
+
+            // 检查扩展名
+
+            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+
+            if (!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)) {
+                return res;
+
+            }
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+            String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
+
+            try {
+
+                File uploadedFile = new File(savePath, newFileName);
+
+                ByteStreams.copy(file.getInputStream(), new FileOutputStream(uploadedFile));
+
+            } catch (Exception e) {
+
+                return res;
+
+
+            }
+            res.setUploaded(1);
+            res.setFileName(fileName);
+            res.setUrl(saveUrl + newFileName);
+            return res;
+
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/editormd/uploadImage"/*, method = RequestMethod.POST*/)
+    @ResponseBody
+    public EditormdUploadImageResModel editormduploadImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+            FileUploadException {
+        EditormdUploadImageResModel res = new EditormdUploadImageResModel();
+        res.setSuccess(0);
+        ServletContext application = request.getSession().getServletContext();
+        String savePath = application.getRealPath("/") + "images22/";
+        User user = RequestUtils.currentLoginUser();
+        //String savePath ="d:/niuhao-images/"+user.getUsername()+"/images/";
+        // 文件保存目录URL
+        String saveUrl = request.getContextPath() + "/images22/";
+        // 定义允许上传的文件扩展名
+        HashMap<String, String> extMap = new HashMap<String, String>();
+        String dirName = user.getMerchantId();
+        extMap.put(dirName, "gif,jpg,jpeg,png,bmp");
+        extMap.put("flash", "swf,flv");
+        extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+
+        // 最大文件大小
+        long maxSize = 3000000;
+
+        response.setContentType("text/html; charset=UTF-8");
+
+        if (!ServletFileUpload.isMultipartContent(request)) {
+            return res;
+
+        }
+        // 检查目录
+        File uploadDir = new File(savePath);
+        if (!uploadDir.isDirectory()) {
+            uploadDir.mkdirs();
+            // return getError("上传目录不存在。");
+        }
+        // 检查目录写权限
+        if (!uploadDir.canWrite()) {
+            return res;
+
+        }
+
+        //String dirName = request.getParameter("dir");
+
+        if (dirName == null) {
+            dirName = "image";
+        }
+        if (!extMap.containsKey(dirName)) {
+            return res;
+
+        }
+        // 创建文件夹
+        savePath += dirName + "/";
+        saveUrl += dirName + "/";
+        File saveDirFile = new File(savePath);
+        if (!saveDirFile.exists()) {
+            saveDirFile.mkdirs();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String ymd = sdf.format(new Date());
+        savePath += ymd + "/";
+        saveUrl += ymd + "/";
+        File dirFile = new File(savePath);
+        if (!dirFile.exists()) {
+            dirFile.mkdirs();
+        }
+
+        FileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
+
+
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+        Iterator item = multipartRequest.getFileNames();
+        while (item.hasNext()) {
+
+            String fileName = (String) item.next();
+
+            MultipartFile file = multipartRequest.getFile(fileName);
+
+
+            // 检查文件大小
+
+            if (file.getSize() > maxSize) {
+
+                return res;
+
+
+            }
+
+            // 检查扩展名
+
+            String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+
+            if (!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)) {
+                return res;
+
+            }
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+            String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
+
+            try {
+
+                File uploadedFile = new File(savePath, newFileName);
+
+                ByteStreams.copy(file.getInputStream(), new FileOutputStream(uploadedFile));
+
+            } catch (Exception e) {
+
+                return res;
+
+
+            }
+            res.setSuccess(1);
+            res.setMessage(fileName);
+            res.setUrl(saveUrl + newFileName);
+            return res;
+
+        }
+        return null;
+    }
+
 }
