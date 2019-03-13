@@ -32,10 +32,10 @@ function updateadvertising() {
             advertisingContent = advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
                 return arrEntities[t];
             });
-            //alert(advertisingContent);
-           //contentEditor.setMarkdown(advertisingContent)
+            //console.log(advertisingContent);
+            //contentEditor.setMarkdown(advertisingContent)
             //CKEDITOR.instances.paperTitle.setData(advertisingContent);//给富文本赋值
-             KindEditor.html("#paperTitle",advertisingContent);//给富文本赋值
+            KindEditor.html("#paperTitle", advertisingContent);//给富文本赋值
             $("#advertising-add-button").attr("name", "update");
         } else {
             $MB.n_danger(r.msg);

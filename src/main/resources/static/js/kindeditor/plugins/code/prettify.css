@@ -96,6 +96,7 @@ pre.prettyprint {
 }
 
 ol.linenums {
+    margin-left: -45px;
     margin-top: 0;
     margin-bottom: 0
 }
@@ -110,9 +111,11 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 pre.prettyprint {
     border: 0;
-    border-left: 3px solid #2F4056;
+    border-left: 2px solid #2F4056;
     background-color: #f2f2f2;
+    /*
     width: 650px;
+    */
     margin-left: 2em;
     padding: 0.5em;
     font-size: 90%;

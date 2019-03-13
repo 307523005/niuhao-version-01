@@ -85,7 +85,6 @@ public class AdvertisingMessageController extends BaseController {
     @ResponseBody
     public ResponseBo getadvertisingmessage(String advmessageId) {
         try {
-            System.out.println(advmessageId+"**advmessageId***");
             AdvertisingMessage advertisingMessage = this.advertisingMessageService.findAdvertisingmessage(advmessageId);
             return ResponseBo.ok(advertisingMessage);
         } catch (Exception e) {

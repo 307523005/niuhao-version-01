@@ -3,50 +3,19 @@ $(function () {
 
 });
 */
-var editor1;
-$(function () {
-    KindEditor.ready(function (K) {
-        editor1 = K.create('#paperTitle', {
-            items: ["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste", "|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", /*"multiimage", "flash", "media",*/ "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", "|", "about"],
-            cssPath: 'js/kindeditor/plugins/code/prettify.css',
-            uploadJson: 'fileUpload',
-            fileManagerJson: 'fileManager',
-            //allowFileManager: true,
-            // autoHeightMode: true,
-            minWidth: 200,
-            minHeight: 200,
-            cssData: 'body img{max-width:500px}'
-            //关键所在，当失去焦点时执行this.sync()，同步输入的值到textarea中;
-            /* afterBlur: function () {
-                 this.sync();
-             },*/
-            /*afterCreate: function () {
-                var self = this;//Ctrl+Enter提交表单
-                K.ctrl(document, 13, function () {
-                    self.sync();
-                    K('form[name=example]')[0].submit();
-                    //document.forms['example'].submit();
-                });
-                K.ctrl(self.edit.doc, 13, function () {
-                    self.sync();
-                    //document.forms['example'].submit();
-                    K('form[name=example]')[0].submit();
-                });
-            }*/
-        });
-        prettyPrint();
-    });
-});
-/*function fixedKeToolbar() {
-    var keContainer = $(".ke-container"), keToolbar = $(".ke-toolbar");
-    var winScollTop = $(window).scrollTop();
-    if (winScollTop - keContainer.offset().top > 0)
-        keToolbar.css({"position": "fixed", "top": 0, "width": keToolbar.closest("div").width()});
-    else
-        keToolbar.removeAttr("style");
-}
 
-window.onscroll = fixedKeToolbar;*/
+$(function () {
+    /* var config = {
+         extraPlugins: 'codesnippet,image2',
+         codeSnippet_theme: 'monokai_sublime',
+         filebrowserImageUploadUrl: 'ckeditor/uploadImage',
+         /!*      removeButtons  :'Source,Save,NewPage,Scayt',*!/
+         height: 560,
+     };*/
+    CKEDITOR.replace('paperTitle');
+});
+
+
 var validator;
 var $advertisingAddForm = $("#advertising-add-form");
 var advertisingTypeId = $advertisingAddForm.find("input[name='advertisingTypeId']");
@@ -57,19 +26,15 @@ $(function () {
     initadvertisingType()
     $("#advertising-add .btn-save").click(function () {
         $("#advertising-add-button").attr("disabled", true);
-        editor1.sync();//将KindEditor的数据同步到textarea标签。
-        // var html = $("#paperTitle").value;
-        var html = $('#paperTitle').val();
+        var html = CKEDITOR.instances.paperTitle.getData();//给富文本赋值
         html = html.replace(ctx + "/images22/g", "/images22").replace("/images22/g", ctx + "/images22");
-        html = html.replace(/[<>&"]/g, function (c) {
-            return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
-        });
-        //$('#advertisingContent').val(html);
+        $('#advertisingContent').val(html);
         var name = $(this).attr("name");
         validator = $advertisingAddForm.validate();
         var flag = validator.form();
         if (flag) {
             if (name === "save") {
+                alert($advertisingAddForm.serialize());
                 //富文本内容不能够序列化
                 $.post(ctx + "advertising/add", $advertisingAddForm.serialize()+'&advertisingContent='+html, function (r) {
                     if (r.code === 0) {
@@ -80,6 +45,7 @@ $(function () {
                 });
             }
             if (name === "update") {
+                //富文本内容不能够序列化
                 $.post(ctx + "advertising/update", {advertisingId:$('input[name="advertisingId"]').val(),advertisingContent:html,advertisingName:$('input[name="advertisingName"]').val(),advertisingTypeId:$('input[name="advertisingTypeId"]').val(),advertisingTitle:$('input[name="advertisingTitle"]').val(),advertisingRemarks:$('input[name="advertisingRemarks"]').val()}, function (r) {
                     if (r.code === 0) {
                         closeModal();
@@ -99,10 +65,9 @@ $(function () {
 });
 
 function closeModal() {
-    KindEditor.html("#paperTitle", "");//给富文本赋值
+    CKEDITOR.instances.paperTitle.setData('');//给富文本赋值
     $("#advertising-add-button").attr("name", "save");
     $("#advertising-add-button").attr("disabled", false);
-    //$MB.closeModal("advertising-add");
     $MB.closeAndRestModal("advertising-add");
     $advertisingTypeIdSelect.multipleSelect('setSelects', []);
     $advertisingTypeIdSelect.multipleSelect("refresh");

@@ -14,7 +14,7 @@ import java.util.List;
 
 @CacheConfig(cacheNames = "AdvertisingService")
 public interface AdvertisingService extends IService<Advertising> {
-    //@Cacheable(key = "'findAdvertising-'+#p0")
+    @Cacheable(key = "'findAdvertising-'+#p0")
     Advertising findAdvertising(Long advertising_id);
 
     @Cacheable(key = "'findAllAdvertising-'+ #advertising.toString()")

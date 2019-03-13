@@ -19,19 +19,16 @@ $(function(){
         textarea.siblings('.maintenance-reservation-textarea .layer').show();
         }
         else{
-			console.log(1)
         textarea.siblings('.maintenance-reservation-textarea .layer').hide();
         }
  	
 	
     $('.maintenance-reservation-textarea .layer').on('click',function () {
         $(this).hide().siblings('.textarea').focus();
-		console.log(2)
     })
 	
     $('.maintenance-reservation-textarea .textarea').on('focusout',function () {
         var value = $(".textarea").val();
-		console.log(3)
         if (value==''){
         $(this).siblings('.maintenance-reservation-textarea .layer').show();
         }

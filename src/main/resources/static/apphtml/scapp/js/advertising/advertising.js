@@ -69,11 +69,11 @@ function showadvertising(merchant_name) {
                 var advertisingContent = advertising.advertisingContent.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) {
                     return arrEntities[t];
                 });
-                console.log(advertisingContent);
+                console.log(advertising.advertisingContent);
                 $("#advertisingshow").html(advertisingContent);
                 $("#title").html(advertising.advertisingTitle);
                 showMessage();
-
+                ;
             } else {
                 $("#container").html("您访问的信息已删除!!!");
             }
@@ -82,7 +82,9 @@ function showadvertising(merchant_name) {
         error: function () {
             $("#container").html("您访问的链接有问题!!!");
         }
+
     });
+    aa();//渲染代码样式
 }
 
 function footer_ul() {
@@ -145,13 +147,13 @@ function showMessage() {
                 if (advertisingMessage.length > 0) {
                     for (var i = 0; i < advertisingMessage.length; i++) {
                         message += "<li class=\"clearfix-message\"><span class=\"am-article-tourist\">游客：</span><br>" + advertisingMessage[i].advmessageContent + "</li>";
-                   if(advertisingMessage[i].advmessageAuthorcontent!=null&&advertisingMessage[i].advmessageAuthorcontent!=''){
-                       message += "<li class=\"clearfix-message\"><span class=\"am-article-author\">作者回复：</span><br>" + advertisingMessage[i].advmessageAuthorcontent + "</li></ul></div>";
+                        if (advertisingMessage[i].advmessageAuthorcontent != null && advertisingMessage[i].advmessageAuthorcontent != '') {
+                            message += "<li class=\"clearfix-message\"><span class=\"am-article-author\">作者回复：</span><br>" + advertisingMessage[i].advmessageAuthorcontent + "</li></ul></div>";
 
-                   }
+                        }
                     }
-                }else {
-                    message +="<span class=\"am-article-tourist\">暂无留言</span>";
+                } else {
+                    message += "<span class=\"am-article-tourist\">暂无留言</span>";
                 }
 
 
@@ -171,15 +173,15 @@ function showMessage() {
 
 //示例
 $('#js-go_top').gotoTop({
-    offset : 100, //距离顶部的位置
-    speed : 300, //移动到顶部的速度
+    offset: 100, //距离顶部的位置
+    speed: 300, //移动到顶部的速度
     /*     iconSpeed : 300, //icon动画样式的速度*/
-    animationShow : {
-        'transform' : 'translate(0,0)',
+    animationShow: {
+        'transform': 'translate(0,0)',
         'transition': 'transform .5s ease-in-out'
     }, //icon动画样式显示时
-    animationHide : {
-        'transform' : 'translate(80px,0)',
+    animationHide: {
+        'transform': 'translate(80px,0)',
         'transition': 'transform .5s ease-in-out'
     } //icon动画样式隐藏时
 });

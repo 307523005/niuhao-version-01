@@ -1,0 +1,81 @@
+<div class="modal fade" id="advertising-add" data-keyboard="false" data-backdrop="static" <!--tabindex="-1"-->>
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title pull-left" id="advertising-add-modal-title">添加广告</h3>
+        </div>
+        <div class="modal-body">
+            <!--富文本内容单独拿出来不序列化-->
+            <input type="text" id="advertisingContent" name="advertisingContent" hidden>
+            <form id="advertising-add-form">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               广告名称：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="advertisingName" class="form-control">
+                                <input type="text" hidden name="oldadvertisingName">
+                                <input type="text" name="advertisingAddtime" hidden>
+                                <input type="text" name="advertisingId" hidden>
+                                <input type="text" name="merchantId" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	 广告类型：
+					             </span>
+                            <div class="form-group">
+                                <select name="advertisingTypeIdSelect" multiple="multiple"></select>
+                                <!--multiple="multiple" 多选-->
+                                <input name="advertisingTypeId" hidden/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	广告标题：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="advertisingTitle" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                                <span class="input-group-addon">
+					               	广告备注：
+					            </span>
+                            <div class="form-group">
+                                <input type="text" name="advertisingRemarks" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script data-th-src="@{js/ckeditor/ckeditor.js}"></script>
+            <textarea cols="100" id="paperTitle" style="width:100%;height:300px;" name="paperTitle" rows="20"
+                      data-sample-short></textarea>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-save" id="advertising-add-button" name="save">保存</button>
+            <button type="button" class="btn btn-secondary btn-close">关闭</button>
+            <button class="btn-hide"></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-th-src="@{js/app/job/advertising/advertising-add-ckeditor.js}"></script>
+

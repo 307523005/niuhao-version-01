@@ -41,7 +41,7 @@
     /*长字符串换行*/
     word-wrap: break-word;
     word-break: break-all;
-    white-space:pre-wrap;
+   /* white-space:pre-wrap;*/
 }
 
 .am-article-message {

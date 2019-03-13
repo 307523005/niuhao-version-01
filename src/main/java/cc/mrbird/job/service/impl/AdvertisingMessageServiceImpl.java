@@ -45,8 +45,6 @@ public class AdvertisingMessageServiceImpl extends BaseService<AdvertisingMessag
             advertisingMessage.setSort("advmessage_addtime desc");
         }
         List<AdvertisingMessage> findAdvertising = advertisingMessageInfoMapper.findAdvertisingMessageInfo(advertisingMessage);
-        System.out.println(findAdvertising.size());
-
         PageInfo<AdvertisingMessage> pageInfo = new PageInfo<>(findAdvertising);
         return pageInfo;
     }

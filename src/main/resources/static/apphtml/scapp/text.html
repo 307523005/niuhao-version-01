@@ -2,15 +2,42 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--ios苹果工具栏和菜单栏设置 begin-->
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!--ios苹果工具栏和菜单栏设置 end-->
+    <!-- 设置meta标签 清除页面缓存cache control: no cache;begin -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <!-- 设置meta标签 清除页面缓存cache control: no cache; end-->
     <title id="title">资讯</title>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-
+    <!-- kindeditor -->
+    <!-- <link rel="stylesheet" type="text/css" href="../../js/kindeditor/themes/default/default.css">
+     <link rel="stylesheet" type="text/css" href="../../js/kindeditor/plugins/code/prettify.css">
+     <script type="text/javascript" src="../../js/kindeditor/kindeditor-all-min.js"></script>
+     <script type="text/javascript" src="../../js/kindeditor/kindeditor-all.js"></script>
+     <script type="text/javascript" src="../../js/kindeditor/lang/zh-CN.js"></script>
+     <script type="text/javascript" src="../../js/kindeditor/plugins/code/prettify.js"></script>-->
+    <!--editormd-->
+    <!--<link rel="stylesheet" href="../../js/editormd/css/editormd.min.css">-->
+    <!--ckeditor-->
+    <script type="text/javascript" src="../../js/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css">
+    <!--    <link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css">-->
+    <link rel="stylesheet" href="../../js/ckeditor/plugins/copyformatting/styles/copyformatting.css">
+    <link rel="stylesheet" href="../../js/ckeditor/plugins/tableselection/styles/tableselection.css">
+    <link rel="stylesheet" href="../../js/ckeditor/contents.css?t=J1QB">
+    <script src="../../js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
     <!--评论区样式-->
     <link rel="stylesheet" href="css/amazeui.min.css">
     <!--下方菜单样式-->
     <link rel="stylesheet" type="text/css" href="css/advertisingBase.css">
 
-    <!--<script src="js/common.js"></script>-->
+    <script src="js/common.js"></script>
     <!--回到顶样式-->
     <style type="text/css">
         .goTop > img {
@@ -35,7 +62,34 @@
     </div>
 
     <div class="am-article-bd" id="advertisingshow">
-        <h1>ckeditor 代码前端高亮</h1><p><a href="https://xieboke.net/node/django/">django &nbsp;</a>&nbsp;&nbsp;joyoo &nbsp;&nbsp;&nbsp;2017/9/29 4:19&nbsp;&nbsp;&nbsp;444&nbsp;</p><p>1. 让 pre 按钮显示出来，ckeditor 的 config.js&nbsp;文件里添加插件：<strong>codesnippet</strong></p><p># 效果图</p><p><img alt="" src="https://xieboke.net/media/ckeditor/2017/09/29/20170929040552.png" /></p><p><strong>ckeditor 的 config.js 路径：</strong></p><p>static_root（H:\Python_1608\joyoo\static_root\ckeditor\ckeditor\config.js）</p><p>ckeditor (E:\Python35\Lib\site-packages\ckeditor\static\ckeditor\ckeditor\config.js)</p><p>2. 前端模板文件引入（styles 使用的css文件，可以修改成自己喜欢的样式，路径：</p><p>H:\Python_1608\joyoo\static_root\ckeditor\ckeditor\plugins\codesnippet\lib\highlight\styles）</p><pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/styles/monokai_sublime.css&quot;&gt;</pre><pre>&lt;script src=&quot;/static/js/highlight.pack.js&quot;&gt;&lt;/script&gt;&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;</pre><p>&nbsp;</p><pre><code class="language-java"> @Autowired    private TagRepository tagRepository;    @Transactional    @Override    public Tag saveTag(Tag tag) {        return tagRepository.save(tag);    }    @Transactional    @Override    public Tag getTag(Long id) {        return tagRepository.findOne(id);    }    @Override    public Tag getTagByName(String name) {        return tagRepository.findByName(name);    }</code></pre><p style="text-align:center"><img alt="" height="135" src="/images22/c5c05b29ee4c/20190312/20190312140350_175.jpg" width="300" /></p><p>&nbsp;</p>    </div>
+<pre>
+<code>@Autowired
+    private TagRepository tagRepository;
+
+    @Transactional
+    @Override
+    public Tag saveTag(Tag tag) {
+        return tagRepository.save(tag);
+    }
+
+    @Transactional
+    @Override
+    public Tag getTag(Long id) {
+        return tagRepository.findOne(id);
+    }
+
+    @Override
+    public Tag getTagByName(String name) {
+        return tagRepository.findByName(name);
+    }
+
+    @Transactional
+    @Override
+    public Page<Tag> listTag(Pageable pageable) {
+        return tagRepository.findAll(pageable);
+    }
+</code></pre><p> </p>
+    </div>
     <div class="am-article-message" id="show-message">
     </div>
     <div class="am-article-hd2">
@@ -57,17 +111,20 @@
 <!--container-end-->
 <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><!--获取ip位置信息用-->
 <script src="js/GoToTop.js"></script>
-<!--
-<script src="js/advertising/advertising.js"></script>
--->
-<link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css">
-<!--<link rel="stylesheet" href="../../js/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css">-->
-<link rel="stylesheet" href="../../js/ckeditor/plugins/copyformatting/styles/copyformatting.css">
-<link rel="stylesheet" href="../../js/ckeditor/plugins/tableselection/styles/tableselection.css">
-<link rel="stylesheet" href="../../js/ckeditor/contents.css?t=J1QB">
-<script  src="../../js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+<script src="../../js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+
 <script>
-    hljs.initHighlightingOnLoad();
+
+function aa() {
+    console.log(5);
+    var blocks = document.querySelectorAll('pre code');
+    blocks.forEach(function(block){
+        hljs.highlightBlock(block)
+    });
+
+}
+
 </script>
+<script src="js/advertising/advertising.js"></script>
 </body>
 </html>
