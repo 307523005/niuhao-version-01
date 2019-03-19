@@ -15,11 +15,11 @@ $(function () {
             // autoHeightMode: true,
             minWidth: 200,
             minHeight: 200,
-            cssData: 'body img{max-width:500px}'
+            cssData: 'body img{max-width:500px}',
             //关键所在，当失去焦点时执行this.sync()，同步输入的值到textarea中;
-            /* afterBlur: function () {
+            afterBlur: function () {
                  this.sync();
-             },*/
+             },
             /*afterCreate: function () {
                 var self = this;//Ctrl+Enter提交表单
                 K.ctrl(document, 13, function () {
@@ -37,7 +37,7 @@ $(function () {
         prettyPrint();
     });
 });
-/*function fixedKeToolbar() {
+function fixedKeToolbar() {
     var keContainer = $(".ke-container"), keToolbar = $(".ke-toolbar");
     var winScollTop = $(window).scrollTop();
     if (winScollTop - keContainer.offset().top > 0)
@@ -46,7 +46,7 @@ $(function () {
         keToolbar.removeAttr("style");
 }
 
-window.onscroll = fixedKeToolbar;*/
+window.onscroll = fixedKeToolbar;
 var validator;
 var $advertisingAddForm = $("#advertising-add-form");
 var advertisingTypeId = $advertisingAddForm.find("input[name='advertisingTypeId']");
@@ -54,7 +54,7 @@ var $advertisingTypeIdSelect = $advertisingAddForm.find("select[name='advertisin
 
 $(function () {
     validateRule();
-    initadvertisingType()
+    initadvertisingType();
     $("#advertising-add .btn-save").click(function () {
         $("#advertising-add-button").attr("disabled", true);
         editor1.sync();//将KindEditor的数据同步到textarea标签。
@@ -70,8 +70,9 @@ $(function () {
         var flag = validator.form();
         if (flag) {
             if (name === "save") {
+                console.log($advertisingAddForm.serialize()+'&advertisingContent='+html);
                 //富文本内容不能够序列化
-                $.post(ctx + "advertising/add", $advertisingAddForm.serialize()+'&advertisingContent='+html, function (r) {
+                $.post(ctx + "advertising/add", {advertisingContent:html,advertisingName:$('input[name="advertisingName"]').val(),advertisingTypeId:$('input[name="advertisingTypeId"]').val(),advertisingTitle:$('input[name="advertisingTitle"]').val(),advertisingRemarks:$('input[name="advertisingRemarks"]').val()}, function (r) {
                     if (r.code === 0) {
                         closeModal();
                         refresh();
