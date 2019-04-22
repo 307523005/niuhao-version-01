@@ -1,19 +1,18 @@
 # 容器 配置
 server:
-  port: 443
+  port: 80
   tomcat:
-    #uri-encoding: utf-8
-    #手动的将临时文件夹设置为自定义的文件夹，就不会被Linux删除了
-    basedir: /root/temp
-    #max-http-header-size: 8192
-  ssl:
-    enabled: true
-    key-store: classpath:1791425.pfx
-    key-store-password: y15F56bX
-    keyStoreType: PKCS12
-#http:
-#  port: 80
+    uri-encoding: utf-8
+#spring.http.encoding.charset=UTF-8
+#spring.http.encoding.enabled=true
+#spring.http.encoding.force=true
+#spring.messages.encoding=UTF-8
+
+#prod,dev
 spring:
+  profiles:
+    active: dev
+
   #dubbo:
     #application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
      # name: provide
@@ -23,101 +22,6 @@ spring:
       #name: dubbo
       #port: 20881
     #scan: cc.mrbird.job.service.impl  #服务暴露与发现消费所在的package
-  datasource:
-    druid:
-      # 数据库访问配置, 使用druid数据源 59.110.241.188
-      type: com.alibaba.druid.pool.DruidDataSource
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
-      #url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
-      username:  niuhao
-      password:  niuhao
-      #username: basewin
-      #password: basewin
-      # 连接池配置
-      initial-size: 5
-      min-idle: 5
-      max-active: 20
-      # 连接等待超时时间
-      max-wait: 30000
-      # 配置检测可以关闭的空闲连接间隔时间
-      time-between-eviction-runs-millis: 60000
-      # 配置连接在池中的最小生存时间
-      min-evictable-idle-time-millis: 300000
-      validation-query: select '1' from dual
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      # 打开PSCache，并且指定每个连接上PSCache的大小, MySQL下建议关闭
-      pool-prepared-statements: false
-      max-open-prepared-statements: 20
-      max-pool-prepared-statement-per-connection-size: 20
-      # 配置监控统计拦截的filters, 去掉后监控界面sql无法统计, 'wall'用于防火墙
-      filters: stat
-      # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
-      aop-patterns: cc.mrbird.scapp.service.*,cc.mrbird.job.service.*,cc.mrbird.system.service.*
-
-      # WebStatFilter配置
-      web-stat-filter:
-        enabled: true
-        #配置profileEnable能够监控单个url调用的sql列表
-        profile-enable: true
-        #session统计功能
-        session-stat-enable: true
-        #最大session数
-        session-stat-max-count: 100000
-        # 添加过滤规则
-        url-pattern: /*
-        # 忽略过滤的格式
-        #exclusions: '*.jsp,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/actuator/*
-
-      # StatViewServlet配置 
-      stat-view-servlet:
-        enabled: true
-        # 访问路径为/druid时，跳转到StatViewServlet
-        url-pattern: /druid/*
-        # 是否能够重置数据
-        reset-enable: false
-        # 需要账号密码才能访问控制台
-        login-username: niuhao
-        login-password: niuhao
-        # IP白名单
-        # allow: 127.0.0.1
-        # IP黑名单（共同存在时，deny优先于allow）
-        # deny: 192.168.1.218
-
-      # 配置StatFilter,是否启用StatFilter默认值true
-      filter:
-        stat:
-          log-slow-sql: true
-          slow-sql-millis: 1000
-          merge-sql: true
-          db-type: mysql
-          enabled: true
-
-  redis:
-    # Redis数据库索引（默认为0）
-    database: 1
-    # Redis服务器地址 59.110.241.188
-    host: localhost
-    #host: localhost
-    # Redis服务器连接端口
-    port: 6479
-    # Redis 密码
-    password: niuhao
-    jedis:
-      pool:
-        # 连接池中的最小空闲连接
-        min-idle: 8
-        # 连接池中的最大空闲连接
-        max-idle: 500
-        # 连接池最大连接数（使用负值表示没有限制）
-        max-active: 2000
-        # 连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-wait: 10000
-    # 连接超时时间（毫秒）
-    timeout: 0
-
   thymeleaf:
     cache: false
 
@@ -127,19 +31,6 @@ spring:
     type:
       redis
 
- #发送邮件配置
-  mail:
-    host: smtp.qq.com
-    username: 1353710858@qq.com #307523005@qq.com
-    password: epckclfjogcwgfah #dzagtxicxzurbgia # 要通过申请开通（进入qq邮箱-》设置-》账户-》POP3服务：开启POP3/SMTP服务）
-    port: 465
-    protocol: smtp
-    default-encoding: utf-8
-    properties:
-          mail:
-            smtp:
-              ssl:
-                enable: true
   #邮件所需freemarker
   freemarker:
       allowRequestOverride: false
@@ -229,7 +120,7 @@ niuhaoone:
     # rememberMe cookie有效时长，默认 86400 秒，即一天
     cookieTimeout: 86400
     # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/error/*,/gifCode,/,/actuator/**,/test/**,/apphtml/**,/scapp/**,/scimages/**,/merchant_wximge/**,/images22/**,/ckeditor/**,/upload/**
+    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/error/*,/gifCode,/,/actuator/**,/test/**,/apphtml/**,/scapp/**,/scimages/**,/merchant_wximge/**,/images22/**,/ckeditor/**,/upload/**,/swagger-resources/**,/webjars/**,/v2/**,/swagger-ui.html/**
     # 登录 url
     loginUrl: /login
     # 登录成功后跳转的 url
@@ -240,9 +131,9 @@ niuhaoone:
     unauthorizedUrl: /403
   # 时间类型参数在前端页面的展示格式，默认格式为 yyyy-MM-dd HH:mm:ss
   timeFormat: yyyy-MM-dd HH:mm:ss
-  # 是否开启 AOP 日志，默认开启
+  # 是否开启 AOP 操作日志，默认开启
   openAopLog: true
-  # 验证码
+  # 参数
   validateCode:
     # 宽度，默认 146px
     width: 160
@@ -250,5 +141,4 @@ niuhaoone:
     height: 50
     # 验证码字符个数，默认4个字符
     length: 2
-
 

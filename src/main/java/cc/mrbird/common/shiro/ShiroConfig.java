@@ -1,7 +1,7 @@
 package cc.mrbird.common.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import cc.mrbird.common.config.NniuhaoProperies;
+import cc.mrbird.common.config.NiuhaoProperies;
 import cc.mrbird.common.listener.ShiroSessionListener;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.codec.Base64;
@@ -39,7 +39,7 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Autowired
-    private NniuhaoProperies nniuhaoProperies;
+    private NiuhaoProperies niuhaoProperies;
 
     @Value("${spring.redis.host}")
     private String host;
@@ -60,9 +60,9 @@ public class ShiroConfig {
         // 设置 securityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 没有登陆的用户只能访问登陆页面
-        shiroFilterFactoryBean.setLoginUrl(nniuhaoProperies.getShiro().getLoginUrl());
+        shiroFilterFactoryBean.setLoginUrl(niuhaoProperies.getShiro().getLoginUrl());
         // 登录成功后跳转的 url
-        shiroFilterFactoryBean.setSuccessUrl(nniuhaoProperies.getShiro().getSuccessUrl());
+        shiroFilterFactoryBean.setSuccessUrl(niuhaoProperies.getShiro().getSuccessUrl());
         // 未授权 url
         // shiroFilterFactoryBean.setUnauthorizedUrl(febsProperies.getShiro().getUnauthorizedUrl());
         Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
@@ -71,12 +71,12 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilters(filtersMap);
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 设置免认证 url
-        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(nniuhaoProperies.getShiro().getAnonUrl(), ",");
+        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(niuhaoProperies.getShiro().getAnonUrl(), ",");
         for (String url : anonUrls) {
             filterChainDefinitionMap.put(url, "anon");
         }
         // 配置退出过滤器，其中具体的退出代码 Shiro已经替我们实现了
-        filterChainDefinitionMap.put(nniuhaoProperies.getShiro().getLogoutUrl(), "logout");
+        filterChainDefinitionMap.put(niuhaoProperies.getShiro().getLogoutUrl(), "logout");
         // 除上以外所有 url都必须认证通过才可以访问，未通过认证自动访问 LoginUrl
         //filterChainDefinitionMap.put("/**", "user");
         filterChainDefinitionMap.put("/**", "authc,kickout");
@@ -93,7 +93,7 @@ public class ShiroConfig {
     private RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
         // 缓存时间，单位为秒
-        redisManager.setExpire(nniuhaoProperies.getShiro().getExpireIn());
+        redisManager.setExpire(niuhaoProperies.getShiro().getExpireIn());
         redisManager.setHost(host);
         redisManager.setPort(port);
         if (StringUtils.isNotBlank(password))
@@ -141,7 +141,7 @@ public class ShiroConfig {
         SimpleCookie cookie = new SimpleCookie("rememberMe");
         //cookie.setSecure(true);
         // 设置 cookie 的过期时间，单位为秒，这里为一天
-        cookie.setMaxAge(nniuhaoProperies.getShiro().getCookieTimeout());
+        cookie.setMaxAge(niuhaoProperies.getShiro().getCookieTimeout());
         return cookie;
     }
 
@@ -188,7 +188,7 @@ public class ShiroConfig {
         Collection<SessionListener> listeners = new ArrayList<>();
         listeners.add(new ShiroSessionListener());
         // 设置session超时时间，单位为毫秒
-        sessionManager.setGlobalSessionTimeout(nniuhaoProperies.getShiro().getSessionTimeout());
+        sessionManager.setGlobalSessionTimeout(niuhaoProperies.getShiro().getSessionTimeout());
         // 定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话
         sessionManager.setSessionValidationInterval(180);
         sessionManager.setSessionValidationSchedulerEnabled(false);

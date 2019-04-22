@@ -13,6 +13,10 @@ import cc.mrbird.job.service.AdvertisingService;
 import cc.mrbird.system.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -39,6 +43,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -49,6 +54,7 @@ import com.google.common.io.ByteStreams;
  * 广告
  */
 @Controller
+@Api( tags="AdvertisingController广告相关")
 public class AdvertisingController extends BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -60,7 +66,9 @@ public class AdvertisingController extends BaseController {
         return "job/advertising/advertising";
     }
 
-    @RequestMapping("advertising/list")
+    @ApiOperation(value = "获取广告列表", notes = "查询数据库所有广告列表")
+    @ApiImplicitParams({ @ApiImplicitParam(name = "request", paramType = "query", value = "分页信息", required = true),@ApiImplicitParam(name = "advertising", value = "广告信息", paramType = "query", required = true)})
+    @RequestMapping(value = "advertising/list", method = {RequestMethod.POST},produces="text/html;charset=UTF-8")
     @RequiresPermissions("advertising:list")
     @ResponseBody
     public Map<String, Object> advertisingList(QueryRequest request, Advertising advertising) {

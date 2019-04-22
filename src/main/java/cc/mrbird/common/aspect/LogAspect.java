@@ -1,6 +1,6 @@
 package cc.mrbird.common.aspect;
 
-import cc.mrbird.common.config.NniuhaoProperies;
+import cc.mrbird.common.config.NiuhaoProperies;
 import cc.mrbird.common.shiro.RequestUtils;
 import cc.mrbird.common.util.HttpContextUtils;
 import cc.mrbird.common.util.IPUtils;
@@ -31,7 +31,7 @@ public class LogAspect {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private NniuhaoProperies nniuhaoProperies;
+    private NiuhaoProperies niuhaoProperies;
 
     @Autowired
     private LogService logService;
@@ -58,13 +58,13 @@ public class LogAspect {
         // 设置IP地址
         String ip = IPUtils.getIpAddr(request);
         long time = System.currentTimeMillis() - beginTime;
-        if (nniuhaoProperies.isOpenAopLog()) {
+        if (niuhaoProperies.isOpenAopLog()) {
             // 保存日志
             User user = RequestUtils.currentLoginUser();
             if (user!=null){
                 logService.saveLog(point, time, ip, user.getUsername());
             }else {
-                log.error("--保存系统日志错误---user - null-");
+                log.error("-保存系统日志错误-user-null-");
             }
 
         }

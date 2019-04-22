@@ -39,9 +39,9 @@ public class WebConfig {
     }
 
     @Bean
-    public ObjectMapper getObjectMapper(NniuhaoProperies nniuhaoProperies) {
+    public ObjectMapper getObjectMapper(NiuhaoProperies niuhaoProperies) {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setDateFormat(new SimpleDateFormat(nniuhaoProperies.getTimeFormat()));
+        mapper.setDateFormat(new SimpleDateFormat(niuhaoProperies.getTimeFormat()));
         return mapper;
     }
 

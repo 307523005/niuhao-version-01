@@ -1,7 +1,7 @@
 package cc.mrbird.system.controller;
 
 import cc.mrbird.common.annotation.Log;
-import cc.mrbird.common.config.NniuhaoProperies;
+import cc.mrbird.common.config.NiuhaoProperies;
 import cc.mrbird.common.controller.BaseController;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.shiro.RequestUtils;
@@ -36,7 +36,7 @@ public class LoginController extends BaseController {
     private static final String CODE_KEY = "_code";
 
     @Autowired
-    private NniuhaoProperies nniuhaoProperies;
+    private NiuhaoProperies niuhaoProperies;
 
     @Autowired
     private UserService userService;
@@ -89,12 +89,12 @@ public class LoginController extends BaseController {
             response.setContentType("image/png");
 
             Captcha captcha = new SpecCaptcha();
-                    /*nniuhaoProperies.getValidateCode().getWidth(),
-                    nniuhaoProperies.getValidateCode().getHeight(),
-                    nniuhaoProperies.getValidateCode().getLength());*/
-            captcha.setWidth(nniuhaoProperies.getValidateCode().getWidth());
-            captcha.setHeight(nniuhaoProperies.getValidateCode().getHeight());
-            captcha.setLen(nniuhaoProperies.getValidateCode().getLength());
+                    /*niuhaoProperies.getValidateCode().getWidth(),
+                    niuhaoProperies.getValidateCode().getHeight(),
+                    niuhaoProperies.getValidateCode().getLength());*/
+            captcha.setWidth(niuhaoProperies.getValidateCode().getWidth());
+            captcha.setHeight(niuhaoProperies.getValidateCode().getHeight());
+            captcha.setLen(niuhaoProperies.getValidateCode().getLength());
             captcha.out(response.getOutputStream());
             HttpSession session = request.getSession(true);
             session.removeAttribute(CODE_KEY);
