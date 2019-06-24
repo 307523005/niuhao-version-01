@@ -30,7 +30,7 @@ import java.util.Objects;
 /**
  * 接口限流注解，示例见 cc.mrbird.common.controller.TestController
  */
-@Aspect//使之成为切面类
+@Aspect//当前类标识为一个切面供容器读取
 @Component
 public class LimitAspect {
 

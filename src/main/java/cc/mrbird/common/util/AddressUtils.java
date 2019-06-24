@@ -19,16 +19,31 @@ import java.net.URI;
 @Component
 public class AddressUtils {
 
+    /**
+     * 当前对象实例
+     */
+    private static AddressUtils global;
+
     private AddressUtils() {
     }
 
-    private static Logger log = LoggerFactory.getLogger(AddressUtils.class);
+    /**
+     * 静态工厂方法
+     */
+    public static synchronized AddressUtils getInstance() {
+        if (global == null) {
+            global = new AddressUtils();
+        }
+        return global;
+    }
 
+    private static Logger log = LoggerFactory.getLogger(AddressUtils.class);
+    //当前未用到
     private static String ip2regionUrl;
     @Value("${niuhaoone.ip2regionUrl}")
     private String url;
 
-    @PostConstruct//将yml中配置的值赋给本地的变量
+    @PostConstruct//将yml中配置的值赋给本地的静态变量
     public void getApiToken() {
         ip2regionUrl = this.url;
     }
@@ -39,14 +54,9 @@ public class AddressUtils {
 
     public static String getCityInfo(String ip) {
         try {
-
+            //获取资源文件
             Resource resource = new ClassPathResource("ip2region/ip2region.db");
-            URI uri = resource.getURI();
-            String path = uri.getPath();
             File file = resource.getFile();
-            //String path="/niuhao/springboot/static/ip2region/ip2region.db";
-
-            //File file = new File(ip2regionUrl);
             if (!file.exists()) {
                 log.error("Error: Invalid ip2region.db file");
             }

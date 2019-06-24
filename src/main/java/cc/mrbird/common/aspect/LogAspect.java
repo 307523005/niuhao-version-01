@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author MrBird
  * @link https://mrbird.cc/Spring-Boot-AOP%20log.html
  */
-@Aspect
+@Aspect//当前类标识为一个切面供容器读取
 @Component
 public class LogAspect {
 

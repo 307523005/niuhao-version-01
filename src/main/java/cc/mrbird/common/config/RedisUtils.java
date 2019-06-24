@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtils {
 
     @SuppressWarnings("rawtypes")
-    @Autowired
+    @Resource
     private RedisTemplate<Object, Object> redisTemplate;
 
     /**

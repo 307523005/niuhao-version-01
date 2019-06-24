@@ -30,7 +30,6 @@ import java.nio.charset.Charset;
 import java.time.Duration;
 
 @Configuration
-
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Value("${spring.redis.host}")

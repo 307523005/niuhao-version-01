@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" charset="UTF-8"
+              value="[%-12(%date{yyyy-MM-dd HH:mm:ss.SSS})] [%-5level] [%thread] [%logger{50} %line] : %msg%n"/>
+    <!-- test文件路径 -->
+    <property name="TEST_FILE_PATH" value="/root/logs/niuhao-version-01/"/>
+    <!-- prod文件路径 -->
+    <property name="PRO_FILE_PATH" value="/root/logs/niuhao-version-01/"/>
     <!-- 控制台输出 彩色-->
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
     <!-- 控制台输出 黑白-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder><!--对日志进行格式化-->
-            <pattern>
-                [%-5level] [%date{yyyy-MM-dd HH:mm:ss}] [%t] %logger{96} [%line] : %msg%n
-            </pattern>
-            <charset>UTF-8</charset>
+            <pattern>${PATTERN}</pattern>
         </encoder>
     </appender>
-    <!-- 文件输出格式 -->
-    <property name="PATTERN" charset="UTF-8"
-              value="[%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})] [%-5level] [%thread] %c [%L] : %msg%n"/>
-    <!-- test文件路径 -->
-    <property name="TEST_FILE_PATH" value="/root/logs/niuhao-version-01/"/>
-    <!-- prod文件路径 -->
-    <property name="PRO_FILE_PATH" value="/root/logs/niuhao-version-01/"/>
-
     <!-- 开发环境 dev-->
     <!-- 测试环境 test-->
     <springProfile name="dev">
@@ -49,10 +45,10 @@
             <!-- 控制台输出 黑白-->
             <appender-ref ref="STDOUT"/>
         </root>
-        <!-- SQL相关日志输出-->
+        <!-- mybatis中设置SQL参数打印-->
         <!--additivity="false"表示只在logDirfile输出，不在其他输出台输出，如果设置为true，表示要在其他地方也输出-->
-        <logger name="org.springframework.web" level="INFO" />
-        <logger name="org.springboot.sample" level="INFO" />
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO"/>
         <logger name="cc.mrbird.system.dao" level="DEBUG" additivity="true"/>
         <logger name="cc.mrbird.job.dao" level="DEBUG" additivity="true"/>
         <logger name="cc.mrbird.scapp.dao" level="DEBUG" additivity="true"/>

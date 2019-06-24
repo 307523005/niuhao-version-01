@@ -1,9 +1,39 @@
+# 容器 配置
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 80
+  # 邮件头的最大大小。
+  max-http-header-size: 8192
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    #当所有可能的请求处理线程都在使用时，传入连接请求的最大队列长
+    accept-count: 200
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+    #最大并发数默认是10000
+    max-connections: 5000
+    #Tomcat 基目录。如果未指定，则使用临时目录。#手动的将临时文件夹设置为自定义的文件夹，就不会被Linux删除了
+    basedir: /root/tomcattemp
+    #HTTP 帖子内容的最大大小。当值为-1时，默认值为大小无限制
+    max-http-post-size: 2048
+  #ssl:
+    #enabled: true
+    #key-store: classpath:1791425.pfx
+    #key-store-password: y15F56bX
+    #keyStoreType: PKCS12
 
 spring:
   datasource:
+    # 数据库访问配置, 使用druid数据源 59.110.241.188
+    type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      # 数据库访问配置, 使用druid数据源 59.110.241.188
-      type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://59.110.241.188:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
       #url: jdbc:mysql://localhost:3306/niuhaoone?useUnicode=true&characterEncoding=utf8
@@ -12,7 +42,7 @@ spring:
       #username: basewin
       #password: basewin
       # 初始化时建立物理连接的个数
-      initial-size: 10
+      initial-size: 1
       # 最小链接池数量
       min-idle: 5
       # 最大连接池数量（缺省值：8）
@@ -77,6 +107,24 @@ spring:
           merge-sql: true
           db-type: mysql
           enabled: true
+      # 是否启用WallFilter, 默认值true
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            alter-table-allow: false
+            truncate-allow: false
+            drop-table-allow: false
+            # 是否允许非以上基本语句的其他语句, 缺省关闭, 通过这个选项就能够屏蔽DDL.
+            none-base-statement-allow: false
+            # 检查UPDATE语句是否无where条件, 这是有风险的, 但不是SQL注入类型的风险
+            update-where-none-check: true
+            # 是否允许调用Connection.getMetadata方法, 这个方法调用会暴露数据库的表信息
+            metadata-allow: true
+          # 对被认为是攻击的SQL进行LOG.error输出
+          log-violation: true
+          # 对被认为是攻击的SQL抛出SQLExcepton
+          throw-exception: true
 
   redis:
     # Redis数据库索引（默认为0）

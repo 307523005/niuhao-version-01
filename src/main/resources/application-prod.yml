@@ -1,7 +1,28 @@
+# 容器 配置
+# 开发环境配置
 server:
-  #手动的将临时文件夹设置为自定义的文件夹，就不会被Linux删除了
-  basedir: /root/temp
-  #max-http-header-size: 8192
+  # 服务器的HTTP端口，默认为80
+  port: 80
+  # 邮件头的最大大小。
+  max-http-header-size: 8192
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    #当所有可能的请求处理线程都在使用时，传入连接请求的最大队列长
+    accept-count: 200
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+    #最大并发数默认是10000
+    max-connections: 5000
+    #Tomcat 基目录。如果未指定，则使用临时目录。#手动的将临时文件夹设置为自定义的文件夹，就不会被Linux删除了
+    basedir: /root/tomcattemp
+    #HTTP 帖子内容的最大大小。当值为-1时，默认值为大小无限制
+    max-http-post-size: 2048
   ssl:
     enabled: true
     key-store: classpath:1791425.pfx

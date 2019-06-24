@@ -54,7 +54,7 @@ import com.google.common.io.ByteStreams;
  * 广告
  */
 @Controller
-@Api( tags="AdvertisingController广告相关")
+@Api(tags = "AdvertisingController广告相关")
 public class AdvertisingController extends BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -67,8 +67,8 @@ public class AdvertisingController extends BaseController {
     }
 
     @ApiOperation(value = "获取广告列表", notes = "查询数据库所有广告列表")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "request", paramType = "query", value = "分页信息", required = true),@ApiImplicitParam(name = "advertising", value = "广告信息", paramType = "query", required = true)})
-    @RequestMapping(value = "advertising/list", method = {RequestMethod.POST},produces="text/html;charset=UTF-8")
+    @ApiImplicitParams({@ApiImplicitParam(name = "request", paramType = "query", value = "分页信息", required = true), @ApiImplicitParam(name = "advertising", value = "广告信息", paramType = "query", required = true)})
+    @RequestMapping(value = "advertising/list", method = {RequestMethod.POST}, produces = "text/html;charset=UTF-8")
     @RequiresPermissions("advertising:list")
     @ResponseBody
     public Map<String, Object> advertisingList(QueryRequest request, Advertising advertising) {
