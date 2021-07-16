@@ -21,7 +21,7 @@ import java.time.LocalTime;
 @EnableCaching
 @EnableAsync
 @EnableSwagger2
-public class Application /*extends SpringBootServletInitializer*/ {
+public class Application {
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {

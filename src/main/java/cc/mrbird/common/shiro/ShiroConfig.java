@@ -109,7 +109,9 @@ public class ShiroConfig {
         redisCacheManager.setKeyPrefix("niuhaoone-cache:");
         return redisCacheManager;
     }
-
+    /**
+     * 安全管理器
+     */
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
